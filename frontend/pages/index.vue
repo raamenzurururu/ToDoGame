@@ -14,7 +14,10 @@ export default {
     AddTodo,
     TodoList
   },
-  data () {
+  created() {
+    console.log("API_KEY:", process.env.API_KEY);
+  },
+  data() {
     return {
       todos: [],
     };
