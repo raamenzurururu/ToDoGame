@@ -40,7 +40,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    "@/plugins/vuetify"
+    "@/plugins/vuetify",
+    "@/plugins/auth-check"
   ],
   /*
   ** Auto import components
