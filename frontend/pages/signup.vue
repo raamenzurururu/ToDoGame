@@ -3,8 +3,8 @@
     <v-col cols="12" md="4">
       <h2>Sign Up</h2>
       <form>
-        <v-text-field v-model="name" :counter="20" label="Name" data-vv-name="name" required></v-text-field>
-        <v-text-field v-model="email" :counter="30" label="Email" data-vv-name="email" required></v-text-field>
+        <v-text-field v-model="name" :counter="10" label="Name" data-vv-name="name" required></v-text-field>
+        <v-text-field v-model="email" :counter="20" label="Email" data-vv-name="email" required></v-text-field>
         <v-text-field
           v-model="password"
           label="password"
@@ -32,6 +32,8 @@
 
 <script>
 import firebase from "@/plugins/firebase";
+import axios from "@/plugins/axios"
+
 export default {
   data() {
     return {
@@ -53,7 +55,14 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then(res => {
-          console.log(res.user);
+          const user = {
+            email: res.user.email,
+            name: this.name,
+            uid: res.user.uid
+          };
+          axios.post("/v1/users",{ user }).then(() => {
+            this.$router.push("/");
+          })
         })
         .catch(error => {
           this.error = (code => {
