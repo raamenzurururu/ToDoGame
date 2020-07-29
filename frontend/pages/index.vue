@@ -18,7 +18,21 @@ export default {
   computed: {
     user() {
       return this.$store.state.currentUser;
+    },
+    errors() {
+      return this.$store.state.errors;
     }
+  },
+  fetch({ store, redirect }) {
+    store.watch(
+      state => state.currentUser,
+      (newUser, oldUser) => {
+        console.log({ newUser });
+        if (!newUser) {
+          return redirect("/login");
+        }
+      }
+    );
   },
   methods: {
     async addTodo(todo) {

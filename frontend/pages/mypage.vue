@@ -16,6 +16,17 @@ export default {
       return this.$store.state.currentUser;
     }
   },
+  fetch({ store, redirect }) {
+    store.watch(
+      state => state.currentUser,
+      (newUser, oldUser) => {
+        console.log({ newUser });
+        if (!newUser) {
+          return redirect("/login");
+        }
+      }
+    );
+  },
   methods: {
     logOut() {
       firebase
