@@ -6,8 +6,12 @@ Vue.use(Vuex);
 const store = () => {
   return new Vuex.Store({
     state: {
+      currentUser: null,
       loading: false,
-      currentUser: null
+      notification: {
+        status: false,
+        message: ""
+      }
     },
     mutations: {
       setUser(state, payload) {
@@ -15,6 +19,9 @@ const store = () => {
       },
       setLoading(state, payload) {
         state.loading = payload
+      },
+      setNotice(state, payload) {
+        state.notification = payload
       }
     },
     actions: {}

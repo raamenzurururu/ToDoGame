@@ -23,7 +23,7 @@
 import axios from "@/plugins/axios";
 
 export default {
-  props: ["todos"], // <- これ！
+  props: ["todos"], 
   data() {
     return {
       singleSelect: true,
