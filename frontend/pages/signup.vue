@@ -46,17 +46,6 @@ export default {
       error: ""
     };
   },
-  fetch({ store, redirect }) {
-    store.watch(
-      state => state.currentUser,
-      (currentUser, newUser) => {
-        console.log({ currentUser });
-        if (currentUser) {
-          return redirect("/mypage");
-        }
-      }
-    );
-  },
   methods: {
     signup() {
       if (this.password !== this.passwordConfirm) {
