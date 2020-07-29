@@ -12,12 +12,13 @@
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="4">
-          <v-btn @click="handleSubmit">決まり</v-btn>
+          <v-btn @click="handleSubmit">作成</v-btn>
         </v-col>
       </v-row>
     </v-container>
   </v-form>
 </template>
+
 <script>
 export default {
   data() {
@@ -25,13 +26,23 @@ export default {
       title: ""
     };
   },
+  computed: {
+    user() {
+      return this.$store.state.currentUser;
+    }
+  },
   methods: {
     handleSubmit() {
-      this.$emit("submit", this.title);
+      const todo = {
+        title: this.title,
+        user_id: this.user.id
+      };
+      this.$emit("submit", todo);
       this.title = "";
     }
   }
 };
 </script>
 
-<style></style>
+<style>
+</style>
