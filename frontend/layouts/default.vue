@@ -56,7 +56,7 @@ export default {
       drawer: false,
       fixed: false,
       miniVariant: false,
-      right: true,
+      right: false,
       rightDrawer: false,
       title: "Todo App"
     };

@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col cols="12" md="4">
+    <v-col cols=12 sm=10 md=8 lg=4 xl=3>
       <h2>ログイン</h2>
       <form>
         <v-text-field
@@ -24,16 +24,19 @@
       </form>
     </v-col>
     <Transitions></Transitions>
+    <Progress></Progress>
   </v-row>
 </template>
 
 <script>
 import firebase from "@/plugins/firebase";
 import Transitions from "@/components/Transitions.vue"
+import Progress from "@/components/Progress.vue"
 
 export default {
   components: {
-    Transitions
+    Transitions,
+    Progress
   },
   data() {
     return {
