@@ -58,7 +58,7 @@ export default {
       miniVariant: false,
       right: false,
       rightDrawer: false,
-      title: "Todo App"
+      title: "ToDoGame"
     };
   },
   components: {
