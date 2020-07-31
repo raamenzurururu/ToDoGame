@@ -23,12 +23,18 @@
         <p v-if="error" class="errors">{{ error }}</p>
       </form>
     </v-col>
+    <Transitions></Transitions>
   </v-row>
 </template>
 
 <script>
 import firebase from "@/plugins/firebase";
+import Transitions from "@/components/Transitions.vue"
+
 export default {
+  components: {
+    Transitions
+  },
   data() {
     return {
       email: "",
