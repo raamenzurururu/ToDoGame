@@ -37,9 +37,9 @@
 
 <script>
 import firebase from "@/plugins/firebase";
-import Transitions from "@/components/Transitions.vue"
-import Progress from "@/components/Progress.vue"
-import Timeline from "@/components/Timeline.vue"
+import Transitions from "@/components/Vuetify/Transitions.vue"
+import Progress from "@/components/Vuetify/Progress.vue"
+import Timeline from "@/components/Vuetify/Timeline.vue"
 
 
 export default {
