@@ -12,7 +12,7 @@
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="4">
-          <v-btn @click="handleSubmit">作成</v-btn>
+          <v-btn class="bt" @click="handleSubmit">作成</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -45,4 +45,14 @@ export default {
 </script>
 
 <style>
+.col-md-4 > .bt {
+  color: white;
+  padding: 10px 40px !important;
+  border: 2px solid white;
+}
+
+.bt:hover {
+  color: yellow;
+  border: 2px solid yellow;
+}
 </style>

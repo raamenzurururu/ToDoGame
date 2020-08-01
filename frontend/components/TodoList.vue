@@ -1,17 +1,10 @@
 <template>
   <v-card>
     <v-card-title>
-      Todoリスト
+      <h2>TODO</h2>
       <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="search"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
     </v-card-title>
-    <v-data-table :headers="headers" :items="todos" :search="search">
+    <v-data-table :headers="headers" :items="todos">
       <template v-slot:item.action="{ item }">
         <v-icon small @click="deleteItem(item)">delete</v-icon>
       </template>
@@ -36,7 +29,7 @@ export default {
           sortable: false,
           value: "title"
         },
-        { text: "ユーザー名", value: "username" },
+        // { text: "ユーザー名", value: "username" },
         { text: "Actions", value: "action", sortable: false }
       ]
     };
