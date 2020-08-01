@@ -43,7 +43,9 @@ export default {
     async deleteItem(item) {
       const res = confirm("本当に達成しましたか？");
       if (res) {
-        await axios.delete(`/v1/todos/${item.id}`);  //この処理のあとに別のページに飛ばしたい
+        await axios.delete(`/v1/todos/${item.id}`).then(() => {
+          this.$router.push("/login");
+        }); //これで飛ばせる
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
