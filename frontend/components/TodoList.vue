@@ -6,7 +6,7 @@
     </v-card-title>
     <v-data-table :headers="headers" :items="todos">
       <template v-slot:item.action="{ item }">
-        <v-icon small @click="deleteItem(item)">delete</v-icon>
+        <v-icon color="yellow" small @click="deleteItem(item)">mdi-crown</v-icon>
       </template>
     </v-data-table>
   </v-card>
@@ -41,9 +41,9 @@ export default {
   },
   methods: {
     async deleteItem(item) {
-      const res = confirm("本当に削除しますか？");
+      const res = confirm("本当に達成しましたか？");
       if (res) {
-        await axios.delete(`/v1/todos/${item.id}`);
+        await axios.delete(`/v1/todos/${item.id}`);  //この処理のあとに別のページに飛ばしたい
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
@@ -58,4 +58,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>
