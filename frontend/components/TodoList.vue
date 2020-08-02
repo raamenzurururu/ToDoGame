@@ -6,7 +6,7 @@
     </v-card-title>
     <v-data-table :headers="headers" :items="todos">
       <template v-slot:item.action="{ item }">
-        <v-icon color="yellow" small @click="deleteItem(item)">mdi-crown</v-icon>
+        <v-icon color="yellow" small @click="deleteItem(item)">mdi-crown-outline</v-icon>
       </template>
     </v-data-table>
   </v-card>
