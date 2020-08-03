@@ -15,6 +15,10 @@ class V1::TodosController < ApplicationController
     end                                   #title, user_id, created_at, updated_at
   end 
 
+  def complete  #todo達成用
+    todo = Todo.find(params[:id])      #paramsにはactionのcompleteが入ってる
+  end 
+
   private
     def todo_params
       #pointを送れた

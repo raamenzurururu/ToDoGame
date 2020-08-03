@@ -5,6 +5,9 @@
       <v-spacer></v-spacer>
     </v-card-title>
     <v-data-table :headers="headers" :items="todos">
+      <template v-slot:item.complete="{ item }">
+        <v-icon big color="yellow" @click="completeItem(item)">mdi-crown-outline</v-icon>
+      </template>
       <template v-slot:item.action="{ item }">
         <v-icon small @click="deleteItem(item)">delete</v-icon>
       </template>
@@ -24,12 +27,13 @@ export default {
       search: "",
       headers: [
         {
-          text: "やること",
+          text: "ToDo",
           align: "left",
           sortable: false,
           value: "title"
         },
-        { text: "Task Points(TP)" , value: "point" },
+        { text: "Task Point(TP)" , value: "point" },
+        { text: "goal", value: "complete"},
         { text: "Actions", value: "action", sortable: false }
       ]
     };
@@ -46,6 +50,20 @@ export default {
         await axios.delete(`/v1/todos/${item.id}`)//.then(() => {
           //this.$router.push("/login");
         //}); //これで飛ばせる
+        const todos = this.user.todos.filter(todo => {
+          return todo.id !== item.id;
+        });
+        const newUser = {
+          ...this.user,
+          todos
+        };
+        this.$store.commit("setUser", newUser);
+      }
+    },
+    async completeItem(item) {
+      const res = confirm("本当に達成しましたか？");
+      if (res) {
+        await axios.get(`/v1/todos/${item.id}`)
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
