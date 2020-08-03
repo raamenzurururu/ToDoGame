@@ -6,7 +6,7 @@
     </v-card-title>
     <v-data-table :headers="headers" :items="todos">
       <template v-slot:item.action="{ item }">
-        <v-icon color="yellow" small @click="deleteItem(item)">mdi-crown-outline</v-icon>
+        <v-icon color="yellow" big @click="deleteItem(item)">mdi-crown-outline</v-icon>
       </template>
     </v-data-table>
   </v-card>
@@ -29,7 +29,7 @@ export default {
           sortable: false,
           value: "title"
         },
-        { text: "Point" },
+        { text: "Task Points(TP)" , value: "point" },
         { text: "Actions", value: "action", sortable: false }
       ]
     };
