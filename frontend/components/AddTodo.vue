@@ -2,6 +2,9 @@
   <v-form>
     <v-container>
       <v-row>
+        <v-col cols="2" xs="6" sm="6" md="1" lg="1">
+          <v-select label="TP" v-model="number" :items="items">Point</v-select>
+        </v-col>                         <!-- v-bind: 属性名 = "設定する値" --> 
         <v-col cols="12" md="5">
           <v-text-field
             v-model="title"
@@ -20,10 +23,15 @@
 </template>
 
 <script>
+const maxNumber = 11;
+const numberRange = [...Array(maxNumber).keys()] //スプレッド演算子
+
 export default {
   data() {
     return {
-      title: ""
+      title: "",
+      items: numberRange,
+      number: ''
     };
   },
   computed: {
@@ -35,10 +43,12 @@ export default {
     handleSubmit() {
       const todo = {
         title: this.title,
-        user_id: this.user.id
+        user_id: this.user.id,
+        point: this.number
       };
       this.$emit("submit", todo);
       this.title = "";
+      this.number = "";
     }
   }
 };

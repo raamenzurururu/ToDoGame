@@ -24,12 +24,12 @@ export default {
       search: "",
       headers: [
         {
-          text: "タイトル",
+          text: "やること",
           align: "left",
           sortable: false,
           value: "title"
         },
-        // { text: "ユーザー名", value: "username" },
+        { text: "Point" },
         { text: "Actions", value: "action", sortable: false }
       ]
     };

@@ -17,6 +17,7 @@ class V1::TodosController < ApplicationController
 
   private
     def todo_params
-      params.require(:todo).permit(:title, :user_id)   #{"todo"=>{"title"=>"Line", "user_id"=>6}, "controller"=>"v1/todos", "action"=>"create"} permitted: false>
+      #pointを送れた
+      params.require(:todo).permit(:title, :user_id, :point)   #{"todo"=>{"title"=>"英語", "user_id"=>6, "point"=>2}, "controller"=>"v1/todos", "action"=>"create"} permitted: false>
     end                                                #paramsにはこんだけの情報が入っている
 end
