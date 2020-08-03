@@ -6,7 +6,7 @@
     </v-card-title>
     <v-data-table :headers="headers" :items="todos">
       <template v-slot:item.action="{ item }">
-        <v-icon color="yellow" big @click="deleteItem(item)">mdi-crown-outline</v-icon>
+        <v-icon small @click="deleteItem(item)">delete</v-icon>
       </template>
     </v-data-table>
   </v-card>
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     async deleteItem(item) {
-      const res = confirm("本当に達成しましたか？");
+      const res = confirm("本当に削除しますか？");
       if (res) {
         await axios.delete(`/v1/todos/${item.id}`)//.then(() => {
           //this.$router.push("/login");
