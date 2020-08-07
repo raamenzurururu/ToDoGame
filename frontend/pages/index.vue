@@ -1,6 +1,7 @@
 <template>
   <div v-if="user">
     <p>{{ user.name }}</p>
+    <p>{{ user.point }}</p>
     <AddTodo @submit="addTodo" />
     <TodoList :todos="user.todos" /> 
   </div>
@@ -12,6 +13,12 @@ import TodoList from "@/components/TodoList";
 import axios from "@/plugins/axios";
 
 export default {
+  data() {
+    return {
+      point: "",
+      show1: false
+    }
+  },
   components: {
     AddTodo,
     TodoList,

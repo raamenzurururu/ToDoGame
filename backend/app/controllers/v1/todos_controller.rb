@@ -1,6 +1,7 @@
 class V1::TodosController < ApplicationController
+  # POST /api/v1/todos
   def create
-    todo = Todo.new(todo_params)
+    todo = Todo.new(todo_params)   #render json: todoのtodoはtodo = Todo.newしたやつ
     if todo.save
       render json: todo, status: :created #todoに保存したデータが入っている
     else                                  #title, user_id, created_at, updated_at
@@ -8,6 +9,7 @@ class V1::TodosController < ApplicationController
     end
   end
 
+  # DELETE /api/v1/todos/:id
   def destroy
     todo = Todo.find(params[:id])
     if todo.destroy
@@ -16,7 +18,12 @@ class V1::TodosController < ApplicationController
   end 
 
   def complete  #todo達成用
-    todo = Todo.find(params[:id])      #paramsにはactionのcompleteが入ってる
+    todo = Todo.find(params[:id]) 
+    user = User.find(todo.user_id)
+    getpoint = user.point.to_i
+    getpoint += todo.point
+    user.point = getpoint
+    user.update(point: getpoint)
   end 
 
   private

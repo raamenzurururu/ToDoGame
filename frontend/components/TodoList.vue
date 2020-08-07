@@ -63,13 +63,19 @@ export default {
     async completeItem(item) {
       const res = confirm("本当に達成しましたか？");
       if (res) {
-        await axios.get(`/v1/todos/${item.id}`)
+        await axios.get(`/v1/todos/${item.id}`,
+          {
+            params: {
+              point: this.todos.point
+            }});
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
+        const points = this.user.point
         const newUser = {
           ...this.user,
-          todos
+          todos,
+          points
         };
         this.$store.commit("setUser", newUser);
       }
@@ -80,3 +86,4 @@ export default {
 
 <style>
 </style>
+
