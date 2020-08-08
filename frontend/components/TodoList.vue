@@ -8,17 +8,6 @@
       <template v-slot:item.complete="{ item }">
         <v-icon big color="yellow" @click="completeItem(item)">mdi-crown-outline</v-icon>
       </template>
-      <!-- Edit -->
-      <template v-slot:item.edit="{ item }">
-        <v-icon small @click="editItem(item)">mdi-pencil</v-icon>
-        <div v-if="editOn"></div>
-        <div v-else class="edit-window">
-          <p>編集画面</p>
-          <v-text-field label="Edit" counter></v-text-field>
-          <v-icon small @click="changeItem">update</v-icon>
-        </div>
-      </template>
-      <!--  -->
       <template v-slot:item.action="{ item }">
         <v-icon small @click="deleteItem(item)">delete</v-icon>
       </template>
@@ -34,9 +23,9 @@ export default {
   data() {
     return {
       singleSelect: true,
+
       selected: [],
       search: "",
-      editOn: true,
       headers: [
         {
           text: "ToDo",
@@ -52,11 +41,6 @@ export default {
         },
         { text: "Actions",
           value: "action",
-          sortable: false
-        },
-        {
-          text: "edit",
-          value: "edit",
           sortable: false
         }
       ]
