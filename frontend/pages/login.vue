@@ -1,5 +1,8 @@
 <template>
   <v-row>
+    <v-col cols="12" sm="12" md="12" lg="12">
+      <Transitions></Transitions>
+    </v-col>
     <v-col cols="12" sm="12" md="6" lg="6">
       <h2>ログイン</h2>
       <form>
@@ -22,9 +25,6 @@
         <v-btn class="mr-4" @click="login">submit</v-btn>
         <p v-if="error" class="errors">{{ error }}</p>
       </form>
-    </v-col>
-    <v-col cols="12" sm="12" md="6" lg="6">
-      <Transitions></Transitions>
     </v-col>
     <v-col>
       <Progress></Progress>

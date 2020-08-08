@@ -3,7 +3,8 @@
     <p>{{ user.name }}</p>
     <p class="user-tp d-inline-block">タスクポイント:{{ user.point }}</p>
     <AddTodo @submit="addTodo" />
-    <TodoList :todos="user.todos" /> 
+    <router-link to="/reward">報酬</router-link>
+    <TodoList :todos="user.todos" />
   </div>
 </template>
 
@@ -17,11 +18,11 @@ export default {
     return {
       point: "",
       show1: false
-    }
+    };
   },
   components: {
     AddTodo,
-    TodoList,
+    TodoList
   },
   computed: {
     user() {
