@@ -66,16 +66,15 @@ export default {
         await axios.get(`/v1/todos/${item.id}`,
           {
             params: {
-              point: this.todos.point
+              point: this.todos[0].point
             }});
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
-        const points = this.user.point
+        this.user.point = this.user.point + this.todos[0].point
         const newUser = {
           ...this.user,
           todos,
-          points
         };
         this.$store.commit("setUser", newUser);
       }

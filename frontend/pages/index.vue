@@ -1,7 +1,7 @@
 <template>
   <div v-if="user">
     <p>{{ user.name }}</p>
-    <p>{{ user.point }}</p>
+    <p class="user-tp d-inline-block">タスクポイント:{{ user.point }}</p>
     <AddTodo @submit="addTodo" />
     <TodoList :todos="user.todos" /> 
   </div>
@@ -54,4 +54,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.user-tp {
+  border: blue solid 2px;
+}
+</style>

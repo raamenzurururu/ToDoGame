@@ -24,6 +24,9 @@ class V1::TodosController < ApplicationController
     getpoint += todo.point
     user.point = getpoint
     user.update(point: getpoint)
+    if todo.destroy
+      render json: {todo: todo, user: user}
+    end
   end 
 
   private
