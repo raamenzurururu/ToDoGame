@@ -8,6 +8,17 @@
       <template v-slot:item.complete="{ item }">
         <v-icon big color="yellow" @click="completeItem(item)">mdi-crown-outline</v-icon>
       </template>
+      <!-- Edit -->
+      <template v-slot:item.edit="{ item }">
+        <v-icon small @click="editItem(item)">mdi-pencil</v-icon>
+        <div v-if="editOn"></div>
+        <div v-else class="edit-window">
+          <p>編集画面</p>
+          <v-text-field label="Edit" counter></v-text-field>
+          <v-icon small @click="changeItem">update</v-icon>
+        </div>
+      </template>
+      <!--  -->
       <template v-slot:item.action="{ item }">
         <v-icon small @click="deleteItem(item)">delete</v-icon>
       </template>
@@ -25,6 +36,7 @@ export default {
       singleSelect: true,
       selected: [],
       search: "",
+      editOn: true,
       headers: [
         {
           text: "ToDo",
@@ -32,9 +44,21 @@ export default {
           sortable: false,
           value: "title"
         },
-        { text: "Task Point(TP)" , value: "point" },
-        { text: "goal", value: "complete"},
-        { text: "Actions", value: "action", sortable: false }
+        { text: "Task Point(TP)",
+          value: "point"
+        },
+        { text: "goal",
+          value: "complete"
+        },
+        { text: "Actions",
+          value: "action",
+          sortable: false
+        },
+        {
+          text: "edit",
+          value: "edit",
+          sortable: false
+        }
       ]
     };
   },
@@ -78,11 +102,57 @@ export default {
         };
         this.$store.commit("setUser", newUser);
       }
+    },
+    // save() {
+    //   this.snack = true
+    //   this.snackColor = 'success'
+    //   this.snackText = 'Data saved'
+    // },
+    // cancel() {
+    //   this.snack = true
+    //   this.snackColor = 'error'
+    //   this.snackText = 'Canceled'
+    // },
+    // open() {
+    //   this.snack = true
+    //   this.snackColor = 'info'
+    //   this.snackText = 'Dialog opened'
+    // },
+    // close() {
+    //   console.log('Dialog closed')
+    // }
+    async editItem(item) {
+      this.editOn = !this.editOn
+    },
+    async changeItem(item) {
+
     }
   }
 };
 </script>
 
 <style>
+.v-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-window {
+  /*　要素を重ねた時の順番　*/
+  z-index: 1;
+
+  /*　画面全体を覆う設定　*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 30, 0.5);
+
+  /*　画面の中央に要素を表示させる設定　*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
 

@@ -81,6 +81,11 @@ export default {
             icon: "mdi-chart-bubble",
             title: "mypage",
             to: "/mypage"
+          },
+          {
+            icon: "mdi-heart",
+            title: "test",
+            to: "/test"
           }
         ];
       } else {
