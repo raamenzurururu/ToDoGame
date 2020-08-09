@@ -26,7 +26,6 @@ export default {
       error: "",
       showContent: false
     };
-    // ログインに必要な初期値
   },
   fetch({ store, redirect }) {
     store.watch(
@@ -43,7 +42,6 @@ export default {
     AddReward,
     RewardList
   },
-  // ログイン時のくるくるをいれたい
   computed: {
     user() {
       return this.$store.state.currentUser;
@@ -52,7 +50,7 @@ export default {
   },
   methods: {
     async addReward(reward) {
-      // 子から送られてきたrewardを持っている
+      // 子(AddReward)から送られてきたrewardを持っている
       const { data } = await axios.post("/v1/rewards", {
         reward
       });
@@ -78,7 +76,6 @@ export default {
 
         if (window.scrollY <= 0) {
           clearInterval(timer);
-          // 動ききった後に新規登録をハイライトさせたい。
         }
       }, interval);
     }
@@ -104,7 +101,6 @@ export default {
   color: aqua !important;
 }
 
-/* 指定がうまくいかない */
 .v-img {
   text-align: center;
 }

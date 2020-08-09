@@ -8,7 +8,6 @@
       </v-card-title>
       <v-data-table :headers="headers" :items="rewards">
         <!-- ここにアイテムの名前が表示される/itemsをitemに入れるのがv-data-tableの機能-->
-
         <template v-slot:item.point="props">
           <v-edit-dialog
             :return-value="props.item.point"

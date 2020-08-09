@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="text-center blue">ToDoGame</h1>
+    <h1 class="text-center red">ToDoGame</h1>
     <v-row>
       <v-col cols="12" sm="12" md="4" lg="6">
         <h2 class="md-3 text-center">ToDoをゲームに</h2>
@@ -112,9 +112,9 @@
                     @click:append="show1 = !show1"
                   ></v-text-field>
                   <v-btn class="mr-4 px-7" color="#f5851d" @click="login"
-                    >LOCK!</v-btn
+                    >Tell em!</v-btn
                   >
-                  <v-icon color="red">mdi-heart</v-icon>
+                  <v-icon color="red">mdi-crown</v-icon>
                   <p v-if="error" class="errors">{{ error }}</p>
                 </form>
               </v-col>
@@ -129,16 +129,9 @@
 
 <script>
 import firebase from "@/plugins/firebase";
-import Transitions from "@/components/Vuetify/Transitions.vue";
-import Progress from "@/components/Vuetify/Progress.vue";
-import Timeline from "@/components/Vuetify/Timeline.vue";
 
 export default {
-  components: {
-    Transitions,
-    Progress,
-    Timeline
-  },
+  components: {},
   data() {
     return {
       email: "",
@@ -240,7 +233,7 @@ export default {
 <style scoped>
 #title {
   display: inline-block;
-  background-color: #fc7b03;
+  color: red;
   text-align: center;
   margin: 0 auto;
 }
@@ -250,7 +243,7 @@ export default {
 .introduction h3 {
   text-align: center;
   margin: 0 auto;
-  color: aqua !important;
+  color: orange !important;
 }
 /* 指定がうまくいかない */
 .v-img {

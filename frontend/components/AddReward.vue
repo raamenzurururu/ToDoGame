@@ -51,9 +51,9 @@ export default {
 
 <style>
 .col-md-4 > .bo {
-  color: #fc7b03;
+  color: pink;
   padding: 10px 40px !important;
-  border: 2px solid #fc7b03;
+  border: 2px solid deeppink;
   background-color: black !important;
   margin: 0 auto !important;
 }
