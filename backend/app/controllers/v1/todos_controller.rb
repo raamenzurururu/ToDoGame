@@ -9,6 +9,12 @@ class V1::TodosController < ApplicationController
     end
   end
 
+  def update
+    todo = Todo.find(params[:id])
+    todo.update(todo_params)
+      render json: todo
+  end
+
   # DELETE /api/v1/todos/:id
   def destroy
     todo = Todo.find(params[:id])
