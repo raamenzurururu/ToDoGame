@@ -1,10 +1,12 @@
 <template>
   <v-container>
-    <p>報酬</p>
-    <p>Your name：{{ user.name }}</p>
-    <p class="user-tp d-inline-block ">タスクポイント：{{ user.point }}</p>
-    <AddReward @submit="addReward" />
-    <RewardList :rewards="user.rewards" />
+    <div v-if="user">
+      <p>報酬を、、、。</p>
+      <p>{{ user.name }}</p>
+      <p class="user-tp d-inline-block ">タスクポイント：{{ user.point }}</p>
+      <AddReward @submit="addReward" />
+      <RewardList :rewards="user.rewards" />
+    </div>
   </v-container>
 </template>
 

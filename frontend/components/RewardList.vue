@@ -82,6 +82,7 @@
 <script>
 const maxNumber = 11;
 const numberRange = [...Array(maxNumber).keys()];
+
 import axios from "@/plugins/axios";
 export default {
   props: ["rewards"],
