@@ -1,154 +1,118 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <h2>TODO</h2>
-      <v-spacer></v-spacer>
-    </v-card-title>
-    <v-data-table :headers="headers" :items="todos">
-      <template v-slot:item.point="props">
-        <v-edit-dialog :return-value.sync="props.item.point">
-          {{ props.item.point }}
-          <template v-slot:input>
-            <v-select
-              @change="updatePoint(props.item.id, props.item.point)"
-              v-model="props.item.point"
-              :items="items"
-              single-line
-            ></v-select>
-            <!-- itemsは元々v-selectに存在している -->
-          </template>
-        </v-edit-dialog>
-      </template>
-
-      <template v-slot:item.title="props">
-        <v-edit-dialog :return-value.sync="props.item.title">
-          {{ props.item.title }}
-          <template v-slot:input>
-            <v-text-field
-              @change="updateTitle(props.item.id, props.item.title)"
-              v-model="props.item.title"
-              label="Edit"
-              single-line
-              counter
-            ></v-text-field>
-          </template>
-        </v-edit-dialog>
-      </template>
-      <template v-slot:item.complete="{ item }">
-        <v-icon big color="yellow" @click="completeItem(item)"
-          >mdi-crown-outline</v-icon
-        >
-      </template>
-      <template v-slot:item.action="{ item }">
-        <v-icon small @click="deleteItem(item)">delete</v-icon>
-      </template>
-      <!-- edit -->
-      <!-- <div v-else class="edit-window"> -->
-      <!-- <p>編集画面</p> -->
-      <!-- <v-text-field label="Edit" counter></v-text-field> -->
-      <!-- <v-icon smaill @click="changeItem">update</v-icon> -->
-    </v-data-table>
-  </v-card>
+  <v-container>
+    <p>報酬</p>
+    <p>Your name：{{ user.name }}</p>
+    <p class="user-tp d-inline-block ">タスクポイント：{{ user.point }}</p>
+    <AddReward @submit="addReward" />
+    <RewardList :rewards="user.rewards" />
+  </v-container>
 </template>
 
 <script>
-const maxNumber = 11;
-const numberRange = [...Array(maxNumber).keys()];
-
 import axios from "@/plugins/axios";
+import AddReward from "@/components/AddReward";
+import RewardList from "@/components/RewardList";
+import firebase from "@/plugins/firebase";
 
 export default {
-  props: ["todos"],
   data() {
     return {
-      singleSelect: true,
-      selected: [],
-      search: "",
-      editOn: true,
-      items: numberRange,
-      headers: [
-        {
-          text: "ToDo",
-          align: "left",
-          sortable: false,
-          value: "title"
-        },
-        { text: "Task Point(TP)", value: "point" },
-        { text: "Goal", value: "complete" },
-        { text: "Edit", value: "edit", sortable: false },
-        { text: "Actions", value: "action", sortable: false }
-      ]
+      name: "",
+      point: "",
+      show1: false,
+      show2: false,
+      error: "",
+      showContent: false
     };
+    // ログインに必要な初期値
   },
+  fetch({ store, redirect }) {
+    store.watch(
+      state => state.currentUser,
+      (newUser, oldUser) => {
+        if (!newUser) {
+          return redirect("/login");
+        }
+      }
+    );
+  },
+  // ナビゲーションガード（監視）
+  components: {
+    AddReward,
+    RewardList
+  },
+  // ログイン時のくるくるをいれたい
   computed: {
     user() {
       return this.$store.state.currentUser;
     }
+    // カレントユーザーの定義
   },
   methods: {
-    async deleteItem(item) {
-      const res = confirm("本当に削除しますか？");
-      if (res) {
-        await axios.delete(`/v1/todos/${item.id}`); //.then(() => {
-        //this.$router.push("/login");
-        //}); //これで飛ばせる
-        const todos = this.user.todos.filter(todo => {
-          return todo.id !== item.id;
-        });
-        const newUser = {
-          ...this.user,
-          todos
-        };
-        this.$store.commit("setUser", newUser);
-      }
-    },
-    async completeItem(item) {
-      const res = confirm("本当に達成しましたか？");
-      if (res) {
-        await axios.get(`/v1/todos/${item.id}`, {
-          params: {
-            point: this.todos[0].point
-          }
-        });
-        const todos = this.user.todos.filter(todo => {
-          return todo.id !== item.id;
-        });
-        this.user.point = this.user.point + this.todos[0].point;
-        const newUser = {
-          ...this.user,
-          todos
-        };
-        this.$store.commit("setUser", newUser);
-      }
-    },
-    async editItem(item) {
-      this.editOn = !this.editOn;
-    },
-    async updateTitle(id, value) {
-      await axios.patch(`/v1/todos/${id}`, {
-        todo: {
-          title: value
-        }
+    async addReward(reward) {
+      // 子から送られてきたrewardを持っている
+      const { data } = await axios.post("/v1/rewards", {
+        reward
+      });
+      //追加
+      this.$store.commit("setUser", {
+        ...this.user,
+        rewards: [...this.user.rewards, data]
+        // 初期値ではなくpostできるように
       });
     },
-    async updatePoint(id, value) {
-      await axios.patch(`/v1/todos/${id}`, {
-        todo: {
-          point: value
+    openModal: function() {
+      this.showContent = true;
+    },
+    closeModal: function() {
+      this.showContent = false;
+    },
+    moveToTop() {
+      const duration = 1000; // 移動速度（1秒で終了）
+      const interval = 25; // 0.025秒ごとに移動
+      const step = -window.scrollY / Math.ceil(duration / interval); // 1回に移動する距離
+      const timer = setInterval(() => {
+        window.scrollBy(0, step); // スクロール位置を移動
+
+        if (window.scrollY <= 0) {
+          clearInterval(timer);
+          // 動ききった後に新規登録をハイライトさせたい。
         }
-      });
+      }, interval);
     }
   }
 };
 </script>
 
 <style>
-.v-icon {
-  display: flex;
-  justify-content: center;
+#title {
+  display: inline-block;
+  background-color: #fc7b03;
+  text-align: center;
+  margin: 0 auto;
 }
 
-.edit-window {
+.introduction {
+  margin-top: 50px;
+}
+
+.introduction h3 {
+  text-align: center;
+  margin: 0 auto;
+  color: aqua !important;
+}
+
+/* 指定がうまくいかない */
+.v-img {
+  text-align: center;
+}
+
+.v-window__container {
+  border: solid 5px white;
+}
+
+/* モータルウィンドウ */
+#overlay {
   /*　要素を重ねた時の順番　*/
   z-index: 1;
 
@@ -164,5 +128,9 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.user-tp {
+  border: white solid 2px;
 }
 </style>

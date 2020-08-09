@@ -143,6 +143,7 @@ export default {
     return {
       email: "",
       name: "",
+      point: "",
       password: "",
       passwordConfirm: "",
       show1: false,
@@ -151,6 +152,21 @@ export default {
       showContent: false,
       error: ""
     };
+  },
+  fetch({ store, redirect }) {
+    store.watch(
+      state => state.currentUser,
+      (newUser, oldUser) => {
+        if (!newUser) {
+          return redirect("/login");
+        }
+      }
+    );
+  },
+  computed: {
+    user() {
+      return this.$store.state.currentUser;
+    }
   },
   methods: {
     login() {
