@@ -6,10 +6,27 @@
     </v-card-title>
     <v-data-table :headers="headers" :items="todos">
       <template v-slot:item.complete="{ item }">
-        <v-icon big color="yellow" @click="completeItem(item)">mdi-crown-outline</v-icon>
+        <v-icon big color="yellow" @click="completeItem(item)"
+          >mdi-crown-outline</v-icon
+        >
       </template>
       <template v-slot:item.action="{ item }">
         <v-icon small @click="deleteItem(item)">delete</v-icon>
+      </template>
+      <template v-slot:item.edit="{ item }">
+        <v-icon small @click="editItem(item)">create</v-icon>
+        <!-- edit -->
+        <div v-if="editOn"></div>
+        <div v-else class="edit-window">
+          <p>編集画面</p>
+          {{ todos[0].title }}
+          <v-text-field
+            input="changeItem([$event,'text1'])"
+            label="Edit"
+            counter
+          ></v-text-field>
+          <v-icon smaill @click="changeItem">update</v-icon>
+        </div>
       </template>
     </v-data-table>
   </v-card>
@@ -19,13 +36,13 @@
 import axios from "@/plugins/axios";
 
 export default {
-  props: ["todos"], 
+  props: ["todos"],
   data() {
     return {
       singleSelect: true,
-
       selected: [],
       search: "",
+      editOn: true,
       headers: [
         {
           text: "ToDo",
@@ -33,16 +50,10 @@ export default {
           sortable: false,
           value: "title"
         },
-        { text: "Task Point(TP)",
-          value: "point"
-        },
-        { text: "goal",
-          value: "complete"
-        },
-        { text: "Actions",
-          value: "action",
-          sortable: false
-        }
+        { text: "Task Point(TP)", value: "point" },
+        { text: "Goal", value: "complete" },
+        { text: "Edit", value: "edit", sortable: false },
+        { text: "Actions", value: "action", sortable: false }
       ]
     };
   },
@@ -55,8 +66,8 @@ export default {
     async deleteItem(item) {
       const res = confirm("本当に削除しますか？");
       if (res) {
-        await axios.delete(`/v1/todos/${item.id}`)//.then(() => {
-          //this.$router.push("/login");
+        await axios.delete(`/v1/todos/${item.id}`); //.then(() => {
+        //this.$router.push("/login");
         //}); //これで飛ばせる
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
@@ -71,46 +82,26 @@ export default {
     async completeItem(item) {
       const res = confirm("本当に達成しましたか？");
       if (res) {
-        await axios.get(`/v1/todos/${item.id}`,
-          {
-            params: {
-              point: this.todos[0].point
-            }});
+        await axios.get(`/v1/todos/${item.id}`, {
+          params: {
+            point: this.todos[0].point
+          }
+        });
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
-        this.user.point = this.user.point + this.todos[0].point
+        this.user.point = this.user.point + this.todos[0].point;
         const newUser = {
           ...this.user,
-          todos,
+          todos
         };
         this.$store.commit("setUser", newUser);
       }
     },
-    // save() {
-    //   this.snack = true
-    //   this.snackColor = 'success'
-    //   this.snackText = 'Data saved'
-    // },
-    // cancel() {
-    //   this.snack = true
-    //   this.snackColor = 'error'
-    //   this.snackText = 'Canceled'
-    // },
-    // open() {
-    //   this.snack = true
-    //   this.snackColor = 'info'
-    //   this.snackText = 'Dialog opened'
-    // },
-    // close() {
-    //   console.log('Dialog closed')
-    // }
     async editItem(item) {
-      this.editOn = !this.editOn
+      this.editOn = !this.editOn;
     },
-    async changeItem(item) {
-
-    }
+    async changeItem(item) {}
   }
 };
 </script>
@@ -139,4 +130,3 @@ export default {
   justify-content: center;
 }
 </style>
-
