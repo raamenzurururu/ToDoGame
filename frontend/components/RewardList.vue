@@ -11,7 +11,7 @@
 
         <template v-slot:item.point="props">
           <v-edit-dialog
-            :return-value.sync="props.item.point"
+            :return-value="props.item.point"
             @save="save"
             @cancel="cancel"
             @open="open"
@@ -102,23 +102,23 @@ export default {
 
       headers: [
         {
-          text: "check",
+          text: "ゲット",
           width: "170",
           value: "complete"
         },
         {
-          text: "TP",
+          text: "TaskPoint(TP)",
           value: "point",
           width: "170"
         },
         {
-          text: "content",
+          text: "報酬",
           align: "left",
           sortable: false,
           value: "title"
         },
         {
-          text: "delete",
+          text: "削除",
           value: "action",
           sortable: false
         }

@@ -6,7 +6,8 @@
     </v-card-title>
     <v-data-table :headers="headers" :items="todos">
       <template v-slot:item.point="props">
-        <v-edit-dialog :return-value.sync="props.item.point">
+        <v-edit-dialog :return-value="props.item.point">
+          <!-- .syncを消すことでPointをリアルタイムで反映できる -->
           {{ props.item.point }}
           <template v-slot:input>
             <v-select
@@ -15,7 +16,6 @@
               :items="items"
               single-line
             ></v-select>
-            <!-- itemsは元々v-selectに存在している -->
           </template>
         </v-edit-dialog>
       </template>
