@@ -28,9 +28,7 @@ class V1::RewardsController < ApplicationController
     losepoint -= reward.point
     user.point = losepoint
     user.update(point: losepoint)
-    if reward.destroy
-      render json: {reward: reward, user: user}
-    end
+    render json: {reward: reward, user: user}
   end
 
   private
