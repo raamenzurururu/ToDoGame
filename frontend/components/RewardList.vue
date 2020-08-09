@@ -60,8 +60,12 @@
         </template>
 
         <template v-slot:item.complete="{ item }">
-          <v-icon big @click="completeItem(item)">mdi-heart</v-icon>
-          <!-- やったことを送信する -->
+          <v-icon v-if="lock" color="yellow" @click="completeItem(item)"
+            >lock</v-icon
+          >
+          <v-icon v-else color="yellow" @click="completeItem(item)"
+            >lock_open</v-icon
+          >
         </template>
         <!-- 編集ボタン -->
         <!-- <div v-if="editOn"></div>
@@ -92,7 +96,7 @@ export default {
       selected: [],
       editOn: true,
       items: numberRange,
-
+      lock: true,
       snack: false,
       snackColor: "",
       snackText: "",
@@ -145,7 +149,6 @@ export default {
         this.snackText = "Data deleted";
       }
     },
-    // 完了メソッド
     async completeItem(item) {
       const res = confirm("本当に達成しますか？");
       if (res) {
@@ -154,20 +157,21 @@ export default {
             point: this.rewards[0].point
           }
         });
-        const rewards = this.user.rewards.filter(reward => {
-          return reward.id !== item.id;
-        });
-        this.user.point = this.user.point + this.rewards[0].point;
-        // ポイントを加算
+        // const rewards = this.user.rewards.filter(reward => {
+        //   return reward.id !== item.id;
+        // });
+        const rewards = this.rewards;
+        this.user.point = this.user.point - this.rewards[0].point;
         const newUser = {
           ...this.user,
           rewards
         };
         this.$store.commit("setUser", newUser);
-        // ミューテーションに飛ばす
         this.snack = true;
         this.snackColor = "success";
         this.snackText = "Data saved";
+        // 宝箱の状態の切り替え
+        this.lock = false;
       }
     },
     async editItem(item) {

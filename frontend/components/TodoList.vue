@@ -35,9 +35,11 @@
         </v-edit-dialog>
       </template>
       <template v-slot:item.complete="{ item }">
-        <v-icon big color="yellow" @click="completeItem(item)"
-          >mdi-crown-outline</v-icon
-        >
+        <v-hover>
+          <v-icon color="yellow" @click="completeItem(item)"
+            >mdi-crown-outline</v-icon
+          >
+        </v-hover>
       </template>
       <template v-slot:item.action="{ item }">
         <v-icon small @click="deleteItem(item)">delete</v-icon>
@@ -75,7 +77,7 @@ export default {
         },
         { text: "Task Point(TP)", value: "point" },
         { text: "Goal", value: "complete" },
-        { text: "Edit", value: "edit", sortable: false },
+        // { text: "Edit", value: "edit", sortable: false },
         { text: "Actions", value: "action", sortable: false }
       ]
     };

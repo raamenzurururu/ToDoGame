@@ -24,10 +24,10 @@ class V1::RewardsController < ApplicationController
   def complete
     reward = Reward.find(params[:id])
     user = User.find(reward.user_id)
-    getpoint = user.point.to_i
-    getpoint += reward.point
-    user.point = getpoint
-    user.update(point: getpoint)
+    losepoint = user.point.to_i
+    losepoint -= reward.point
+    user.point = losepoint
+    user.update(point: losepoint)
     if reward.destroy
       render json: {reward: reward, user: user}
     end

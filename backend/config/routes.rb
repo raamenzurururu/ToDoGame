@@ -4,6 +4,6 @@ Rails.application.routes.draw do
     resources :rewards, only: [:create, :destroy, :update]
     resources :users, only: [:index, :create]
     get '/todos/:id', to: 'todos#complete'
-    get '/rewards/:id', to: 'rewards#conplete'
+    get '/rewards/:id', to: 'rewards#complete'
   end
 end
