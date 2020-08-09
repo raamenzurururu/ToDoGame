@@ -60,11 +60,11 @@
         </template>
 
         <template v-slot:item.complete="{ item }">
-          <v-icon v-if="lock" color="yellow" @click="completeItem(item)"
-            >lock</v-icon
+          <v-icon v-if="item.status" color="yellow" @click="completeItem(item)"
+            >lock_open</v-icon
           >
           <v-icon v-else color="yellow" @click="completeItem(item)"
-            >lock_open</v-icon
+            >lock</v-icon
           >
         </template>
         <!-- 編集ボタン -->
@@ -96,7 +96,6 @@ export default {
       selected: [],
       editOn: true,
       items: numberRange,
-      lock: true,
       snack: false,
       snackColor: "",
       snackText: "",
@@ -154,14 +153,12 @@ export default {
       if (res) {
         await axios.get(`/v1/rewards/${item.id}`, {
           params: {
-            point: this.rewards[0].point
+            point: item.point
           }
         });
-        // const rewards = this.user.rewards.filter(reward => {
-        //   return reward.id !== item.id;
-        // });
+        item.status = true;
         const rewards = this.rewards;
-        this.user.point = this.user.point - this.rewards[0].point;
+        this.user.point = this.user.point - item.point;
         const newUser = {
           ...this.user,
           rewards
@@ -170,8 +167,6 @@ export default {
         this.snack = true;
         this.snackColor = "success";
         this.snackText = "Data saved";
-        // 宝箱の状態の切り替え
-        this.lock = false;
       }
     },
     async editItem(item) {
