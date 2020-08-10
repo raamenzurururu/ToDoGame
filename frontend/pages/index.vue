@@ -1,9 +1,13 @@
 <template>
   <div v-if="user">
-    <p>{{ user.name }}</p>
-    <p class="user-tp d-inline-block">タスクポイント:{{ user.point }}</p>
-    <AddTodo @submit="addTodo" />
-    <router-link to="/reward">報酬</router-link>
+    <div class="user-tp v-inline-block">
+      <p>名前 :{{ user.name }}</p>
+      <p>レベル :{{ user.level }}</p>
+      <p>現在の経験値 :{{ user.experience_point }}</p>
+      <p class="user-tp d-inline-block">タスクポイント:{{ user.point }}</p>
+      <router-link to="/reward">報酬</router-link>
+    </div>
+      <AddTodo @submit="addTodo" />
     <TodoList :todos="user.todos" />
   </div>
 </template>
@@ -17,7 +21,9 @@ export default {
   data() {
     return {
       point: "",
-      show1: false
+      show1: false,
+      level: "",
+      experience_point: ""
     };
   },
   components: {

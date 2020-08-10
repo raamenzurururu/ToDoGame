@@ -128,6 +128,7 @@
 </template>
 
 <script>
+import axios from "@/plugins/axios"
 import firebase from "@/plugins/firebase";
 
 export default {

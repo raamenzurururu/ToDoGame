@@ -31,7 +31,7 @@ export default {
     return {
       title: "",
       items: numberRange,
-      number: ''
+      number: '',
     };
   },
   computed: {

@@ -1,5 +1,9 @@
 const state = {
-  currentUser: {},
+  currentUser: {
+    user: {
+      experience_point: 0
+    }
+  },
   loading: false,
   notification: {
       status: false,

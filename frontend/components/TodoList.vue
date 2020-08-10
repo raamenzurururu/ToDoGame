@@ -88,6 +88,26 @@ export default {
     }
   },
   methods: {
+    async completeItem(item) {
+      const res = confirm("本当に達成しましたか？");
+      if (res) {
+        await axios.get(`/v1/todos/${item.id}`, {
+          params: {
+            point: item.point
+          }
+        });
+        const todos = this.user.todos.filter(todo => {
+          return todo.id !== item.id;
+        });
+        this.user.point += item.point;
+        this.user.experience_point += item.point;
+        const newUser = {
+          ...this.user,
+          todos
+        };
+        this.$store.commit("setUser", newUser);
+      }
+    },
     async deleteItem(item) {
       const res = confirm("本当に削除しますか？");
       if (res) {
@@ -97,25 +117,6 @@ export default {
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
-        const newUser = {
-          ...this.user,
-          todos
-        };
-        this.$store.commit("setUser", newUser);
-      }
-    },
-    async completeItem(item) {
-      const res = confirm("本当に達成しましたか？");
-      if (res) {
-        await axios.get(`/v1/todos/${item.id}`, {
-          params: {
-            point: this.todos[0].point
-          }
-        });
-        const todos = this.user.todos.filter(todo => {
-          return todo.id !== item.id;
-        });
-        this.user.point = this.user.point + this.todos[0].point;
         const newUser = {
           ...this.user,
           todos
