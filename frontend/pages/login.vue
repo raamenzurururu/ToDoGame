@@ -3,13 +3,13 @@
     <h1 class="login-title">ToDo<span class="login-title-first">Game</span></h1>
     <v-row>
       <v-col cols="12" sm="12" md="6" lg="6">
-        <h2 class="login-subtitle md-3 text-center">ToDoをゲームに</h2>
-        <h3>Kazuki to train on the web!!!!!!!!!!</h3>
+        <h2 class="login-subtitle text-center">なぜGameなのか？</h2>
+        <h3 class="login-explain">やるべきことをサクッと片付けるため!</h3>
       </v-col>
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
         <p>ログインしているユーザーには見えない</p>
       </v-col>
-      <v-col v-else cols="12" sm="12" md="6" lg="6">
+      <v-col class="login-button-wrapper" v-else cols="12" sm="12" md="6" lg="6">
         <form>
           <h2 class="login-form-title text-center">新規登録こちら</h2>
           <v-text-field
@@ -46,31 +46,30 @@
             :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
             @click:append="show1 = !show2"
           ></v-text-field>
-          <v-btn class="mr-4" @click="signup">submit</v-btn>
           <p v-if="error" class="errors">{{ error }}</p>
         </form>
+        <v-btn class="login-button" @click="signup">Sign up</v-btn>
       </v-col>
     </v-row>
+
+    <v-row class="my-10">
+      <v-col class="sub-introduction" cols="12" sm="12" md="12" lg="12">
+        <h1>You can do it.</h1>
+        <h3>Every single day...</h3>
+      </v-col>
+    </v-row>
+
     <v-row class="introduction">
-      <v-col cols="12" sm="12" md="4" lg="4">
-        <v-img
-          width="50%"
-          height="50%"
-          src="https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
-        >
-        </v-img>
+      <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
+        <img class="" src="../assets/Austin-Texas.png">
         <h3>Shine like a diamond</h3>
         <p>I see you shining</p>
       </v-col>
-      <v-col cols="12" sm="12" md="4" lg="4">
-        <v-img
-          width="50%"
-          height="50%"
-          src="https://images.unsplash.com/photo-1519669556878-63bdad8a1a49?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
-        >
-        </v-img>
-        <h3>Shine like a summer sun</h3>
-        <p>I see you shining baby</p>
+
+    <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
+        <img class="" src="../assets/AustinTexas.png">
+        <h3>Shine like a diamond</h3>
+        <p>I see you shining</p>
       </v-col>
     </v-row>
 
@@ -239,10 +238,16 @@ $main-color: #ce1a92;
 $sub-color: #1e1381;
 $accent-color: #6d1318;
 
+@mixin explain {
+  color: $sub-color;
+  font-family: ヒラギノ角ゴシック;
+  margin-bottom: 10px;
+}
+
 .login-page {
   .login-title {
     text-align: center;
-    font-size: 80px;
+    font-size: 70px;
     font-family: 'Comic Sans MS';
 
     .login-title-first {
@@ -250,27 +255,43 @@ $accent-color: #6d1318;
     }
   }
   .login-subtitle {
-    color: $sub-color;
+    @include explain
   }
   .login-form-title {
-    color: $accent-color;
+    @include explain
+  }
+  .login-explain {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .login-button-wrapper {
+    .login-button {
+      background-color: black !important;
+      border: 2px solid $main-color;
+      color: $main-color;
+      width: 100%;
+    }
+  }
+  .introduction {
+    img {
+      width: 50%;
+      height: 50%;
+      display: block;
+      margin: 0 auto 30px;
+    }
+    .sub-introduction {
+      text-align: center;
+    }
+  }
+  h1 {
+    text-align: center;
+    margin-top: 30px;
+  }
+  p {
+    text-align: center;
   }
 }
 
-#title {
-  display: inline-block;
-  color: red;
-  text-align: center;
-  margin: 0 auto;
-}
-.introduction {
-  margin-top: 50px;
-}
-.introduction h3 {
-  text-align: center;
-  margin: 0 auto;
-  color: orange !important;
-}
 /* 指定がうまくいかない */
 .v-img {
   text-align: center;
