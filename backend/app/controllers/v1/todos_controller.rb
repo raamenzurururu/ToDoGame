@@ -26,16 +26,14 @@ class V1::TodosController < ApplicationController
   def complete  #todo達成用
     todo = Todo.find(params[:id])
     user = User.find(todo.user_id)
-    # level: nil, experience_point: nil→なぜ？
+
     total_point = user.point.to_i
     total_point += todo.point
     user.point = total_point
     
     total_exp = user.experience_point
-    # user.experience_pointがnilでエラーが起きている
     total_exp += todo.point
     user.experience_point = total_exp
-    byebug
     user.update(point: total_point,experience_point: total_exp)
     levelSetting = LevelSetting.find_by(level: user.level + 1);
 

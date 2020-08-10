@@ -191,7 +191,7 @@ export default {
               //追加
               this.$store.commit("setLoading", false); //ローディングをoffにする、ここで本来オフになる
               this.$store.commit("setUser", res.data); //promiseの値をstoreに入れる
-              this.$router.push("/");
+              this.$router.push("/user");
             });
         })
         .catch(error => {
