@@ -48,7 +48,12 @@
           ></v-text-field>
           <p v-if="error" class="errors">{{ error }}</p>
         </form>
-        <v-btn class="login-button" @click="signup">Sign up</v-btn>
+        <v-hover v-slot:default="{ hover }">
+          <v-btn class="login-button" @click="signup">
+            <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
+            sign up
+          </v-btn>
+        </v-hover>
       </v-col>
     </v-row>
 
@@ -63,19 +68,19 @@
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
         <img class="" src="../assets/Austin-Texas.png">
         <h3>Shine like a diamond</h3>
-        <p>I see you shining</p>
+        <h3 class="login-explain">TP(TaskPoint)は報酬の開放に使用できるぞ！</h3>
       </v-col>
 
     <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
         <img class="" src="../assets/AustinTexas.png">
         <h3>Shine like a diamond</h3>
-        <p>I see you shining</p>
+        <h3>やることを完了させるたびに経験値が溜まっていく。より高みを。そしてレベルが高いといいことが？</h3>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="8" sm="8" md="8" lg="8" offset="2">
-        <v-carousel>
+      <v-col cols="8" sm="8" md="8" lg="10">
+        <v-carousel height="100%">
           <v-carousel-item
             v-for="(item, i) in items"
             :key="i"
@@ -287,14 +292,15 @@ $accent-color: #6d1318;
     text-align: center;
     margin-top: 30px;
   }
-  p {
-    text-align: center;
+  .mdi-heart {
+    color: deeppink !important;
   }
-}
-
-/* 指定がうまくいかない */
-.v-img {
-  text-align: center;
+  .login-button {
+    &:hover {
+      border: 2px solid blue;
+      color: blue;
+    }
+  }
 }
 .v-window__container {
   border: solid 5px white;

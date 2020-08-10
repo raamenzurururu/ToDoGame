@@ -35,9 +35,9 @@ class V1::TodosController < ApplicationController
     total_exp += todo.point
     user.experience_point = total_exp
     user.update(point: total_point,experience_point: total_exp)
-    levelSetting = LevelSetting.find_by(level: user.level + 1);
-
-    if levelSetting.thresold <= user.experience_point
+    levelSetting = LevelSetting.find_by(level: user.level + 1)
+    if levelSetting.present?
+      levelSetting.thresold <= user.experience_point
       user.level = user.level + 1
       user.update(level: user.level)
     end

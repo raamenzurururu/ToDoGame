@@ -91,7 +91,7 @@ export default {
     async completeItem(item) {
       const res = confirm("本当に達成しましたか？");
       if (res) {
-        await axios.get(`/v1/todos/${item.id}`, {
+        const getUser = await axios.get(`/v1/todos/${item.id}`, {
           params: {
             point: item.point
           }
