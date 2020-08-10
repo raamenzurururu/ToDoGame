@@ -35,20 +35,17 @@
         </v-edit-dialog>
       </template>
       <template v-slot:item.complete="{ item }">
-        <v-hover>
-          <v-icon color="yellow" @click="completeItem(item)"
-            >mdi-crown-outline</v-icon
-          >
+        <v-hover v-slot:default="{ hover }">
+          <v-icon
+            color="yellow"
+            @click="completeItem(item)"
+            v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
+          ></v-icon>
         </v-hover>
       </template>
       <template v-slot:item.action="{ item }">
         <v-icon small @click="deleteItem(item)">delete</v-icon>
       </template>
-      <!-- edit -->
-      <!-- <div v-else class="edit-window"> -->
-      <!-- <p>編集画面</p> -->
-      <!-- <v-text-field label="Edit" counter></v-text-field> -->
-      <!-- <v-icon smaill @click="changeItem">update</v-icon> -->
     </v-data-table>
   </v-card>
 </template>

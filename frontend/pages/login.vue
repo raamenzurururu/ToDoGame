@@ -11,7 +11,7 @@
       </v-col>
       <v-col class="login-button-wrapper" v-else cols="12" sm="12" md="6" lg="6">
         <form>
-          <h2 id="login-signup" class="login-form-title text-center">新規登録こちら</h2>
+          <h2 id="login-signup" class="login-form-title text-center">新規登録する？</h2>
           <v-text-field
             v-model="name"
             :counter="10"
@@ -235,7 +235,7 @@ export default {
           const check = function(name) {
             title.classList.add(name);
           }
-          setTimeout(check,1000,"checked");
+          setTimeout(check,250,"checked");
         }
       }, interval);
     }
@@ -245,12 +245,12 @@ export default {
 
 <style lang="scss">
 $main-color: #ce1a92;
-$sub-color: #1e1381;
+$sub-color: #dd8b10;
 $accent-color: #6d1318;
 
 @mixin explain {
   color: $sub-color;
-  font-family: ヒラギノ角ゴシック;
+  font-family: sans-serif;
   margin-bottom: 10px;
 }
 
@@ -258,7 +258,7 @@ $accent-color: #6d1318;
   .login-title {
     text-align: center;
     font-size: 70px;
-    font-family: 'Comic Sans MS';
+    font-family: sans-serif;
 
     .login-title-first {
       color: $main-color;
@@ -305,7 +305,7 @@ $accent-color: #6d1318;
     margin-top: 30px;
   }
   .mdi-heart {
-    color: deeppink !important;
+    color: blue !important;
   }
   .login-button {
     &:hover {
@@ -314,7 +314,7 @@ $accent-color: #6d1318;
     }
   }
   .checked {
-    color: yellow;
+    color: pink;
   }
   .login-button-wrapper {
     text-align: center;
