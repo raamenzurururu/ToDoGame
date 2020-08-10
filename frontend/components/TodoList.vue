@@ -99,13 +99,14 @@ export default {
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
-        this.user.point += item.point;
-        this.user.experience_point += item.point;
-        const newUser = {
+        this.user.level += getUser.data.user.level;
+        this.user.point = getUser.data.user.point;
+        this.user.experience_point += getUser.data.user.experience_point;
+        const updateUser = {
           ...this.user,
           todos
         };
-        this.$store.commit("setUser", newUser);
+        this.$store.commit("setUser", updateUser);
       }
     },
     async deleteItem(item) {
@@ -117,11 +118,11 @@ export default {
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
-        const newUser = {
+        const updateUser = {
           ...this.user,
           todos
         };
-        this.$store.commit("setUser", newUser);
+        this.$store.commit("setUser", updateUser);
       }
     },
     async editItem(item) {
