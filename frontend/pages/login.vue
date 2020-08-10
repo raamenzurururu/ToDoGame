@@ -1,14 +1,17 @@
 <template>
-  <v-container>
-    <h1 class="text-center red">ToDoGame</h1>
+  <v-container class="login-page">
+    <h1 class="login-title">ToDo<span class="login-title-first">Game</span></h1>
     <v-row>
-      <v-col cols="12" sm="12" md="4" lg="6">
-        <h2 class="md-3 text-center">ToDoをゲームに</h2>
-        <h3>You don't have to keep to your self. What's on your mind?</h3>
+      <v-col cols="12" sm="12" md="6" lg="6">
+        <h2 class="login-subtitle md-3 text-center">ToDoをゲームに</h2>
+        <h3>Kazuki to train on the web!!!!!!!!!!</h3>
       </v-col>
-      <v-col cols="12" sm="12" md="4" lg="6">
+      <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
+        <p>ログインしているユーザーには見えない</p>
+      </v-col>
+      <v-col v-else cols="12" sm="12" md="6" lg="6">
         <form>
-          <h2 class="text-center">新規登録こちら</h2>
+          <h2 class="login-form-title text-center">新規登録こちら</h2>
           <v-text-field
             v-model="name"
             :counter="10"
@@ -231,7 +234,29 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
+$main-color: #ce1a92;
+$sub-color: #1e1381;
+$accent-color: #6d1318;
+
+.login-page {
+  .login-title {
+    text-align: center;
+    font-size: 80px;
+    font-family: 'Comic Sans MS';
+
+    .login-title-first {
+      color: $main-color;
+    }
+  }
+  .login-subtitle {
+    color: $sub-color;
+  }
+  .login-form-title {
+    color: $accent-color;
+  }
+}
+
 #title {
   display: inline-block;
   color: red;
