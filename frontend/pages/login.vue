@@ -11,7 +11,7 @@
       </v-col>
       <v-col class="login-button-wrapper" v-else cols="12" sm="12" md="6" lg="6">
         <form>
-          <h2 class="login-form-title text-center">新規登録こちら</h2>
+          <h2 id="login-signup" class="login-form-title text-center">新規登録こちら</h2>
           <v-text-field
             v-model="name"
             :counter="10"
@@ -94,8 +94,8 @@
 
     <v-row>
       <div id="app">
-        <v-btn v-on:click="openModal">ログイン</v-btn>
-        <v-btn v-on:click="moveToTop">新規登録</v-btn>
+        <v-btn class="bottom-btn" v-on:click="openModal">ログイン</v-btn>
+        <v-btn class="bottom-btn" v-on:click="moveToTop">新規登録</v-btn>
         <div id="overlay" v-show="showContent">
           <div id="content">
             <v-row>
@@ -231,6 +231,11 @@ export default {
 
         if (window.scrollY <= 0) {
           clearInterval(timer);
+          const title = document.getElementById('login-signup');
+          const check = function(name) {
+            title.classList.add(name);
+          }
+          setTimeout(check,1000,"checked");
         }
       }, interval);
     }
@@ -269,6 +274,13 @@ $accent-color: #6d1318;
     text-align: center;
     margin-bottom: 30px;
   }
+  @mixin login-bottom-btn {
+    background-color: black !important;
+    border: 2px solid $main-color;
+    color: $main-color;
+    display: inline-block;
+    width: 50%;
+  }
   .login-button-wrapper {
     .login-button {
       background-color: black !important;
@@ -299,6 +311,15 @@ $accent-color: #6d1318;
     &:hover {
       border: 2px solid blue;
       color: blue;
+    }
+  }
+  .checked {
+    color: yellow;
+  }
+  .login-button-wrapper {
+    text-align: center;
+    .bottom-btn {
+      @include login-bottom-btn
     }
   }
 }
