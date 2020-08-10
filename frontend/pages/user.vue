@@ -1,13 +1,25 @@
 <template>
-  <v-container v-if="user">
-    <div class="user-tp v-inline-block">
-      <p>お名前：{{ user.name }}</p>
-      <p>レベル：{{ user.level }}</p>
-      <p>現在の経験値：{{ user.experience_point }}</p>
-      <p>タスクポイント：{{ user.point }}</p>
-      <router-link to="/reward">報酬ページへ</router-link>
-    </div>
-    <AddTodo @submit="addTodo" />
+  <v-container class="user-page" v-if="user">
+    <v-row justify="center">
+      <v-col cols="12" xs="6" sm="8" md="10" lg="8">
+        <div class="user-status v-inline-block">
+          <div id="a">
+            <h2>ステータス</h2>
+            <p>名前：{{ user.name }}</p>
+            <p>レベル：{{ user.level }}</p>
+            <p>現在の経験値：{{ user.experience_point }}</p>
+            <p>TP：{{ user.point }}</p>
+          </div>
+          <div>
+            <AddTodo @submit="addTodo" />
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+    <router-link to="/reward">報酬ページへ</router-link>
+    <v-row justify="center">
+      <v-col cols="12" xs="6" sm="12" md="12" lg="12"> </v-col>
+    </v-row>
     <TodoList :todos="user.todos" />
   </v-container>
 </template>
@@ -131,15 +143,10 @@ export default {
 </script>
 
 <style lang="scss">
-#title {
-  display: inline-block;
-  background-color: #fc7b03;
-  text-align: center;
-  margin: 0 auto;
-}
-
-.introduction {
-  margin-top: 50px;
+.user-page {
+  user-status {
+    border: 2px white solid;
+  }
 }
 
 .introduction h3 {
@@ -169,7 +176,7 @@ export default {
   justify-content: center;
 }
 
-.user-tp {
-  border: white solid 2px;
+#a {
+  display: inline-block;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app class="app" dark>
     <Success />
     <Loading />
     <div>
@@ -31,7 +31,9 @@
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title>
+        <router-link to="/" class="toolbar-title">ToDo<span class="title-first">Game</span></router-link>
+      </v-toolbar-title>
       <v-spacer />
     </v-app-bar>
     <v-content>
@@ -40,7 +42,7 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2020</span>
+      <span>ToDo + Game = You</span>
     </v-footer>
   </v-app>
 </template>
@@ -106,3 +108,24 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+$main-color: deeppink;
+
+.app {
+  .toolbar-title {
+    color: white;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    .title-first {
+      color: $main-color;
+    }
+  }
+  .v-content_wrap {
+    background-color: black !important;
+  }
+}
+
+</style>

@@ -3,15 +3,29 @@
     <h1 class="login-title">ToDo<span class="login-title-first">Game</span></h1>
     <v-row>
       <v-col cols="12" sm="12" md="6" lg="6">
+        <!-- 根拠のある言葉にしていく -->
         <h2 class="login-subtitle text-center">なぜGameなのか？</h2>
         <h3 class="login-explain">やるべきことをサクッと片付けるため!</h3>
+        <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
+        <h3 class="login-explain">昨日の自分を１％でも超えたい、、、。</h3>
+        <h3 class="login-explain">やるべきことをゲーム化して終わらせよう！</h3>
+        <h3 class="login-explain">Taking over...</h3>
       </v-col>
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
         <p>ログインしているユーザーには見えない</p>
       </v-col>
-      <v-col class="login-button-wrapper" v-else cols="12" sm="12" md="6" lg="6">
+      <v-col
+        class="login-button-wrapper"
+        v-else
+        cols="12"
+        sm="12"
+        md="6"
+        lg="6"
+      >
         <form>
-          <h2 id="login-signup" class="login-form-title text-center">新規登録する？</h2>
+          <h2 id="login-signup" class="login-form-title text-center">
+            新規登録する？
+          </h2>
           <v-text-field
             v-model="name"
             :counter="10"
@@ -57,8 +71,8 @@
       </v-col>
     </v-row>
 
-    <v-row class="my-10">
-      <v-col class="sub-introduction" cols="12" sm="12" md="12" lg="12">
+    <v-row class="my-10>>">
+      <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
         <h1>You can do it.</h1>
         <h3>Every single day...</h3>
       </v-col>
@@ -66,20 +80,22 @@
 
     <v-row class="introduction">
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="" src="../assets/Austin-Texas.png">
+        <img class="" src="../assets/Austin-Texas.png" />
         <h3>Shine like a diamond</h3>
         <h3 class="login-explain">TP(TaskPoint)は報酬の開放に使用できるぞ！</h3>
       </v-col>
 
-    <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="" src="../assets/AustinTexas.png">
+      <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
+        <img class="" src="../assets/AustinTexas.png" />
         <h3>Shine like a diamond</h3>
-        <h3>やることを完了させるたびに経験値が溜まっていく。より高みを。そしてレベルが高いといいことが？</h3>
+        <h3>
+          やることを完了させるたびに経験値が溜まっていく。より高みを。そしてレベルが高いといいことが？
+        </h3>
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="8" sm="8" md="8" lg="10">
+      <v-col cols="12" sm="12" md="12" lg="10">
         <v-carousel height="100%">
           <v-carousel-item
             v-for="(item, i) in items"
@@ -92,51 +108,62 @@
       </v-col>
     </v-row>
 
-    <v-row>
-      <div id="app">
-        <v-btn class="bottom-btn" v-on:click="openModal">ログイン</v-btn>
-        <v-btn class="bottom-btn" v-on:click="moveToTop">新規登録</v-btn>
-        <div id="overlay" v-show="showContent">
-          <div id="content">
-            <v-row>
-              <v-col cols="12" md="12">
-                <h2>Login</h2>
-                <form>
-                  <v-text-field
-                    v-model="email"
-                    :counter="20"
-                    label="email"
-                    data-vv-name="email"
-                    required
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="password"
-                    label="password"
-                    data-vv-name="password"
-                    required
-                    :type="show1 ? 'text' : 'password'"
-                    :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append="show1 = !show1"
-                  ></v-text-field>
-                  <v-btn class="mr-4 px-7" color="#f5851d" @click="login"
-                    >Tell em!</v-btn
-                  >
-                  <v-icon color="red">mdi-crown</v-icon>
-                  <p v-if="error" class="errors">{{ error }}</p>
-                </form>
-              </v-col>
-            </v-row>
-            <button v-on:click="closeModal">Close</button>
-          </div>
-        </div>
-      </div>
-    </v-row>
+    <v-hover v-slot:default="{ hover }">
+      <v-btn class="bottom-btn" @click.stop="dialog = true">
+        <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
+        ログイン
+      </v-btn>
+    </v-hover>
+    <v-hover v-slot:default="{ hover }">
+      <v-btn class="bottom-btn" @click="moveToTop">
+        <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
+        新規登録
+      </v-btn>
+    </v-hover>
+    <v-btn color="primary" dark @click.stop="dialog = true">
+      open dialog
+    </v-btn>
+
+    <v-dialog content-class="dialog" v-model="dialog" max-width="60%">
+      <v-card>
+        <v-card-title class="headline">Login</v-card-title>
+        <v-card-text>
+          <form>
+            <v-text-field
+              v-model="email"
+              :counter="20"
+              label="email"
+              data-vv-name="email"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="password"
+              label="password"
+              data-vv-name="password"
+              required
+              :type="show1 ? 'text' : 'password'"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show1 = !show1"
+            ></v-text-field>
+            <v-hover v-slot:default="{ hover }">
+              <v-btn class="bottom-btn" @click.stop="dialog = true">
+                <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
+                ログイン
+              </v-btn>
+            </v-hover>
+            <p v-if="error" class="errors">{{ error }}</p>
+          </form>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 <script>
-import axios from "@/plugins/axios"
+import axios from "@/plugins/axios";
 import firebase from "@/plugins/firebase";
+import MasterImage from "@/assets/master.png";
+import DiceImage from "@/assets/dice.png";
 
 export default {
   components: {},
@@ -149,7 +176,15 @@ export default {
       passwordConfirm: "",
       show1: false,
       show2: false,
-      items: ["画像1", "画像2"],
+      dialog: false,
+      items: [
+        {
+          src: MasterImage
+        },
+        {
+          src: DiceImage
+        }
+      ],
       showContent: false,
       error: ""
     };
@@ -216,12 +251,6 @@ export default {
           })(error.code);
         });
     },
-    openModal: function() {
-      this.showContent = true;
-    },
-    closeModal: function() {
-      this.showContent = false;
-    },
     moveToTop() {
       const duration = 1000; // 移動速度（1秒で終了）
       const interval = 25; // 0.025秒ごとに移動
@@ -231,11 +260,11 @@ export default {
 
         if (window.scrollY <= 0) {
           clearInterval(timer);
-          const title = document.getElementById('login-signup');
+          const title = document.getElementById("login-signup");
           const check = function(name) {
             title.classList.add(name);
-          }
-          setTimeout(check,250,"checked");
+          };
+          setTimeout(check, 250, "checked");
         }
       }, interval);
     }
@@ -265,10 +294,10 @@ $accent-color: #6d1318;
     }
   }
   .login-subtitle {
-    @include explain
+    @include explain;
   }
   .login-form-title {
-    @include explain
+    @include explain;
   }
   .login-explain {
     text-align: center;
@@ -279,7 +308,8 @@ $accent-color: #6d1318;
     border: 2px solid $main-color;
     color: $main-color;
     display: inline-block;
-    width: 50%;
+    width: 45%;
+    margin: 15px;
   }
   .login-button-wrapper {
     .login-button {
@@ -298,6 +328,9 @@ $accent-color: #6d1318;
     }
     .sub-introduction {
       text-align: center;
+    }
+    .main {
+      border: 1px white solid;
     }
   }
   h1 {
@@ -319,29 +352,24 @@ $accent-color: #6d1318;
   .login-button-wrapper {
     text-align: center;
     .bottom-btn {
-      @include login-bottom-btn
+      @include login-bottom-btn;
+      &:hover {
+      border: 2px solid blue;
+      color: blue;
+      }
+    }
+  }
+  .dialog {
+    .bottom-btn {
+      @include login-bottom-btn;
+      &:hover {
+      border: 2px solid blue;
+      color: blue;
+      }
     }
   }
 }
 .v-window__container {
   border: solid 5px white;
-}
-/* モータルウィンドウ */
-#overlay {
-  /*　要素を重ねた時の順番　*/
-  z-index: 1;
-
-  /*　画面全体を覆う設定　*/
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-
-  /*　画面の中央に要素を表示させる設定　*/
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 </style>
