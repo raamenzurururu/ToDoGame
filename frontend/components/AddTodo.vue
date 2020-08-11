@@ -1,11 +1,12 @@
 <template>
   <v-form>
-    <v-container>
+    <v-container class="add-todo">
       <v-row>
-        <v-col cols="2" xs="6" sm="6" md="1" lg="1">
+        <v-col class="pr-0" cols="2" xs="6" sm="6" md="1" lg="1">
           <v-select label="TP" v-model="number" :items="items">Point</v-select>
-        </v-col>                         <!-- v-bind: 属性名 = "設定する値" --> 
-        <v-col cols="12" md="5">
+        </v-col>
+        <!-- v-bind: 属性名 = "設定する値" -->
+        <v-col class="pr-0" cols="10" xs="6" sm="6" md="4" lg="7">
           <v-text-field
             v-model="title"
             :rules="[v => !!v || 'まだまだいけるよ！']"
@@ -14,8 +15,12 @@
             required
           ></v-text-field>
         </v-col>
-        <v-col cols="12" md="4">
-          <v-btn class="bt" @click="handleSubmit">作成</v-btn>
+        <v-col class="pr-0" cols="10" xs="6" sm="6" md="4" lg="4">
+          <v-hover v-slot:default="{ hover }">
+            <v-btn class="todo-btn" @click="handleSubmit">
+              <v-icon v-text="hover ? 'mdi-star' : ''"></v-icon>Press
+            </v-btn>
+          </v-hover>
         </v-col>
       </v-row>
     </v-container>
@@ -24,14 +29,14 @@
 
 <script>
 const maxNumber = 11;
-const numberRange = [...Array(maxNumber).keys()] //スプレッド演算子
+const numberRange = [...Array(maxNumber).keys()]; //スプレッド演算子
 
 export default {
   data() {
     return {
       title: "",
       items: numberRange,
-      number: '',
+      number: ""
     };
   },
   computed: {
@@ -54,7 +59,35 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+$main-color: deeppink;
+
+@mixin btn {
+  background-color: white;
+  border: 2px solid $main-color;
+  color: $main-color;
+  display: inline-block;
+  margin: 15px;
+  width: 50%;
+}
+
+.add-todo {
+  border: 2px white solid;
+
+  .todo-btn {
+    @include btn;
+
+    &:hover {
+      border: 2px solid blue;
+      color: white
+    }
+  }
+
+  .mdi-star {
+    color: red !important;
+  }
+}
+
 .col-md-4 > .bt {
   color: white;
   padding: 10px 40px !important;
