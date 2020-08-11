@@ -12,7 +12,7 @@
         <h3 class="login-explain">Taking over...</h3>
       </v-col>
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
-        <v-icon class="mb-2" size="80">mdi-skull-outline</v-icon>
+        <v-icon class="mb-2" size="80">mdi-chess-king</v-icon>
         <div class="instead-of-form">
           <p>※ここに居てはダメだ</p>
           <p>※ToDoを終わらせてのんびりしよう.</p>
@@ -195,16 +195,17 @@ export default {
       error: ""
     };
   },
-  fetch({ store, redirect }) {
-    store.watch(
-      state => state.currentUser,
-      (newUser, oldUser) => {
-        if (!newUser) {
-          return redirect("/login");
-        }
-      }
-    );
-  },
+  // (/loginが二箇所使われていることでエラー起きている)
+  // fetch({ store, redirect }) {   
+  //   store.watch(
+  //     state => state.currentUser,
+  //     (newUser, oldUser) => {
+  //       if (!newUser) {
+  //         return redirect("/login");
+  //       }
+  //     }
+  //   );
+  // },
   computed: {
     user() {
       return this.$store.state.currentUser;
