@@ -58,88 +58,12 @@ export default {
       }
     );
   },
-  components: {
-    AddTodo,
-    TodoList
-  },
   computed: {
     user() {
       return this.$store.state.currentUser;
     }
   },
   methods: {
-    async addTodo(todo) {
-      const { data } = await axios.post("/v1/todos", {
-        todo
-      });
-      //追加
-      this.$store.commit("setUser", {
-        ...this.user,
-        todos: [...this.user.todos, data]
-      });
-    },
-    signup() {
-      if (this.password !== this.passwordConfirm) {
-        this.error = "※パスワードとパスワード確認が一致していません";
-      }
-      this.$store.commit("setLoading", true);
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then(res => {
-          const user = {
-            email: res.user.email,
-            name: this.name,
-            uid: res.user.uid
-          };
-          axios
-            .post("/v1/users", {
-              user
-            })
-            .then(res => {
-              this.$store.commit("setLoading", false);
-              this.$store.commit("setUser", res.data);
-              this.$router.push("/user");
-            });
-        })
-        .catch(error => {
-          this.error = (code => {
-            switch (code) {
-              case "auth/email-already-in-use":
-                return "既にそのメールアドレスは使われています";
-              case "auth/wrong-password":
-                return "※パスワードが正しくありません";
-              case "auth/weak-password":
-                return "※パスワードは最低6文字以上にしてください";
-              default:
-                return "※メールアドレスとパスワードをご確認ください";
-            }
-          })(error.code);
-        });
-    },
-    login() {
-      this.$store.dispatch("login", {
-        email: this.email,
-        password: this.password
-      });
-    },
-    openModal: function() {
-      this.showContent = true;
-    },
-    closeModal: function() {
-      this.showContent = false;
-    },
-    moveToTop() {
-      const duration = 1000;
-      const interval = 25;
-      const step = -window.scrollY / Math.ceil(duration / interval);
-      const timer = setInterval(() => {
-        window.scrollBy(0, step);
-        if (window.scrollY <= 0) {
-          clearInterval(timer);
-        }
-      }, interval);
-    }
   }
 };
 </script>

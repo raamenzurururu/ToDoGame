@@ -126,10 +126,9 @@
         新規登録
       </v-btn>
     </v-hover>
-    <v-btn color="primary" dark @click.stop="dialog = true">
+    <!-- <v-btn color="primary" dark @click.stop="dialog = true">
       open dialog
-    </v-btn>
-
+    </v-btn> -->
     <v-dialog content-class="dialog" v-model="dialog" max-width="60%">
       <v-card>
         <v-card-title class="headline">Login</v-card-title>
@@ -162,6 +161,20 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+    <form>
+        <v-text-field v-model="email" :counter="20" label="email" data-vv-name="email" required></v-text-field>
+        <v-text-field
+          v-model="password"
+          label="password"
+          data-vv-name="password"
+          required
+          :type="show1 ? 'text' : 'password'"
+          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="show1 = !show1"
+        ></v-text-field>
+        <v-btn class="mr-4" @click="login">submit</v-btn>
+        <p v-if="error" class="errors">{{error}}</p>
+      </form>
   </v-container>
 </template>
 
@@ -195,43 +208,17 @@ export default {
       error: ""
     };
   },
-  // (/loginが二箇所使われていることでエラー起きている)
-  // fetch({ store, redirect }) {
-  //   store.watch(
-  //     state => state.currentUser,
-  //     (newUser, oldUser) => {
-  //       if (!newUser) {
-  //         return redirect("/login");
-  //       }
-  //     }
-  //   );
-  // },
   computed: {
     user() {
       return this.$store.state.currentUser;
     }
   },
   methods: {
-    login() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(() => {
-          this.$router.push("/");
-        })
-        .catch(error => {
-          console.log(error);
-          this.error = (code => {
-            switch (code) {
-              case "auth/user-not-found":
-                return "メールアドレスが間違っています";
-              case "auth/wrong-password":
-                return "※パスワードが正しくありません";
-              default:
-                return "※メールアドレスとパスワードをご確認ください";
-            }
-          })(error.code);
-        });
+    openModal: function() {
+      this.showContent = true;
+    },
+    closeModal: function() {
+      this.showContent = false;
     },
     signup() {
       if (this.password !== this.passwordConfirm) {
@@ -272,6 +259,12 @@ export default {
             }
           })(error.code);
         });
+    },
+    login() {
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password
+      });
     },
     moveToTop() {
       const duration = 1000; // 移動速度（1秒で終了）

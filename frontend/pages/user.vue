@@ -38,6 +38,7 @@ import AddTodo from "@/components/AddTodo";
 import TodoList from "@/components/TodoList";
 import axios from "@/plugins/axios";
 import firebase from "@/plugins/firebase";
+
 export default {
   data() {
     return {
