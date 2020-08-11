@@ -185,6 +185,18 @@ export default {
         }
       });
     },
+    logOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$store.commit("setUser", null);
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     save() {
       this.snack = true;
       this.snackColor = "success";
