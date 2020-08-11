@@ -109,6 +109,7 @@ export default {
           this.$router.push("/");
         })
         .catch(error => {
+          console.log(error);
         });
     },
     openModal: function() {
