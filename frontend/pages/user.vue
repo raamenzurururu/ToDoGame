@@ -1,8 +1,7 @@
 <template>
   <v-container class="user-page" v-if="user">
-    <v-row justify="center">
-      <v-col class="user-status" cols="12" xs="12" sm="12" md="12" lg="8">
-        <v-row>
+      <!-- <v-col class="user-status" cols="12" xs="12" sm="12" md="12" lg="8"> -->
+        <!-- <v-row> -->
           <v-col cols="12" xs="5" sm="6" md="5" lg="6">
             <h2>STATUS</h2>
             <p>NAME：{{ user.name }}</p>
@@ -16,7 +15,7 @@
             <v-btn class="user-btn my-10">
               <v-icon v-text="hover ? 'mdi-star' : ''">
                 </v-icon>
-                PRIZE
+                REWARD
             </v-btn>
             </router-link>
           </v-hover>
@@ -28,25 +27,9 @@
                 BYE
             </v-btn>
           </v-hover>
-
           </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
-        <div>
-          <AddTodo @submit="addTodo" />
-        </div>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
-        <div>
-          <TodoList :todos="user.todos" />
-        </div>
-      </v-col>
-    </v-row>
+      <!-- </v-col> -->
+    <!-- </v-row> -->
   </v-container>
 </template>
 
@@ -136,9 +119,44 @@ export default {
 $main-color: deeppink;
 $sub-color: orange;
 
+$pc: 1024px;
+$tab: 680px;
+$sp: 480px;
+
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+
 .user-page {
-  user-status {
+  .user-status {
     border: 2px white solid;
+    margin: 0 auto;
+    width: 66%;
+  }
+
+  .user-status {
+    @include pc {
+      width: 100% !important;
+    };
+    @include tab {
+      width: 100% !important;
+    };
+    @include sp {
+      width: 100% !important;
+    };
   }
   
 

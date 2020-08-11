@@ -1,30 +1,73 @@
 <template>
-  <v-container>
-    <div v-if="user">
-      <p>報酬を、、、。</p>
-      <p>{{ user.name }}</p>
-      <p class="user-tp d-inline-block ">タスクポイント：{{ user.point }}</p>
-      <AddReward @submit="addReward" />
-      <RewardList :rewards="user.rewards" />
-    </div>
+  <v-container class="user-page" v-if="user">
+    <v-row justify="center">
+      <v-col class="user-status" cols="12" xs="12" sm="12" md="12" lg="8">
+        <v-row>
+          <v-col cols="12" xs="5" sm="6" md="5" lg="6">
+            <h2>STATUS</h2>
+            <p>NAME：{{ user.name }}</p>
+            <p>LV：{{ user.level }}</p>
+            <p>EXP：{{ user.experience_point }}</p>
+            <p>TP：{{ user.point }}</p>
+          </v-col>
+          <v-col cols="12" xs="5" sm="6" md="5" lg="6">
+            <v-hover v-slot:default="{ hover }">
+            <router-link to="/reward">
+            <v-btn class="user-btn my-10">
+              <v-icon v-text="hover ? 'mdi-star' : ''">
+                </v-icon>
+                PRIZE
+            </v-btn>
+            </router-link>
+          </v-hover>
+
+          <v-hover v-slot:default="{ hover }">
+            <v-btn class="user-btn" @click="logOut">
+              <v-icon v-text="hover ? 'mdi-heart' : ''">
+                </v-icon>
+                BYE
+            </v-btn>
+          </v-hover>
+
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
+        <div>
+          <AddTodo @submit="addTodo" />
+        </div>
+      </v-col>
+    </v-row>
+    <v-row justify="center">
+      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
+        <div>
+          <TodoList :todos="user.todos" />
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import AddTodo from "@/components/AddTodo";
+import TodoList from "@/components/TodoList";
 import axios from "@/plugins/axios";
-import AddReward from "@/components/AddReward";
-import RewardList from "@/components/RewardList";
 import firebase from "@/plugins/firebase";
-
 export default {
   data() {
     return {
+      email: "",
       name: "",
+      level: "",
       point: "",
+      experience_point: "",
+      password: "",
+      passwordConfirm: "",
       show1: false,
       show2: false,
-      error: "",
-      showContent: false
+      error: ""
     };
   },
   fetch({ store, redirect }) {
@@ -37,29 +80,36 @@ export default {
       }
     );
   },
-  // ナビゲーションガード（監視）
   components: {
-    AddReward,
-    RewardList
+    AddTodo,
+    TodoList
   },
   computed: {
     user() {
       return this.$store.state.currentUser;
     }
-    // カレントユーザーの定義
   },
   methods: {
-    async addReward(reward) {
-      // 子(AddReward)から送られてきたrewardを持っている
-      const { data } = await axios.post("/v1/rewards", {
-        reward
+    async addTodo(todo) {
+      const { data } = await axios.post("/v1/todos", {
+        todo
       });
       //追加
       this.$store.commit("setUser", {
         ...this.user,
-        rewards: [...this.user.rewards, data]
-        // 初期値ではなくpostできるように
+        todos: [...this.user.todos, data]
       });
+    },
+    logOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$store.commit("setUser", null);
+          this.$router.push("/");
+        })
+        .catch(error => {
+        });
     },
     openModal: function() {
       this.showContent = true;
@@ -68,12 +118,11 @@ export default {
       this.showContent = false;
     },
     moveToTop() {
-      const duration = 1000; // 移動速度（1秒で終了）
-      const interval = 25; // 0.025秒ごとに移動
-      const step = -window.scrollY / Math.ceil(duration / interval); // 1回に移動する距離
+      const duration = 1000;
+      const interval = 25;
+      const step = -window.scrollY / Math.ceil(duration / interval);
       const timer = setInterval(() => {
-        window.scrollBy(0, step); // スクロール位置を移動
-
+        window.scrollBy(0, step);
         if (window.scrollY <= 0) {
           clearInterval(timer);
         }
@@ -83,16 +132,40 @@ export default {
 };
 </script>
 
-<style>
-#title {
-  display: inline-block;
-  background-color: #fc7b03;
-  text-align: center;
-  margin: 0 auto;
-}
+<style lang="scss">
+$main-color: deeppink;
+$sub-color: orange;
 
-.introduction {
-  margin-top: 50px;
+.user-page {
+  user-status {
+    border: 2px white solid;
+  }
+  
+
+  .user-btn {
+    background-color: black !important;
+    border: 2px solid $main-color;
+    color: $main-color;
+    width: 100%;
+    font-weight: bold;
+    font-size: 18px;
+    &:hover {
+      border: 2px solid white;
+      color: blue;
+    }
+  }
+  h2,
+  h1 {
+    text-align: center;
+    color: $sub-color;
+  }
+  a {
+    text-decoration: none;
+  }
+  p {
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 
 .introduction h3 {
@@ -109,26 +182,16 @@ export default {
   border: solid 5px white;
 }
 
-/* モータルウィンドウ */
 #overlay {
-  /*　要素を重ねた時の順番　*/
   z-index: 1;
-
-  /*　画面全体を覆う設定　*/
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 30, 0.5);
-
-  /*　画面の中央に要素を表示させる設定　*/
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.user-tp {
-  border: white solid 2px;
 }
 </style>

@@ -86,7 +86,7 @@ export default {
           },
           {
             icon: "mdi-lock",
-            title: "報酬",
+            title: "Reward",
             to: "/reward"
           }
         ];
