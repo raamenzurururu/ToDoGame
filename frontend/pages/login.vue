@@ -196,16 +196,16 @@ export default {
     };
   },
   // (/loginが二箇所使われていることでエラー起きている)
-  fetch({ store, redirect }) {   
-    store.watch(
-      state => state.currentUser,
-      (newUser, oldUser) => {
-        if (!newUser) {
-          return redirect("/login");
-        }
-      }
-    );
-  },
+  // fetch({ store, redirect }) {
+  //   store.watch(
+  //     state => state.currentUser,
+  //     (newUser, oldUser) => {
+  //       if (!newUser) {
+  //         return redirect("/login");
+  //       }
+  //     }
+  //   );
+  // },
   computed: {
     user() {
       return this.$store.state.currentUser;
@@ -213,10 +213,25 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch("/login", {
-        email: this.email,
-        password: this.password
-      });
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error);
+          this.error = (code => {
+            switch (code) {
+              case "auth/user-not-found":
+                return "メールアドレスが間違っています";
+              case "auth/wrong-password":
+                return "※パスワードが正しくありません";
+              default:
+                return "※メールアドレスとパスワードをご確認ください";
+            }
+          })(error.code);
+        });
     },
     signup() {
       if (this.password !== this.passwordConfirm) {
@@ -300,7 +315,8 @@ $accent-color: #6d1318;
       color: $main-color;
     }
   }
-  .login-subtitle, .login-form-title {
+  .login-subtitle,
+  .login-form-title {
     @include explain;
   }
   .login-explain {
@@ -371,8 +387,8 @@ $accent-color: #6d1318;
     .bottom-btn {
       @include login-bottom-btn;
       &:hover {
-      border: 2px solid blue;
-      color: blue;
+        border: 2px solid blue;
+        color: blue;
       }
     }
   }
@@ -380,8 +396,8 @@ $accent-color: #6d1318;
     .bottom-btn {
       @include login-bottom-btn;
       &:hover {
-      border: 2px solid blue;
-      color: blue;
+        border: 2px solid blue;
+        color: blue;
       }
     }
   }
