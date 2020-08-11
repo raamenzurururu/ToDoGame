@@ -1,37 +1,30 @@
 <template>
   <v-container class="user-page" v-if="user">
     <v-row justify="center">
-      <v-col class="user-status" cols="12" xs="12" sm="12" md="12" lg="8">
+      <v-col class="user-status" cols="12" xs="6" sm="8" md="10" lg="7">
         <v-row>
-          <v-col cols="12" xs="5" sm="5" md="5" lg="6">
+          <v-col cols="12" xs="6" sm="8" md="10" lg="6">
             <h2>ステータス</h2>
             <p>名前：{{ user.name }}</p>
             <p>レベル：{{ user.level }}</p>
             <p>現在の経験値：{{ user.experience_point }}</p>
             <p>TP：{{ user.point }}</p>
           </v-col>
-          <v-col cols="12" xs="5" sm="5" md="5" lg="6">
-            <router-link to="/reward">
-              <v-btn class="user-btn">報酬ページへ</v-btn>
-            </router-link>
+          <v-col cols="12" xs="6" sm="8" md="5" lg="6">
+            <p>右</p>
+            <router-link to="/reward">報酬ページへ</router-link>
           </v-col>
         </v-row>
       </v-col>
     </v-row>
     <v-row justify="center">
-      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
+      <v-col cols="12" xs="6" sm="12" md="12" lg="8">
         <div>
           <AddTodo @submit="addTodo" />
         </div>
       </v-col>
     </v-row>
-    <v-row justify="center">
-      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
-        <div>
-          <TodoList :todos="user.todos" />
-        </div>
-      </v-col>
-    </v-row>
+    <TodoList :todos="user.todos" />
   </v-container>
 </template>
 
@@ -52,7 +45,7 @@ export default {
       passwordConfirm: "",
       show1: false,
       show2: false,
-      error: ""
+      error: "",
     };
   },
   fetch({ store, redirect }) {
@@ -152,59 +145,8 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: deeppink;
-
 .user-page {
   user-status {
     border: 2px white solid;
   }
-  
-
-  .user-btn {
-    background-color: black !important;
-    border: 2px solid $main-color;
-    color: $main-color;
-    width: 100%;
-    font-weight: bold;
-    font-size: 18px;
-    &:hover {
-      border: 2px solid white;
-      color: blue;
-    }
-  }
-  a {
-    text-decoration: none;
-  }
-  p {
-    font-size: 20px;
-    font-weight: bold;
-  }
 }
-
-.introduction h3 {
-  text-align: center;
-  margin: 0 auto;
-  color: aqua !important;
-}
-
-.v-img {
-  text-align: center;
-}
-
-.v-window__container {
-  border: solid 5px white;
-}
-
-#overlay {
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 30, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>

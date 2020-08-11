@@ -310,6 +310,7 @@ $accent-color: #6d1318;
     display: inline-block;
     width: 45%;
     margin: 15px;
+    font-weight: bold;
   }
   .login-button-wrapper {
     .login-button {
