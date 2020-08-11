@@ -12,7 +12,11 @@
         <h3 class="login-explain">Taking over...</h3>
       </v-col>
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
-        <p>ログインしているユーザーには見えない</p>
+        <v-icon class="mb-2" size="80">mdi-skull-outline</v-icon>
+        <div class="instead-of-form">
+          <p>※ここに居てはダメだ</p>
+          <p>※ToDoを終わらせてのんびりしよう.</p>
+        </div>
       </v-col>
       <v-col
         class="login-button-wrapper"
@@ -109,13 +113,15 @@
     </v-row>
 
     <v-hover v-slot:default="{ hover }">
-      <v-btn class="bottom-btn" @click.stop="dialog = true">
+      <div v-if="user"></div>
+      <v-btn v-else class="bottom-btn" @click.stop="dialog = true">
         <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
         ログイン
       </v-btn>
     </v-hover>
     <v-hover v-slot:default="{ hover }">
-      <v-btn class="bottom-btn" @click="moveToTop">
+      <div v-if="user"></div>
+      <v-btn v-else class="bottom-btn" @click="moveToTop">
         <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
         新規登録
       </v-btn>
@@ -206,7 +212,7 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch("login", {
+      this.$store.dispatch("/login", {
         email: this.email,
         password: this.password
       });
@@ -293,10 +299,7 @@ $accent-color: #6d1318;
       color: $main-color;
     }
   }
-  .login-subtitle {
-    @include explain;
-  }
-  .login-form-title {
+  .login-subtitle, .login-form-title {
     @include explain;
   }
   .login-explain {
@@ -318,6 +321,13 @@ $accent-color: #6d1318;
       border: 2px solid $main-color;
       color: $main-color;
       width: 100%;
+    }
+    .skull {
+      padding-left: 40%;
+    }
+    .instead-of-form {
+      border: 2px white solid;
+      padding-top: 20px;
     }
   }
   .introduction {
