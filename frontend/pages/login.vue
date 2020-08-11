@@ -68,7 +68,7 @@
         </form>
         <v-hover v-slot:default="{ hover }">
           <v-btn class="login-button" @click="signup">
-            <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
+            <v-icon v-text="hover ? 'mdi-chess-king' : ''"></v-icon>
             sign up
           </v-btn>
         </v-hover>
@@ -115,14 +115,14 @@
     <v-hover v-slot:default="{ hover }">
       <div v-if="user"></div>
       <v-btn v-else class="bottom-btn" @click.stop="dialog = true">
-        <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
+        <v-icon v-text="hover ? 'mdi-chess-queen' : ''"></v-icon>
         ログイン
       </v-btn>
     </v-hover>
     <v-hover v-slot:default="{ hover }">
       <div v-if="user"></div>
       <v-btn v-else class="bottom-btn" @click="moveToTop">
-        <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
+        <v-icon v-text="hover ? 'mdi-chess-knight' : ''"></v-icon>
         新規登録
       </v-btn>
     </v-hover>
@@ -153,7 +153,7 @@
             ></v-text-field>
             <v-hover v-slot:default="{ hover }">
               <v-btn class="bottom-btn" @click.stop="dialog = true">
-                <v-icon v-text="hover ? 'mdi-heart' : ''"></v-icon>
+                <v-icon v-text="hover ? 'mdi-chess-queen' : ''"></v-icon>
                 ログイン
               </v-btn>
             </v-hover>
@@ -196,16 +196,16 @@ export default {
     };
   },
   // (/loginが二箇所使われていることでエラー起きている)
-  // fetch({ store, redirect }) {   
-  //   store.watch(
-  //     state => state.currentUser,
-  //     (newUser, oldUser) => {
-  //       if (!newUser) {
-  //         return redirect("/login");
-  //       }
-  //     }
-  //   );
-  // },
+  fetch({ store, redirect }) {   
+    store.watch(
+      state => state.currentUser,
+      (newUser, oldUser) => {
+        if (!newUser) {
+          return redirect("/login");
+        }
+      }
+    );
+  },
   computed: {
     user() {
       return this.$store.state.currentUser;
@@ -349,9 +349,14 @@ $accent-color: #6d1318;
     text-align: center;
     margin-top: 30px;
   }
-  .mdi-heart {
-    color: blue !important;
+  .mdi-chess-queen {
+    color: rgb(209, 209, 154) !important;
   }
+
+  .mdi-chess-knight {
+    color: rgb(230, 230, 165) !important;
+  }
+
   .login-button {
     &:hover {
       border: 2px solid blue;
