@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title>
-      <h2>TODO</h2>
+      <h2>TODOS</h2>
       <v-spacer></v-spacer>
     </v-card-title>
     <v-data-table :headers="headers" :items="todos">

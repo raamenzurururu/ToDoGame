@@ -2,11 +2,11 @@
   <v-form>
     <v-container class="add-todo">
       <v-row>
-        <v-col class="pr-0" cols="3" xs="6" sm="6" md="1" lg="1">
+        <v-col class="pr-0" cols="3" xs="6" sm="2" md="1" lg="1">
           <v-select label="TP" v-model="number" :items="items">Point</v-select>
         </v-col>
         <!-- v-bind: 属性名 = "設定する値" -->
-        <v-col class="pr-0" cols="9" xs="5" sm="5" md="4" lg="7">
+        <v-col class="pr-0" cols="9" xs="5" sm="6" md="4" lg="7">
           <v-text-field
             v-model="title"
             :rules="[v => !!v || 'まだまだいけるよ！']"
@@ -15,7 +15,7 @@
             required
           ></v-text-field>
         </v-col>
-        <v-col class="pr-0" cols="12" xs="6" sm="6" md="4" lg="4">
+        <v-col class="pr-0" cols="12" xs="6" sm="4" md="4" lg="4">
           <v-hover v-slot:default="{ hover }">
             <v-btn class="todo-btn" @click="handleSubmit">
               <v-icon v-text="hover ? 'mdi-star' : ''">
