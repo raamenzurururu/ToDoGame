@@ -3,7 +3,7 @@
     <v-card>
       <!-- Edit -->
       <v-card-title>
-        <h2>報酬</h2>
+        <h2 class="list-title">報酬</h2>
         <v-spacer></v-spacer>
       </v-card-title>
       <v-data-table :headers="headers" :items="rewards">

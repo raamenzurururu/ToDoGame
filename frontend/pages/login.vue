@@ -9,7 +9,7 @@
         <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
         <h3 class="login-explain">昨日の自分を１％でも超えたい、、、。</h3>
         <h3 class="login-explain">やるべきことをゲーム化して終わらせよう！</h3>
-        <h3 class="login-explain">Taking over...</h3>
+        <h3 class="login-explain">レベルを５０にして伝説の剣を手に入れよう</h3>
       </v-col>
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
         <v-icon class="mb-2" size="80">mdi-chess-king</v-icon>
@@ -242,6 +242,13 @@ export default {
               //追加
               this.$store.commit("setLoading", false); //ローディングをoffにする、ここで本来オフになる
               this.$store.commit("setUser", res.data); //promiseの値をstoreに入れる
+              this.$store.commit("setNotice", {
+                status: true,
+                message: this.name + "さん、新規登録が完了しました！"
+              })
+              setTimeout(() => {
+                this.$store.commit("setNotice", {});
+              }, 2500);
               this.$router.push("/user");
             });
         })
