@@ -151,7 +151,7 @@
               @click:append="show1 = !show1"
             ></v-text-field>
             <v-hover v-slot:default="{ hover }">
-              <v-btn class="bottom-btn" @click.stop="dialog = true">
+              <v-btn class="bottom-btn" @click="login">
                 <v-icon v-text="hover ? 'mdi-chess-queen' : ''"></v-icon>
                 ログイン
               </v-btn>
@@ -161,7 +161,7 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-    <form>
+    <!-- <form>
       <v-text-field
         v-model="email"
         :counter="20"
@@ -180,7 +180,7 @@
       ></v-text-field>
       <v-btn class="mr-4" @click="login">submit</v-btn>
       <p v-if="error" class="errors">{{ error }}</p>
-    </form>
+    </form> -->
   </v-container>
 </template>
 
