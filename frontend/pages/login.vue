@@ -6,10 +6,15 @@
         <!-- 根拠のある言葉にしていく -->
         <h2 class="login-subtitle text-center">なぜGameなのか？</h2>
         <h3 class="login-explain">やるべきことをサクッと片付けるため!</h3>
+        <img src="../assets/d-princess_a04.png">
         <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
+        <img class="mon" src="../assets/btl_FEman02.png">
         <h3 class="login-explain">昨日の自分を１％でも超えたい、、、。</h3>
+        <img class="mon" src="../assets/d-king01.png">
         <h3 class="login-explain">やるべきことをゲーム化して終わらせよう！</h3>
+        <img class="mon" src="../assets/bt_shadow01.png">
         <h3 class="login-explain">レベルを５０にして伝説の剣を手に入れよう</h3>
+        <img class="mon" src="../assets/knight01.png">
       </v-col>
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
         <v-icon class="mb-2" size="80">mdi-chess-king</v-icon>
@@ -69,29 +74,29 @@
         <v-hover v-slot:default="{ hover }">
           <v-btn class="login-button" @click="signup">
             <v-icon v-text="hover ? 'mdi-chess-king' : ''"></v-icon>
-            sign up
+            GO GAME
           </v-btn>
         </v-hover>
       </v-col>
     </v-row>
 
-    <v-row class="my-10>>">
+    <v-row class="introduction">
       <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
-        <h1>You can do it.</h1>
-        <h3>Every single day...</h3>
+        <h3>ToDo + Game =</h3>
+        <h1>YOU</h1>
       </v-col>
     </v-row>
 
     <v-row class="introduction">
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="" src="../assets/Austin-Texas.png" />
-        <h3>Shine like a diamond</h3>
+        <img class="" src="../assets/org_d04.png" />
+        <h3>毎日続ける</h3>
         <h3 class="login-explain">TP(TaskPoint)は報酬の開放に使用できるぞ！</h3>
       </v-col>
 
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="" src="../assets/AustinTexas.png" />
-        <h3>Shine like a diamond</h3>
+        <img class="" src="../assets/org_f04.png" />
+        <h3>それが成長へのコツ</h3>
         <h3>
           やることを完了させるたびに経験値が溜まっていく。より高みを。そしてレベルが高いといいことが？
         </h3>
@@ -131,7 +136,7 @@
     </v-btn> -->
     <v-dialog content-class="dialog" v-model="dialog" max-width="60%">
       <v-card>
-        <v-card-title class="headline">Login</v-card-title>
+        <v-card-title class="headline"><h3>Login</h3></v-card-title>
         <v-card-text>
           <form>
             <v-text-field
@@ -153,7 +158,7 @@
             <v-hover v-slot:default="{ hover }">
               <v-btn class="bottom-btn" @click="login">
                 <v-icon v-text="hover ? 'mdi-chess-queen' : ''"></v-icon>
-                ログイン
+                GO GAME
               </v-btn>
             </v-hover>
             <p v-if="error" class="errors">{{ error }}</p>
@@ -187,8 +192,8 @@
 <script>
 import axios from "@/plugins/axios";
 import firebase from "@/plugins/firebase";
-import MasterImage from "@/assets/master.png";
-import DiceImage from "@/assets/dice.png";
+import Forest from "@/assets/brightforest08.png";
+import Forest2 from "@/assets/brightforest07.png";
 
 export default {
   components: {},
@@ -204,10 +209,10 @@ export default {
       dialog: false,
       items: [
         {
-          src: MasterImage
+          src: Forest
         },
         {
-          src: DiceImage
+          src: Forest2
         }
       ],
       showContent: false,
@@ -328,6 +333,10 @@ $accent-color: red;
 }
 
 .login-page {
+  .mon {
+    width: 20%;
+  }
+
   .login-title {
     text-align: center;
     font-size: 70px;
@@ -347,8 +356,8 @@ $accent-color: red;
   }
   @mixin login-bottom-btn {
     background-color: black !important;
-    border: 2px solid $main-color;
-    color: $main-color;
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
     display: inline-block;
     width: 45%;
     margin: 15px;
@@ -357,8 +366,8 @@ $accent-color: red;
   .login-button-wrapper {
     .login-button {
       background-color: black !important;
-      border: 2px solid $main-color;
-      color: $main-color;
+      border: 2px solid whitesmoke;
+      color: whitesmoke;
       width: 100%;
     }
     .skull {
@@ -370,9 +379,11 @@ $accent-color: red;
     }
   }
   .introduction {
+    margin: 100px auto;
+
     img {
-      width: 50%;
-      height: 50%;
+      // width: 30%;
+      // height: 50%;
       display: block;
       margin: 0 auto 30px;
     }
@@ -397,12 +408,12 @@ $accent-color: red;
 
   .login-button {
     &:hover {
-      border: 2px solid whitesmoke;
-      color: whitesmoke;
+      border: 2px solid yellow;
+      color: yellow;
     }
   }
   .checked {
-    color: orange;
+    color: red;
   }
   .login-button-wrapper {
     text-align: center;
@@ -432,9 +443,22 @@ $accent-color: red;
 }
 
 .bottom-btn {
+  background-color: black;
+  border: 2px solid $main-color;
+  color: $main-color !important;
+  display: inline-block;
+  margin: 15px;
+  width: 45%;
+  font-weight: bold;
+  .mdi-chess-queen {
+    color: whitesmoke !important;
+  }
   &:hover {
     border: 2px solid whitesmoke;
     color: whitesmoke;
   }
+}
+.headline {
+  color: $sub-color;
 }
 </style>
