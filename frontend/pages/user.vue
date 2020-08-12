@@ -74,16 +74,27 @@ export default {
     }
   },
   methods: {
-    async addTodo(todo) {
-      const { data } = await axios.post("/v1/todos", {
-        todo
-      });
-      //追加
-      this.$store.commit("setUser", {
-        ...this.user,
-        todos: [...this.user.todos, data]
-      });
-    },
+    // async addTodo(todo) {
+    //   try {
+    //     const {
+    //       data
+    //     } = await axios.post("/v1/todos", {
+    //       todo
+    //     });
+    //     this.$store.commit("setUser", {
+    //       ...this.user,
+    //       todos: [...this.user.todos, data]
+    //     });
+    //     this.$store.commit("clearErrors");
+    //   } catch (error) {
+    //     const {
+    //       status
+    //     } = error.response;
+    //     if (status === 422) {
+    //       this.$store.commit("setError", "タイトルが空です");
+    //     }
+    //   }
+    // },
     logOut() {
       firebase
         .auth()

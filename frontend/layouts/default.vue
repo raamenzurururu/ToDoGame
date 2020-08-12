@@ -110,7 +110,7 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: deeppink;
+$main-color: yellow;
 
 .app {
   .toolbar-title {

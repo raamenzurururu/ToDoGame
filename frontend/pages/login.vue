@@ -317,7 +317,7 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: #ce1a92;
+$main-color: yellow;
 $sub-color: #dd8b10;
 $accent-color: red;
 
@@ -397,20 +397,20 @@ $accent-color: red;
 
   .login-button {
     &:hover {
-      border: 2px solid blue;
-      color: blue;
+      border: 2px solid whitesmoke;
+      color: whitesmoke;
     }
   }
   .checked {
-    color: pink;
+    color: orange;
   }
   .login-button-wrapper {
     text-align: center;
     .bottom-btn {
       @include login-bottom-btn;
       &:hover {
-        border: 2px solid blue;
-        color: blue;
+        border: 2px solid whitesmoke;
+        color: whitesmoke;
       }
     }
   }
@@ -418,8 +418,8 @@ $accent-color: red;
     .bottom-btn {
       @include login-bottom-btn;
       &:hover {
-        border: 2px solid blue;
-        color: blue;
+        border: 2px solid whitesmoke;
+        color: whitesmoke;
       }
     }
   }
@@ -429,5 +429,12 @@ $accent-color: red;
 }
 .v-window__container {
   border: solid 5px white;
+}
+
+.bottom-btn {
+  &:hover {
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+  }
 }
 </style>

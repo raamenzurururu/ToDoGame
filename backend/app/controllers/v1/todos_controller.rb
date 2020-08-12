@@ -4,8 +4,12 @@ class V1::TodosController < ApplicationController
     todo = Todo.new(todo_params)   #render json: todoのtodoはtodo = Todo.newしたやつ
     if todo.save
       render json: todo, status: :created #todoに保存したデータが入っている
-    else                                  #title, user_id, created_at, updated_at
-      render json: todo.errors, status: :unprocessable_entity
+    else
+      if todo.errors.full_messages.first == "Title can't be black"
+        render json: { error_msg: "タイトルを入力してください" }, status: :unprocessable_entity
+      else
+        render json: todo.errors, status: :unprocessable_entity
+      end
     end
   end
 
