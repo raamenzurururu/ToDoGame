@@ -93,12 +93,12 @@ export default {
       } else {
         return [
           {
-            icon: "mdi-apps",
+            icon: "mdi-chess-king",
             title: "ログイン",
             to: "/login"
           },
           {
-            icon: "mdi-chart-bubble",
+            icon: "mdi-chess-queen",
             title: "新規登録",
             to: "/signup"
           }

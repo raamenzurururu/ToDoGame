@@ -162,19 +162,25 @@
       </v-card>
     </v-dialog>
     <form>
-        <v-text-field v-model="email" :counter="20" label="email" data-vv-name="email" required></v-text-field>
-        <v-text-field
-          v-model="password"
-          label="password"
-          data-vv-name="password"
-          required
-          :type="show1 ? 'text' : 'password'"
-          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-          @click:append="show1 = !show1"
-        ></v-text-field>
-        <v-btn class="mr-4" @click="login">submit</v-btn>
-        <p v-if="error" class="errors">{{error}}</p>
-      </form>
+      <v-text-field
+        v-model="email"
+        :counter="20"
+        label="email"
+        data-vv-name="email"
+        required
+      ></v-text-field>
+      <v-text-field
+        v-model="password"
+        label="password"
+        data-vv-name="password"
+        required
+        :type="show1 ? 'text' : 'password'"
+        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+        @click:append="show1 = !show1"
+      ></v-text-field>
+      <v-btn class="mr-4" @click="login">submit</v-btn>
+      <p v-if="error" class="errors">{{ error }}</p>
+    </form>
   </v-container>
 </template>
 
@@ -234,6 +240,7 @@ export default {
             name: this.name,
             uid: res.user.uid
           };
+          this.$store.commit("setLoading", true);
           axios
             .post("/v1/users", {
               user
@@ -245,7 +252,7 @@ export default {
               this.$store.commit("setNotice", {
                 status: true,
                 message: this.name + "さん、新規登録が完了しました！"
-              })
+              });
               setTimeout(() => {
                 this.$store.commit("setNotice", {});
               }, 2500);
@@ -268,10 +275,25 @@ export default {
         });
     },
     login() {
-      this.$store.dispatch("login", {
-        email: this.email,
-        password: this.password
-      });
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error);
+          this.error = (code => {
+            switch (code) {
+              case "auth/user-not-found":
+                return "メールアドレスが間違っています";
+              case "auth/wrong-password":
+                return "※パスワードが正しくありません";
+              default:
+                return "※メールアドレスとパスワードをご確認ください";
+            }
+          })(error.code);
+        });
     },
     moveToTop() {
       const duration = 1000; // 移動速度（1秒で終了）
@@ -297,7 +319,7 @@ export default {
 <style lang="scss">
 $main-color: #ce1a92;
 $sub-color: #dd8b10;
-$accent-color: #6d1318;
+$accent-color: red;
 
 @mixin explain {
   color: $sub-color;
@@ -400,6 +422,9 @@ $accent-color: #6d1318;
         color: blue;
       }
     }
+  }
+  .errors {
+    color: $accent-color;
   }
 }
 .v-window__container {
