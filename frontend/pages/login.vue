@@ -79,6 +79,7 @@
         </v-hover>
       </v-col>
     </v-row>
+    <v-btn class="login-button" @click="guestLogin">ゲストログイン</v-btn>
 
     <v-row class="introduction">
       <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
@@ -284,7 +285,28 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          this.$router.push("/");
+          this.$router.push("/user");
+        })
+        .catch(error => {
+          console.log(error);
+          this.error = (code => {
+            switch (code) {
+              case "auth/user-not-found":
+                return "メールアドレスが間違っています";
+              case "auth/wrong-password":
+                return "※パスワードが正しくありません";
+              default:
+                return "※メールアドレスとパスワードをご確認ください";
+            }
+          })(error.code);
+        });
+    },
+    guestLogin() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword("test@gmail.com", "aaaaaa")
+        .then(() => {
+          this.$router.push("/user");
         })
         .catch(error => {
           console.log(error);
