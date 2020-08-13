@@ -6,7 +6,14 @@
         <!-- 根拠のある言葉にしていく -->
         <h2 class="login-subtitle text-center">なぜGameなのか？</h2>
         <h3 class="login-explain">やるべきことをサクッと片付けるため!</h3>
-        <img src="../assets/d-princess_a04.png">
+        <div>
+        <img src="../assets/d-princess_a04.png"><br>
+        </div>
+          <v-hover v-slot:default="{ hover }">
+            <v-btn class="login-button" @click="guestLogin">
+              <v-icon v-text="hover ? 'mdi-chess-rook' : ''"></v-icon>簡易ログインはこちら
+            </v-btn>
+          </v-hover>
         <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
         <img class="mon" src="../assets/btl_FEman02.png">
         <h3 class="login-explain">昨日の自分を１％でも超えたい、、、。</h3>
@@ -79,7 +86,6 @@
         </v-hover>
       </v-col>
     </v-row>
-    <v-btn class="login-button" @click="guestLogin">ゲストログイン</v-btn>
 
     <v-row class="introduction">
       <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
@@ -356,7 +362,7 @@ $accent-color: red;
 
 .login-page {
   .mon {
-    width: 20%;
+    width: 10%;
   }
 
   .login-title {
