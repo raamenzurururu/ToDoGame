@@ -6,18 +6,21 @@
         <!-- 根拠のある言葉にしていく -->
         <h2 class="login-subtitle text-center">なぜGameなのか？</h2>
         <h3 class="login-explain">やるべきことをサクッと片付けるため!</h3>
-        <div>
-        <img src="../assets/d-princess_a04.png"><br>
+        <div class="monster">
+          <img src="../assets/d-princess_a04.png">
+          <img class="mon" src="../assets/d-king01.png">
         </div>
+        <div v-if="user"></div>
+        <div class="guest" v-else>
           <v-hover v-slot:default="{ hover }">
             <v-btn class="login-button" @click="guestLogin">
               <v-icon v-text="hover ? 'mdi-chess-rook' : ''"></v-icon>簡易ログインはこちら
             </v-btn>
           </v-hover>
+        </div>
         <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
         <img class="mon" src="../assets/btl_FEman02.png">
         <h3 class="login-explain">昨日の自分を１％でも超えたい、、、。</h3>
-        <img class="mon" src="../assets/d-king01.png">
         <h3 class="login-explain">やるべきことをゲーム化して終わらせよう！</h3>
         <img class="mon" src="../assets/bt_shadow01.png">
         <h3 class="login-explain">レベルを５０にして伝説の剣を手に入れよう</h3>
@@ -117,8 +120,6 @@
             v-for="(item, i) in items"
             :key="i"
             :src="item.src"
-            reverse-transition="fade-transition"
-            transition="fade-transition"
           ></v-carousel-item>
         </v-carousel>
       </v-col>
@@ -163,7 +164,7 @@
               @click:append="show1 = !show1"
             ></v-text-field>
             <v-hover v-slot:default="{ hover }">
-              <v-btn class="bottom-btn" @click="login">
+              <v-btn class="dialog-btn" @click="login">
                 <v-icon v-text="hover ? 'mdi-chess-queen' : ''"></v-icon>
                 GO GAME
               </v-btn>
@@ -350,7 +351,7 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: yellow;
+$main-color: yellow !important;
 $sub-color: #dd8b10;
 $accent-color: red;
 
@@ -363,6 +364,9 @@ $accent-color: red;
 .login-page {
   .mon {
     width: 10%;
+  }
+  .monster {
+    text-align: center;
   }
 
   .login-title {
@@ -387,7 +391,7 @@ $accent-color: red;
     border: 2px solid whitesmoke;
     color: whitesmoke;
     display: inline-block;
-    width: 45%;
+    width: 80%;
     margin: 15px;
     font-weight: bold;
   }
@@ -407,7 +411,7 @@ $accent-color: red;
     }
   }
   .introduction {
-    margin: 100px auto;
+    margin: 100px auto 50px;
 
     img {
       // width: 30%;
@@ -470,7 +474,7 @@ $accent-color: red;
   border: solid 5px white;
 }
 
-.bottom-btn {
+.dialog-btn {
   background-color: black;
   border: 2px solid $main-color;
   color: $main-color !important;
@@ -489,4 +493,17 @@ $accent-color: red;
 .headline {
   color: $sub-color;
 }
+
+.guest {
+  text-align: center;
+  margin-top: 59px;
+  .guest-btn {
+    &:hover {
+      border: 2px solid yellow;
+      color: yellow;
+    }
+  }
+}
+
+
 </style>
