@@ -1,26 +1,53 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <h2 class="list-title">TODOS</h2>
-      <v-spacer></v-spacer>
-    </v-card-title>
-    <ul>
-      <draggable v-model="todos" :options="{ animation: 200, delay: 50 }" @end="atEnd">
+  <div>
+    <v-card class="pb-5">
+      <v-card-title>
+        <h2 class="list-title">TODOS</h2>
+        <v-spacer></v-spacer>
+      </v-card-title>
+      <draggable
+        class="pl-0"
+        v-model="todos"
+        :options="{ animation: 200, delay: 50 }"
+        @end="atEnd"
+        element="ul"
+      >
         <li class="todo-list" v-for="todo in todos" :key="todo.point">
           <v-hover v-slot:default="{ hover }">
-            <v-icon color="blue" v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'">
+            <v-icon
+              color="blue"
+              v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
+            >
             </v-icon>
           </v-hover>
           <v-hover v-slot:default="{ hover }">
-            <v-icon @click="completeItem(todo)" color="blue" v-text="hover ? 'mdi-star-half' : 'mdi-star-outline'">
+            <v-icon
+              @click="completeItem(todo)"
+              color="blue"
+              v-text="hover ? 'mdi-star-half' : 'mdi-star-outline'"
+            >
             </v-icon>
           </v-hover>
+          <v-icon @click="dialog = true; editItem(todo)">mdi-pencil</v-icon>
+          <v-icon small @click="deleteItem(todo)">delete</v-icon>
           <span class="todo-point">{{ todo.point }}</span>
           {{ todo.title }}
         </li>
       </draggable>
-    </ul>
-  </v-card>
+    </v-card>
+
+    <v-dialog class="edit-dialog" v-model="dialog" max-width="60%">
+      <v-card>
+        <v-card-title>
+          <h2 class="list-title">ToDo編集</h2>
+        </v-card-title>
+        <v-card-text>タイトル</v-card-text>
+        <v-text-field v-model="todos"></v-text-field>
+        <div>Diamond</div>
+        <div>Diamond</div>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -36,6 +63,8 @@ export default {
       singleSelect: true,
       selected: [],
       items: numberRange,
+      editOn: true,
+      dialog: false
     };
   },
   computed: {
@@ -60,7 +89,7 @@ export default {
         this.user.experience_point += getUser.data.user.experience_point;
         const updateUser = {
           ...this.user,
-          todos
+          todos: this.todos
         };
         this.$store.commit("setUser", updateUser);
       }
@@ -81,7 +110,7 @@ export default {
         this.$store.commit("setUser", updateUser);
       }
     },
-    async editItem(item) {
+    async editItem(todo) {
       this.editOn = !this.editOn;
     },
     async updateTitle(id, value) {
@@ -92,23 +121,21 @@ export default {
       });
     },
     async updatePoint(id, value) {
-      let result =
-        await axios.patch(`/v1/todos/${id}`, {
-          todo: {
-            point: value
-          }
-        });
+      let result = await axios.patch(`/v1/todos/${id}`, {
+        todo: {
+          point: value
+        }
+      });
     },
     async atEnd() {
-      let result =
-        await axios.patch(`v1/todos`, {
-          todo: this.todos
-        });
-        const updateUser = {
-          ...this.user,
-          todos: this.todos
-        };
-        this.$store.commit("setUser", updateUser);
+      let result = await axios.patch(`v1/todos`, {
+        todo: this.todos
+      });
+      const updateUser = {
+        ...this.user,
+        todos: this.todos
+      };
+      this.$store.commit("setUser", updateUser);
     }
   }
 };
@@ -126,8 +153,8 @@ export default {
   margin: 10px;
   padding: 10px;
   border: 1px solid #7f7f7f;
-  border-radius: 10px;
-  background-color: white;
+  border-radius: 5px;
+  background-color: red;
   .todo-list-btn {
     background-color: white !important;
   }
