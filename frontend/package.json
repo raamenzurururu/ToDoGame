@@ -15,7 +15,8 @@
     "firebase": "^7.17.1",
     "loaders.css": "^0.1.2",
     "material-design-icons-iconfont": "^5.0.1",
-    "nuxt": "^2.13.0"
+    "nuxt": "^2.13.0",
+    "vuedraggable": "^2.24.0"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
