@@ -36,15 +36,16 @@
       </draggable>
     </v-card>
 
-    <v-dialog class="edit-dialog" v-model="dialog" max-width="40%">
+    <v-dialog class="edit-dialog" v-model="dialog">
       <v-card>
         <v-card-title>
           <h2 class="list-title">ToDo編集</h2>
         </v-card-title>
-        <v-card-text>タイトル</v-card-text>
-        <v-text-field v-model="dialogText.title"></v-text-field>
-        <v-select single-line :items="items" v-model="dialogText.point" :value="dialogText.point"></v-select>
-        <v-btn @click="updateItem()">更新</v-btn>
+        <p>やること</p>
+        <v-text-field class="dialog-title" v-model="dialogText.title" filled></v-text-field>
+        <p>ポイント</p>
+        <v-select class="dialog-point" single-line :items="items" v-model="dialogText.point" :value="dialogText.point" filled></v-select>
+        <v-btn class="update-btn" @click="updateItem()">保存</v-btn>
       </v-card>
     </v-dialog>
   </div>
@@ -144,25 +145,59 @@ export default {
 </script>
 
 <style lang="scss">
+$main-color: yellow !important;
+$sub-color: #dd8b10;
+$accent-color: red;
+
+@mixin btn {
+  background-color: rgb(29, 29, 29) !important;
+  border: 2px solid $main-color;
+  color: $main-color !important;
+  display: inline-block;
+  margin: 0px 5% 15px;
+  width: 70%;
+  font-weight: bold;
+}
 .v-icon {
   display: flex;
   justify-content: center;
 }
 
 .todo-list {
-  list-style: none;
-  color: black;
+  // list-style: none;
+  color: white;
   margin: 10px;
   padding: 10px;
   border: 1px solid #7f7f7f;
   border-radius: 5px;
-  background-color: red;
+  background-color: rgb(10, 9, 9);
   .todo-list-btn {
     background-color: white !important;
   }
   .todo-point {
-    color: pink;
+    color: rgb(236, 11, 97);
     font-weight: bold;
+  }
+}
+
+.v-dialog {
+  width: 70%;
+  h2 {
+    color: $sub-color;
+  }
+  p {
+    margin-left: 5%;
+  }
+  .dialog-title {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .dialog-point {
+    width: 40%;
+    margin-left: 5%;
+  }
+  .update-btn {
+    @include btn
   }
 }
 </style>
