@@ -97,7 +97,7 @@
       </v-col>
     </v-row>
 
-    <v-row class="introduction">
+    <v-row class="introduction md-0">
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
         <img class="" src="../assets/org_d04.png" />
         <h3>毎日続ける</h3>
@@ -443,8 +443,8 @@ $sp: 480px;
   }
   @mixin login-bottom-btn {
     background-color: black !important;
-    border: 2px solid whitesmoke;
-    color: whitesmoke;
+    border: 2px solid white;
+    color: white;
     display: inline-block;
     width: 80%;
     margin: 15px;
@@ -453,8 +453,8 @@ $sp: 480px;
   .login-button-wrapper {
     .login-button {
       background-color: black !important;
-      border: 2px solid whitesmoke;
-      color: whitesmoke;
+      border: 2px solid white;
+      color: white;
       width: 100%;
     }
     .skull {
@@ -484,11 +484,11 @@ $sp: 480px;
     margin-top: 30px;
   }
   .mdi-chess-queen {
-    color: rgb(209, 209, 154) !important;
+    color: black !important;
   }
 
   .mdi-chess-knight {
-    color: rgb(230, 230, 165) !important;
+    color: black !important;
   }
 
   .login-button {
@@ -505,8 +505,8 @@ $sp: 480px;
     .bottom-btn {
       @include login-bottom-btn;
       &:hover {
-        border: 2px solid whitesmoke;
-        color: whitesmoke;
+        border: 2px solid white;
+        color: white;
       }
     }
   }
@@ -514,8 +514,8 @@ $sp: 480px;
     .bottom-btn {
       @include login-bottom-btn;
       &:hover {
-        border: 2px solid whitesmoke;
-        color: whitesmoke;
+        border: 2px solid white;
+        color: white;
       }
     }
   }
@@ -536,11 +536,11 @@ $sp: 480px;
   width: 45%;
   font-weight: bold;
   .mdi-chess-queen {
-    color: whitesmoke !important;
+    color: black !important;
   }
   &:hover {
-    border: 2px solid whitesmoke;
-    color: whitesmoke;
+    border: 2px solid white;
+    color: white;
   }
 }
 .headline {

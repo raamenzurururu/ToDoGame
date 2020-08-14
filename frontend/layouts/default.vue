@@ -116,7 +116,7 @@ $main-color: yellow;
   .toolbar-title {
     color: white;
     text-decoration: none;
-    font-family: sans-serif;
+    font-family: 'sans-serif';
     font-size: 30px;
     font-weight: bold;
     .title-first {
