@@ -248,7 +248,7 @@ export default {
         this.error = "名前を入力してください";
         return
       }
-      // this.$store.commit("setLoading", false);
+      this.$store.commit("setLoading", false);
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
@@ -264,7 +264,6 @@ export default {
               user
             })
             .then(res => {
-              //追加
               this.$store.commit("setLoading", false); //ローディングをoffにする、ここで本来オフになる
               this.$store.commit("setUser", res.data); //promiseの値をstoreに入れる
               this.$store.commit("setNotice", {
@@ -293,10 +292,21 @@ export default {
         });
     },
     login() {
+      this.$store.commit("setLoading", true);
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
+          this.$store.commit("setNotice", {
+            status: true,
+            message: "ログインしました"
+          });
+          setTimeout(() => {
+            this.$store.commit("setLoading", false);
+          }, 1000);
+          setTimeout(() => {
+            this.$store.commit("setNotice", {});
+          }, 2000);
           this.$router.push("/user");
         })
         .catch(error => {
@@ -314,10 +324,21 @@ export default {
         });
     },
     guestLogin() {
+      this.$store.commit("setLoading", true);
       firebase
         .auth()
         .signInWithEmailAndPassword("test@gmail.com", "aaaaaa")
         .then(() => {
+          this.$store.commit("setNotice", {
+            status: true,
+            message: "ログインしました"
+          });
+          setTimeout(() => {
+            this.$store.commit("setLoading", false);
+          }, 1000);
+          setTimeout(() => {
+            this.$store.commit("setNotice", {});
+          }, 2000);
           this.$router.push("/user");
         })
         .catch(error => {
