@@ -5,7 +5,7 @@
       <v-spacer></v-spacer>
     </v-card-title>
     <ul>
-      <draggable v-model="todos" :options="{ animation: 200, delay: 50 }">
+      <draggable v-model="todos" :options="{ animation: 200, delay: 50 }" @start="onStart" @end="atEnd">
         <li class="todo-list" v-for="todo in todos" :key="todo.point">
           <v-hover v-slot:default="{ hover }">
             <v-icon color="blue" v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'">
@@ -98,6 +98,16 @@ export default {
             point: value
           }
         });
+    },
+    onStart() {
+      console.log(this.todos)
+    },
+    async atEnd() {
+      console.log(this.todos)
+      let result =
+        await axios.patch(`v1/todos`, {
+          todos: this.todos
+        })
     }
   }
 };
