@@ -4,8 +4,8 @@
     <v-row>
       <v-col cols="12" sm="12" md="6" lg="6">
         <!-- 根拠のある言葉にしていく -->
-        <h2 class="login-subtitle text-center">なぜGameなのか？</h2>
-        <h3 class="login-explain">やるべきことをサクッと片付けるため!</h3>
+        <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
+        <h2 class="login-explain">レベルアップ機能、報酬などであなたのモチベーションを高め、日々のやることをサクッと片付けるToDoアプリです。</h2>
         <div class="monster">
           <img src="../assets/d-princess_a04.png">
           <img class="mon" src="../assets/d-king01.png">
@@ -14,7 +14,7 @@
         <div class="guest" v-else>
           <v-hover v-slot:default="{ hover }">
             <v-btn class="login-button" @click="guestLogin">
-              <v-icon v-text="hover ? 'mdi-chess-rook' : ''"></v-icon>ゲストログインはこちら
+              <v-icon v-text="hover ? 'mdi-chess-rook' : ''"></v-icon>ゲストログイン
             </v-btn>
           </v-hover>
         </div>
@@ -42,9 +42,9 @@
         lg="6"
       >
         <form>
-          <h2 id="login-signup" class="login-form-title text-center">
-            新規登録する？
-          </h2>
+          <h1 id="login-signup" class="login-form-title text-center">
+            新規登録はこちら
+          </h1>
           <v-text-field
             v-model="name"
             :counter="10"
@@ -264,7 +264,7 @@ export default {
               user
             })
             .then(res => {
-              this.$store.commit("setLoading", false); //ローディングをoffにする、ここで本来オフになる
+              this.$store.commit("setLoading", false); 
               this.$store.commit("setUser", res.data); //promiseの値をstoreに入れる
               this.$store.commit("setNotice", {
                 status: true,
@@ -272,7 +272,7 @@ export default {
               });
               setTimeout(() => {
                 this.$store.commit("setNotice", {});
-              }, 2500);
+              }, 2000);
               this.$router.push("/user");
             });
         })
@@ -381,6 +381,30 @@ $main-color: yellow !important;
 $sub-color: #dd8b10;
 $accent-color: red;
 
+$pc: 1024px;
+$tab: 680px;
+$sp: 480px;
+
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
+
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+
+
+
 @mixin explain {
   color: $sub-color;
   font-family: sans-serif;
@@ -389,7 +413,11 @@ $accent-color: red;
 
 .login-page {
   .mon {
-    width: 10%;
+    width: 9%;
+
+    @include sp {
+      width: 20%;
+    }
   }
   .monster {
     text-align: center;
@@ -399,6 +427,7 @@ $accent-color: red;
     text-align: center;
     font-size: 70px;
     font-family: sans-serif;
+    margin-bottom: 0px;
 
     .login-title-first {
       color: $main-color;
@@ -440,8 +469,6 @@ $accent-color: red;
     margin: 100px auto 50px;
 
     img {
-      // width: 30%;
-      // height: 50%;
       display: block;
       margin: 0 auto 30px;
     }
@@ -527,6 +554,11 @@ $accent-color: red;
     &:hover {
       border: 2px solid yellow;
       color: yellow;
+    }
+    @include sp {
+      font-size: 25px;
+      width: 80% !important;
+      height: 70px !important;
     }
   }
 }
