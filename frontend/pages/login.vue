@@ -19,12 +19,12 @@
           </v-hover>
         </div>
         <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
-        <img class="mon" src="../assets/mon_234.gif">
+        <img class="mon" src="../assets/mon_139.gif">
         <h3 class="login-explain">さらなる高みを目指して</h3>
-        <img class="mon" src="../assets/mon_223.gif">
+        <img class="mon" src="../assets/mon_283.gif">
         <h3 class="login-explain">やるべきことをゲーム化して終わらせよう！</h3>
         <img class="mon" src="../assets/mon_239.gif">
-        <h3 class="login-explain">レベルを５０にして伝説の剣を手に入れよう</h3>
+        <h3 class="login-explain">毎日継続</h3>
         <img class="mon" src="../assets/mon_224.gif">
       </v-col>
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
@@ -101,7 +101,7 @@
     <v-row class="introduction md-0">
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
         <img class="" src="../assets/mon_260.gif" />
-        <h3>毎日続ける</h3>
+        <h3>レベル50にして伝説の剣を手に入れよう</h3>
         <h3 class="login-explain">TP(TaskPoint)は報酬の開放に使用できるぞ！</h3>
       </v-col>
 
