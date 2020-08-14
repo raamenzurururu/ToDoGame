@@ -6,7 +6,7 @@
           <v-select label="TP" v-model="number" :items="items">Point</v-select>
         </v-col>
         <!-- v-bind: 属性名 = "設定する値" -->
-        <v-col class="pr-0" cols="9" xs="5" sm="6" md="4" lg="7">
+        <v-col class="pr-0" cols="9" xs="5" sm="6" md="7" lg="7">
           <v-text-field
             v-model="title"
             :rules="[v => !!v || 'まだまだいけるよ！']"
@@ -18,9 +18,9 @@
         <v-col class="pr-0" cols="12" xs="6" sm="4" md="4" lg="4">
           <v-hover v-slot:default="{ hover }">
             <v-btn class="todo-btn" @click="handleSubmit">
-              <v-icon v-text="hover ? 'mdi-star' : ''">
+              <v-icon v-text="hover ? 'mdi-chess-king' : ''">
                 </v-icon>
-                Press
+                POST
             </v-btn>
           </v-hover>
         </v-col>
@@ -62,7 +62,7 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: deeppink;
+$main-color: yellow;
 
 @mixin btn {
   background-color: white;
@@ -86,8 +86,8 @@ $main-color: deeppink;
     }
   }
 
-  .mdi-star {
-    color: red !important;
+  .mdi-chess-king {
+    color: black !important;
   }
 }
 

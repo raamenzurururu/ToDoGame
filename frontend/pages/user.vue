@@ -162,7 +162,7 @@ $sp: 480px;
 
   .user-status {
     @include pc {
-      width: 100% !important;
+      width: 100%;
     };
     @include tab {
       width: 100% !important;

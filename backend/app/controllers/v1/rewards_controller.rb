@@ -2,9 +2,13 @@ class V1::RewardsController < ApplicationController
   def create
     reward = Reward.new(reward_params)
     if reward.save
+      byebug
       render json: reward, status: :created
     else
-      render json: reward.errors, status: :unprocessable_entity
+      if reward.errors.present?
+        render json: { error_msg: reward.errors.full_messages }, status: :unprocessable_entity
+      else
+        render json: reward.errors, status: :unprocessable_entity
     end
   end
 

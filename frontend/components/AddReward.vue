@@ -5,7 +5,7 @@
         <v-col class="pr-0" cols="3" xs="6" sm="2" md="1" lg="1">
           <v-select label="TP" v-model="number" :items="items">You</v-select>
         </v-col>
-        <v-col class="pr-0" cols="9" xs="5" sm="6" md="4" lg="7">
+        <v-col class="pr-0" cols="9" xs="5" sm="6" md="7" lg="7">
           <v-text-field
             v-model="title"
             :counter="20"

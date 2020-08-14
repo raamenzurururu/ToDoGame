@@ -12,23 +12,20 @@
           </v-col>
           <v-col cols="12" xs="5" sm="6" md="5" lg="6">
             <v-hover v-slot:default="{ hover }">
-            <router-link to="/reward">
-            <v-btn class="user-btn my-10">
-              <v-icon v-text="hover ? 'mdi-star' : ''">
-                </v-icon>
-                PRIZE
-            </v-btn>
-            </router-link>
-          </v-hover>
+              <router-link to="/reward">
+                <v-btn class="user-btn my-10">
+                  <v-icon v-text="hover ? 'mdi-star' : ''"> </v-icon>
+                  PRIZE
+                </v-btn>
+              </router-link>
+            </v-hover>
 
-          <v-hover v-slot:default="{ hover }">
-            <v-btn class="user-btn" @click="logOut">
-              <v-icon v-text="hover ? 'mdi-heart' : ''">
-                </v-icon>
+            <v-hover v-slot:default="{ hover }">
+              <v-btn class="user-btn" @click="logOut">
+                <v-icon v-text="hover ? 'mdi-heart' : ''"> </v-icon>
                 BYE
-            </v-btn>
-          </v-hover>
-
+              </v-btn>
+            </v-hover>
           </v-col>
         </v-row>
       </v-col>
@@ -90,15 +87,20 @@ export default {
     }
   },
   methods: {
-    async addTodo(todo) {
-      const { data } = await axios.post("/v1/todos", {
-        todo
-      });
-      //追加
-      this.$store.commit("setUser", {
-        ...this.user,
-        todos: [...this.user.todos, data]
-      });
+    async addReward(reward) {
+      try {
+        const { data } = await axios.post("/v1/rewards", {
+          reward
+        });
+        this.$store.commit("setUser", {
+          ...this.user,
+          rewards: [...this.user.rewards, data]
+        });
+        this.$store.commit("clearErrors");
+      } catch (error) {
+        const { data } = error.response;
+        this.$store.commit("setError", data.error_msg);
+      }
     },
     logOut() {
       firebase
@@ -141,7 +143,6 @@ $sub-color: orange;
   user-status {
     border: 2px white solid;
   }
-  
 
   .user-btn {
     background-color: black !important;
