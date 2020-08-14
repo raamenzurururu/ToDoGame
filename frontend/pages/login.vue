@@ -7,8 +7,8 @@
         <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
         <h2 class="login-explain">レベルアップ機能、報酬などであなたのモチベーションを高め、日々のやることをサクッと片付けるToDoアプリです。</h2>
         <div class="monster">
-          <img src="../assets/d-princess_a04.png">
-          <img class="mon" src="../assets/d-king01.png">
+          <img src="../assets/mon_178.gif">
+          <img class="mon" src="../assets/mon_176.gif">
         </div>
         <div v-if="user"></div>
         <div class="guest" v-else>
@@ -19,12 +19,13 @@
           </v-hover>
         </div>
         <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
-        <img class="mon" src="../assets/btl_FEman02.png">
-        <h3 class="login-explain">昨日の自分を１％でも超えたい、、、。</h3>
+        <img class="mon" src="../assets/mon_234.gif">
+        <h3 class="login-explain">さらなる高みを目指して</h3>
+        <img class="mon" src="../assets/mon_223.gif">
         <h3 class="login-explain">やるべきことをゲーム化して終わらせよう！</h3>
-        <img class="mon" src="../assets/bt_shadow01.png">
+        <img class="mon" src="../assets/mon_239.gif">
         <h3 class="login-explain">レベルを５０にして伝説の剣を手に入れよう</h3>
-        <img class="mon" src="../assets/knight01.png">
+        <img class="mon" src="../assets/mon_224.gif">
       </v-col>
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
         <v-icon class="mb-2" size="80">mdi-chess-king</v-icon>
@@ -99,13 +100,13 @@
 
     <v-row class="introduction md-0">
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="" src="../assets/org_d04.png" />
+        <img class="" src="../assets/mon_260.gif" />
         <h3>毎日続ける</h3>
         <h3 class="login-explain">TP(TaskPoint)は報酬の開放に使用できるぞ！</h3>
       </v-col>
 
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="" src="../assets/org_f04.png" />
+        <img class="" src="../assets/mon_070.gif" />
         <h3>それが成長へのコツ</h3>
         <h3>
           やることを完了させるたびに経験値が溜まっていく。より高みを。そしてレベルが高いといいことが？
@@ -200,8 +201,8 @@
 <script>
 import axios from "@/plugins/axios";
 import firebase from "@/plugins/firebase";
-import Forest from "@/assets/brightforest08.png";
-import Forest2 from "@/assets/brightforest07.png";
+import Pipo from "@/assets/pipo-pic003.jpg";
+import Forest from "@/assets/bg1.jpg";
 
 export default {
   components: {},
@@ -217,10 +218,10 @@ export default {
       dialog: false,
       items: [
         {
-          src: Forest
+          src: Pipo
         },
         {
-          src: Forest2
+          src: Forest
         }
       ],
       showContent: false,
@@ -413,7 +414,7 @@ $sp: 480px;
 
 .login-page {
   .mon {
-    width: 9%;
+    width: 20%;
 
     @include sp {
       width: 20%;

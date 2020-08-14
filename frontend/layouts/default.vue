@@ -42,7 +42,7 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>ToDo + Game = You</span>
+      <span>素材提供【Rド】</span>
     </v-footer>
   </v-app>
 </template>
