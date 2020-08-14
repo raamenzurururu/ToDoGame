@@ -10,7 +10,6 @@ const mutations = {
     },
     setError(state, payload) {
         state.errors = payload
-        state.errors = [...state.errors, payload]
     }
 }
 

@@ -198,31 +198,4 @@ $sp: 480px;
     font-weight: bold;
   }
 }
-
-.introduction h3 {
-  text-align: center;
-  margin: 0 auto;
-  color: aqua !important;
-}
-
-.v-img {
-  text-align: center;
-}
-
-.v-window__container {
-  border: solid 5px white;
-}
-
-#overlay {
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 30, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 </style>
