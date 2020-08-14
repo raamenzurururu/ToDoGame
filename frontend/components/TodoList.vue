@@ -5,14 +5,14 @@
       <v-spacer></v-spacer>
     </v-card-title>
     <ul>
-      <draggable v-model="todos" :options="{ animation: 200, delay: 50 }" @start="onStart" @end="atEnd">
+      <draggable v-model="todos" :options="{ animation: 200, delay: 50 }" @end="atEnd">
         <li class="todo-list" v-for="todo in todos" :key="todo.point">
           <v-hover v-slot:default="{ hover }">
             <v-icon color="blue" v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'">
             </v-icon>
           </v-hover>
           <v-hover v-slot:default="{ hover }">
-            <v-icon color="blue" v-text="hover ? 'mdi-star-half' : 'mdi-star-outline'">
+            <v-icon @click="completeItem(todo)" color="blue" v-text="hover ? 'mdi-star-half' : 'mdi-star-outline'">
             </v-icon>
           </v-hover>
           <span class="todo-point">{{ todo.point }}</span>
@@ -99,15 +99,16 @@ export default {
           }
         });
     },
-    onStart() {
-      console.log(this.todos)
-    },
     async atEnd() {
-      console.log(this.todos)
       let result =
         await axios.patch(`v1/todos`, {
+          todo: this.todos
+        });
+        const updateUser = {
+          ...this.user,
           todos: this.todos
-        })
+        };
+        this.$store.commit("setUser", updateUser);
     }
   }
 };

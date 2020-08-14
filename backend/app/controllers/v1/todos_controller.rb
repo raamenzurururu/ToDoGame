@@ -1,7 +1,7 @@
 class V1::TodosController < ApplicationController
   # POST /api/v1/todos
   def create
-    todo = Todo.new(todo_params)   #render json: todoのtodoはtodo = Todo.newしたやつ
+    todo = Todo.new(todo_params)
     if todo.save
       render json: todo, status: :created #todoに保存したデータが入っている
     else
@@ -52,13 +52,15 @@ class V1::TodosController < ApplicationController
 
   def sort
     params[:todos].each_with_index do |t,i|
-
-    render json: { todo: todo }
+      @todo = Todo.find(t[:id])
+      @todo.update( point: i )
+    end
+    render json: {result: "ok"}
   end
 
   private
     def todo_params
       #pointを送れた
-      params.require(:todo).permit(:title, :user_id, :point)   #{"todo"=>{"title"=>"英語", "user_id"=>6, "point"=>2}, "controller"=>"v1/todos", "action"=>"create"} permitted: false>
+      params.require(:todo).permit(:id, :title, :user_id, :point)   #{"todo"=>{"title"=>"英語", "user_id"=>6, "point"=>2}, "controller"=>"v1/todos", "action"=>"create"} permitted: false>
     end                                                #paramsにはこんだけの情報が入っている
 end
