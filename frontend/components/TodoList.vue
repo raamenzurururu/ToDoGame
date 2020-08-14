@@ -6,10 +6,10 @@
     </v-card-title>
     <ul>
       <li><span>【達成ボタン】</span>【編集ボタン】</li>
-      <draggable>
-      <li v-for="todo in todos" :key="todo">
-        Point{{ todo.title }}:{{ todo.title }}
-      </li>
+      <draggable v-model="todos">
+        <li v-for="todo in todos" :key="todo.point">
+          Point{{ todo.title }}:{{ todo.title }}
+        </li>
       </draggable>
     </ul>
   </v-card>
@@ -20,7 +20,6 @@ const maxNumber = 11;
 const numberRange = [...Array(maxNumber).keys()];
 
 import axios from "@/plugins/axios";
-import draggable from 'vuedraggable';
 
 export default {
   props: ["todos"],
@@ -85,11 +84,12 @@ export default {
       });
     },
     async updatePoint(id, value) {
-      await axios.patch(`/v1/todos/${id}`, {
-        todo: {
-          point: value
-        }
-      });
+      let result =
+        await axios.patch(`/v1/todos/${id}`, {
+          todo: {
+            point: value
+          }
+        });
     }
   }
 };

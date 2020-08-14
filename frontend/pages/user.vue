@@ -34,8 +34,6 @@
 </template>
 
 <script>
-import AddTodo from "@/components/AddTodo";
-import TodoList from "@/components/TodoList";
 import axios from "@/plugins/axios";
 import firebase from "@/plugins/firebase";
 
@@ -64,37 +62,12 @@ export default {
       }
     );
   },
-  components: {
-    AddTodo,
-    TodoList
-  },
   computed: {
     user() {
       return this.$store.state.currentUser;
     }
   },
   methods: {
-    // async addTodo(todo) {
-    //   try {
-    //     const {
-    //       data
-    //     } = await axios.post("/v1/todos", {
-    //       todo
-    //     });
-    //     this.$store.commit("setUser", {
-    //       ...this.user,
-    //       todos: [...this.user.todos, data]
-    //     });
-    //     this.$store.commit("clearErrors");
-    //   } catch (error) {
-    //     const {
-    //       status
-    //     } = error.response;
-    //     if (status === 422) {
-    //       this.$store.commit("setError", "タイトルが空です");
-    //     }
-    //   }
-    // },
     logOut() {
       firebase
         .auth()
@@ -107,23 +80,6 @@ export default {
           console.log(error);
         });
     },
-    openModal: function() {
-      this.showContent = true;
-    },
-    closeModal: function() {
-      this.showContent = false;
-    },
-    moveToTop() {
-      const duration = 1000;
-      const interval = 25;
-      const step = -window.scrollY / Math.ceil(duration / interval);
-      const timer = setInterval(() => {
-        window.scrollBy(0, step);
-        if (window.scrollY <= 0) {
-          clearInterval(timer);
-        }
-      }, interval);
-    }
   }
 };
 </script>

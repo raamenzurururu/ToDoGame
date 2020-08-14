@@ -41,7 +41,8 @@ export default {
   */
   plugins: [
     "@/plugins/vuetify",
-    "@/plugins/auth-check"
+    "@/plugins/auth-check",
+    "@/plugins/vue-draggable"
   ],
   /*
   ** Auto import components
