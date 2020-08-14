@@ -63,6 +63,6 @@ export default {
 
 <style>
 .user-tp {
-  border: blue solid 2px;
+  border: black solid 2px;
 }
 </style>

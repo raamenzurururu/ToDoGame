@@ -5,10 +5,18 @@
       <v-spacer></v-spacer>
     </v-card-title>
     <ul>
-      <li><span>【達成ボタン】</span>【編集ボタン】</li>
-      <draggable v-model="todos">
-        <li v-for="todo in todos" :key="todo.point">
-          Point{{ todo.title }}:{{ todo.title }}
+      <draggable v-model="todos" :options="{ animation: 200, delay: 50 }">
+        <li class="todo-list" v-for="todo in todos" :key="todo.point">
+          <v-hover v-slot:default="{ hover }">
+            <v-icon color="blue" v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'">
+            </v-icon>
+          </v-hover>
+          <v-hover v-slot:default="{ hover }">
+            <v-icon color="blue" v-text="hover ? 'mdi-star-half' : 'mdi-star-outline'">
+            </v-icon>
+          </v-hover>
+          <span class="todo-point">{{ todo.point }}</span>
+          {{ todo.title }}
         </li>
       </draggable>
     </ul>
@@ -95,27 +103,26 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .v-icon {
   display: flex;
   justify-content: center;
 }
 
-.edit-window {
-  /*　要素を重ねた時の順番　*/
-  z-index: 1;
-
-  /*　画面全体を覆う設定　*/
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 30, 0.5);
-
-  /*　画面の中央に要素を表示させる設定　*/
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.todo-list {
+  list-style: none;
+  color: black;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #7f7f7f;
+  border-radius: 10px;
+  background-color: white;
+  .todo-list-btn {
+    background-color: white !important;
+  }
+  .todo-point {
+    color: pink;
+    font-weight: bold;
+  }
 }
 </style>
