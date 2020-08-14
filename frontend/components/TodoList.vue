@@ -45,7 +45,7 @@
         <v-text-field class="dialog-title" v-model="dialogText.title" filled></v-text-field>
         <p>ポイント</p>
         <v-select class="dialog-point" single-line :items="items" v-model="dialogText.point" :value="dialogText.point" filled></v-select>
-        <v-btn class="update-btn" @click="updateItem()">保存</v-btn>
+        <v-btn class="update-btn" @click="updateItem(dialogText.id, dialogText.title, dialogText.point)">保存</v-btn>
       </v-card>
     </v-dialog>
   </div>
@@ -116,19 +116,14 @@ export default {
       this.dialog = true;
       this.dialogText = todo;
     },
-    async updateTitle(id, value) {
+    async updateItem(id, title, point) {
       await axios.patch(`/v1/todos/${id}`, {
         todo: {
-          title: value
+          title: title,
+          point: point
         }
       });
-    },
-    async updatePoint(id, value) {
-      let result = await axios.patch(`/v1/todos/${id}`, {
-        todo: {
-          point: value
-        }
-      });
+      this.dialog = false
     },
     async atEnd() {
       let result = await axios.patch(`v1/todos`, {
