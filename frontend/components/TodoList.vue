@@ -24,11 +24,11 @@
             <v-icon
               @click="completeItem(todo)"
               color="blue"
-              v-text="hover ? 'mdi-star-half' : 'mdi-star-outline'"
+              v-text="hover ? 'mdi-star' : 'mdi-star-outline'"
             >
             </v-icon>
           </v-hover>
-          <v-icon @click="dialog = true; editItem(todo)">mdi-pencil</v-icon>
+          <v-icon @click="editItem(todo)">mdi-pencil</v-icon>
           <v-icon small @click="deleteItem(todo)">delete</v-icon>
           <span class="todo-point">{{ todo.point }}</span>
           {{ todo.title }}
@@ -42,9 +42,8 @@
           <h2 class="list-title">ToDo編集</h2>
         </v-card-title>
         <v-card-text>タイトル</v-card-text>
-        <v-text-field v-model="todos"></v-text-field>
-        <div>Diamond</div>
-        <div>Diamond</div>
+        <v-text-field v-model="dialogText.title"></v-text-field>
+        <v-btn @click="updateItem()">update</v-btn>
       </v-card>
     </v-dialog>
   </div>
@@ -64,6 +63,7 @@ export default {
       selected: [],
       items: numberRange,
       editOn: true,
+      dialogText: "",
       dialog: false
     };
   },
@@ -111,7 +111,8 @@ export default {
       }
     },
     async editItem(todo) {
-      this.editOn = !this.editOn;
+      this.dialog = true;
+      this.dialogText = todo;
     },
     async updateTitle(id, value) {
       await axios.patch(`/v1/todos/${id}`, {
