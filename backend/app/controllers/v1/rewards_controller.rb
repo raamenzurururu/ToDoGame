@@ -2,7 +2,6 @@ class V1::RewardsController < ApplicationController
   def create
     reward = Reward.new(reward_params)
     if reward.save
-      byebug
       render json: reward, status: :created
     else
       if reward.errors.present?

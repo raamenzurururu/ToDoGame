@@ -242,8 +242,13 @@ export default {
     signup() {
       if (this.password !== this.passwordConfirm) {
         this.error = "※パスワードとパスワード確認が一致していません";
+        return
       }
-      this.$store.commit("setLoading", false); //ローディングをonにする、一旦falseにした
+      if (this.name == "") {
+        this.error = "名前を入力してください";
+        return
+      }
+      // this.$store.commit("setLoading", false);
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)

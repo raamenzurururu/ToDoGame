@@ -14,6 +14,9 @@ class V1::UsersController < ApplicationController
     if user.save
       render json: user, status: :created
     else
+      if reward.errors.present?
+        render json: { error_msg: reward.errors.full_message }, status: :unprocessable_entity
+      end
       render json: user.errors, status: :unprocessable_entity
     end 
   end 
