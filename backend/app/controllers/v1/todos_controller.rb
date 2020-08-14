@@ -5,8 +5,8 @@ class V1::TodosController < ApplicationController
     if todo.save
       render json: todo, status: :created #todoに保存したデータが入っている
     else
-      if todo.errors.full_messages.first == "Title can't be black"
-        render json: { error_msg: "タイトルを入力してください" }, status: :unprocessable_entity
+      if todo.errors.present?
+        render json: { error_msg: todo.errors.full_message }, status: :unprocessable_entity
       else
         render json: todo.errors, status: :unprocessable_entity
       end

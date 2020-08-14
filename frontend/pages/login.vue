@@ -14,7 +14,7 @@
         <div class="guest" v-else>
           <v-hover v-slot:default="{ hover }">
             <v-btn class="login-button" @click="guestLogin">
-              <v-icon v-text="hover ? 'mdi-chess-rook' : ''"></v-icon>簡易ログインはこちら
+              <v-icon v-text="hover ? 'mdi-chess-rook' : ''"></v-icon>ゲストログインはこちら
             </v-btn>
           </v-hover>
         </div>
