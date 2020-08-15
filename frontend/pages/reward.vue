@@ -4,11 +4,20 @@
       <v-col class="user-status" cols="12" xs="12" sm="12" md="12" lg="8">
         <v-row>
           <v-col cols="12" xs="5" sm="6" md="5" lg="6">
-            <h2>STATUS</h2>
-            <p>NAME：{{ currentUser.user.name }}</p>
-            <p>LV：{{ currentUser.user.level }}</p>
-            <p>EXP：{{ currentUser.user.experience_point ? currentUser.user.experience_point : 50 }}</p>
-            <p>TP：{{ currentUser.user.point }}</p>
+            <h2>{{ currentUser.user.name }}のステータス</h2>
+            <p>名前：{{ currentUser.user.name }}</p>
+            <p>レベル：{{ currentUser.user.level }}</p>
+            <p>次のレベルまであと{{ currentUser.untilLevel ? currentUser.untilLevel: 50 }}
+            <v-progress-linear
+              :height="12"
+              :rounded="true"
+              :value="currentUser.untilPercentage ? currentUser.untilPercentage: 0"
+              color="light-blue"
+              straped
+            >
+            </v-progress-linear>
+            <p>経験値：{{ currentUser.user.experience_point }}</p>
+            <p>タスクポイント：{{ currentUser.user.point }}</p>
           </v-col>
           <v-col cols="12" xs="5" sm="6" md="5" lg="6">
             <v-hover v-slot:default="{ hover }">
@@ -22,7 +31,7 @@
 
             <v-hover v-slot:default="{ hover }">
               <v-btn class="user-btn" @click="logOut">
-                <v-icon v-text="hover ? 'mdi-heart' : ''"> </v-icon>
+                <v-icon v-text="hover ? 'mdi-chess-king' : ''"> </v-icon>
                 BYE
               </v-btn>
             </v-hover>

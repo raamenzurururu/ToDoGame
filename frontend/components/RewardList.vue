@@ -13,9 +13,13 @@
         element="ul"
       >
         <li class="reward-list" v-for="reward in rewards" :key="reward.sort">
-          <span class="todo-point">{{ reward.point }}</span>
-          <span class="todo-title">{{ reward.title }}</span>
-          <div class="todo-list-icon">
+          <span class="reward-point">{{ reward.point }}</span>
+          <v-hover v-slot:default="{ hover }">
+            <v-icon @click="completeItem(reward)" size="25px" color="red" v-text="hover ? 'mdi-heart' : 'mdi-heart-outline'">
+            </v-icon>
+          </v-hover>
+          <span class="reward-title">{{ reward.title }}</span>
+          <div class="reward-list-icon">
             <v-icon @click="editItem(todo)" color="black" big
               >mdi-pencil</v-icon
             >
@@ -116,17 +120,17 @@ export default {
         const rewards = this.user.rewards.filter(reward => {
           return reward.id !== item.id;
         });
-        this.user.level = getUser.data.user.level;
-        this.user.point = getUser.data.user.point;
-        this.user.experience_point = getUser.data.user.experience_point;
         const updateUser = {
-          ...this.user,
-          rewards
+          // ...this.user,
+          user: getUser.data.user,
+          rewards,
+          untilPercentage: getUser.data.untilPercentage,
+          untilLevel: getUser.data.untilLevel,
         };
         this.$store.commit("setUser", updateUser);
         this.snack = true;
         this.snackColor = "success";
-        this.snackText = item.point + "経験値を獲得した";
+        this.snackText = item.point + "タスクポイントと経験値を獲得した";
       }
     },
     async editItem(reward) {

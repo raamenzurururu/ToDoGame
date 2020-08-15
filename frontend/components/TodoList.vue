@@ -13,7 +13,7 @@
         element="ul"
       >
         <li class="todo-list" v-for="todo in todos" :key="todo.sort">
-          <span class="todo-point">{{ todo.point }}</span>
+          <!-- <span class="todo-point">{{ todo.point }}</span> -->
           <v-icon size="30px">mdi-numeric-{{ todo.point }}-box-outline</v-icon>
           <v-hover v-slot:default="{ hover }">
             <v-icon @click="completeItem(todo)" size="25px" color="yellow" v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'">
@@ -69,7 +69,7 @@ export default {
     };
   },
   computed: {
-    currentUser() {
+    user() {
       return this.$store.state.currentUser;
     }
   },
@@ -95,7 +95,7 @@ export default {
         this.$store.commit("setUser", updateUser);
         this.snack = true;
         this.snackColor = "success";
-        this.snackText = item.point + "経験値を獲得した!"
+        this.snackText = item.point + "タスクポイントと経験値を獲得した!"
       }
     },
     async deleteItem(item) {
