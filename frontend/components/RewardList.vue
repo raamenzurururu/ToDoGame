@@ -1,80 +1,60 @@
 <template>
   <div>
-    <v-card>
-      <!-- Edit -->
+    <v-card class="pb-5">
       <v-card-title>
         <h2 class="list-title">報酬</h2>
         <v-spacer></v-spacer>
       </v-card-title>
-      <v-data-table :headers="headers" :items="rewards">
-        <!-- ここにアイテムの名前が表示される/itemsをitemに入れるのがv-data-tableの機能-->
-        <template v-slot:item.point="props">
-          <v-edit-dialog
-            :return-value="props.item.point"
-            @save="save"
-            @cancel="cancel"
-            @open="open"
-            @close="close"
-          >
-            {{ props.item.point }}
-            <template v-slot:input>
-              <v-select
-                @change="updatePoint(props.item.id, props.item.point)"
-                @save="save"
-                @cancel="cancel"
-                @open="open"
-                @close="close"
-                v-model="props.item.point"
-                :items="items"
-                single-line
-              ></v-select>
-              <!-- itemsは元々v-selectに存在している -->
-            </template>
-          </v-edit-dialog>
-        </template>
-
-        <template v-slot:item.title="props">
-          <v-edit-dialog
-            @save="save"
-            @cancel="cancel"
-            @open="open"
-            @close="close"
-            :return-value.sync="props.item.title"
-          >
-            {{ props.item.title }}
-            <template v-slot:input>
-              <v-text-field
-                @change="updateTitle(props.item.id, props.item.title)"
-                v-model="props.item.title"
-                label="Edit"
-                single-line
-                counter
-              ></v-text-field>
-            </template>
-          </v-edit-dialog>
-        </template>
-
-        <template v-slot:item.action="{ item }">
-          <v-icon midium @click="deleteItem(item)">delete</v-icon>
-        </template>
-
-        <template v-slot:item.complete="{ item }">
-          <v-icon v-if="item.status" color="yellow" @click="completeItem(item)"
-            >lock_open</v-icon
-          >
-          <v-icon v-else color="yellow" @click="completeItem(item)"
-            >lock</v-icon
-          >
-        </template>
-        <!-- 編集ボタン -->
-        <!-- <div v-if="editOn"></div>
-        <div v-else class="edit-window">
-          <p>編集画面</p>
-          <v-text-field label="Edit" counter></v-text-field>
-          <v-icon smaill @click="changeItem">update</v-icon>
-        </div>-->
-      </v-data-table>
+      <draggable
+        class="pl-0"
+        v-model="rewards"
+        :options="{ animation: 200, delay: 50 }"
+        @end="atEnd"
+        element="ul"
+      >
+        <li class="reward-list" v-for="reward in rewards" :key="reward.sort">
+          <span class="todo-point">{{ reward.point }}</span>
+          <span class="todo-title">{{ reward.title }}</span>
+          <div class="todo-list-icon">
+            <v-icon @click="editItem(todo)" color="black" big
+              >mdi-pencil</v-icon
+            >
+            <v-icon small @click="deleteItem(todo)" color="black"
+              >delete</v-icon
+            >
+          </div>
+        </li>
+      </draggable>
     </v-card>
+
+    <v-dialog class="edit-dialog" v-model="dialog">
+      <v-card>
+        <v-card-title>
+          <h2 class="list-title">ToDo編集</h2>
+        </v-card-title>
+        <p>やること</p>
+        <v-text-field
+          class="dialog-title"
+          v-model="dialogText.title"
+          filled
+        ></v-text-field>
+        <p>ポイント</p>
+        <v-select
+          class="dialog-point"
+          single-line
+          :items="items"
+          v-model="dialogText.point"
+          :value="dialogText.point"
+          filled
+        ></v-select>
+        <v-btn
+          class="update-btn"
+          @click="updateItem(dialogText.id, dialogText.title, dialogText.point)"
+          >保存</v-btn
+        >
+      </v-card>
+    </v-dialog>
+
     <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
       {{ snackText }}
       <v-btn text @click="snack = false">Close</v-btn>
@@ -98,30 +78,8 @@ export default {
       snack: false,
       snackColor: "",
       snackText: "",
-
-      headers: [
-        {
-          text: "ゲット",
-          width: "170",
-          value: "complete"
-        },
-        {
-          text: "TaskPoint(TP)",
-          value: "point",
-          width: "170"
-        },
-        {
-          text: "報酬",
-          align: "left",
-          sortable: false,
-          value: "title"
-        },
-        {
-          text: "削除",
-          value: "action",
-          sortable: false
-        }
-      ]
+      dialogText: "",
+      dialog: false
     };
   },
   computed: {
@@ -155,8 +113,9 @@ export default {
             point: item.point
           }
         });
-        item.status = true;
-        const rewards = this.rewards;
+        const rewards = this.user.rewards.filter(reward => {
+          return reward.id !== item.id;
+        });
         this.user.level = getUser.data.user.level;
         this.user.point = getUser.data.user.point;
         this.user.experience_point = getUser.data.user.experience_point;
@@ -167,37 +126,31 @@ export default {
         this.$store.commit("setUser", updateUser);
         this.snack = true;
         this.snackColor = "success";
-        this.snackText = "Data saved";
+        this.snackText = item.point + "経験値を獲得した";
       }
     },
-    async editItem(item) {
-      this.editOn = !this.editOn;
+    async editItem(reward) {
+      this.dialog = true;
+      this.dialogText = reward;
     },
-    async updateTitle(id, value) {
+    async updateItem(id, title, point) {
       await axios.patch(`/v1/rewards/${id}`, {
         reward: {
-          title: value
+          title: title,
+          point: point
         }
       });
+      this.dialog = false;
     },
-    async updatePoint(id, value) {
-      await axios.patch(`/v1/rewards/${id}`, {
-        reward: {
-          point: value
-        }
+    async atEnd() {
+      let result = await axios.patch(`v1/rewards`, {
+        reward: this.rewards
       });
-    },
-    logOut() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$store.commit("setUser", null);
-          this.$router.push("/");
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      const updateUser = {
+        ...this.user,
+        rewards: this.rewards
+      };
+      this.$store.commit("setUser", updateUser);
     },
     save() {
       this.snack = true;
@@ -221,27 +174,83 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+$main-color: #fc7b03;
+$sub-color: #33dddd;
+$accent-color: #f0353f;
+
+@mixin btn {
+  background-color: rgb(29, 29, 29) !important;
+  border: 2px solid $main-color;
+  color: $main-color !important;
+  display: inline-block;
+  margin: 0px 5% 15px;
+  width: 70%;
+  font-weight: bold;
+}
 .v-icon {
   display: flex;
   justify-content: center;
-}
-
-.edit-window {
-  /*　要素を重ねた時の順番　*/
-  z-index: 1;
-
-  /*　画面全体を覆う設定　*/
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 30, 0.5);
-
-  /*　画面の中央に要素を表示させる設定　*/
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.reward-list {
+  display: flex;
+  list-style: none;
+  border-left: solid 8px $sub-color !important;
+  border-bottom: solid 2px rgb(121, 117, 117) !important;
+  color: rgb(22, 16, 32);
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #7f7f7f;
+  border-radius: 6px;
+  background-color: #c2d9f5;
+  cursor: grab;
+  .reward-list-icon {
+    margin-left: auto;
+  }
+  .reward-list-btn {
+    background-color: rgb(206, 204, 87) !important;
+  }
+  .reward-title {
+    padding-top: 2px;
+    margin-left: 10px;
+  }
+  .reward-point {
+    color: rgb(41, 79, 160);
+    font-weight: bold;
+    display: inline-block;
+    width: 25px;
+    border-radius: 50%;
+    text-align: center;
+    background: rgb(250, 253, 71);
+    color: $sub-color;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+    border-bottom: solid 2px #b1a60c;
+  }
+}
+.v-dialog {
+  width: 70%;
+  h2 {
+    color: $sub-color;
+  }
+  p {
+    margin-left: 5%;
+  }
+  .dialog-title {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .dialog-point {
+    width: 40%;
+    margin-left: 5%;
+  }
+  .update-btn {
+    @include btn;
+  }
 }
 </style>

@@ -13,14 +13,6 @@
         element="ul"
       >
         <li class="todo-list" v-for="todo in todos" :key="todo.point">
-          <!-- <v-hover v-slot:default="{ hover }">
-            <v-icon
-              @click="completeItem(todo)"
-              color=red
-              v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
-            >
-            </v-icon>
-          </v-hover> -->
           <span class="todo-point">{{ todo.point }}</span>
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-list-icon">
