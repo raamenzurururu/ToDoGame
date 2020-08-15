@@ -1,10 +1,10 @@
 <template>
-  <div v-if="user">
+  <div v-if="currentUser">
     <div class="user-tp v-inline-block">
-      <p>名前 :{{ user.name }}</p>
-      <p>レベル :{{ user.level }}</p>
-      <p>現在の経験値 :{{ user.experience_point }}</p>
-      <p class="user-tp d-inline-block">タスクポイント:{{ user.point }}</p>
+      <p>名前 :{{ currentUser.user.name }}</p>
+      <p>レベル :{{ currentUser.user.level }}</p>
+      <p>現在の経験値 :{{ currentUser.user.experience_point }}</p>
+      <p class="user-tp d-inline-block">タスクポイント:{{ currentUser.user.point }}</p>
       <router-link to="/reward">報酬</router-link>
     </div>
       <AddTodo @submit="addTodo" />

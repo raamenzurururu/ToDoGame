@@ -20,6 +20,7 @@
           </v-hover>
           <span class="reward-title">{{ reward.title }}</span>
           <div class="reward-list-icon">
+            <span>{{ reward.status }}</span>
             <v-icon @click="editItem(todo)" color="black" big
               >mdi-pencil</v-icon
             >
@@ -104,6 +105,8 @@ export default {
           rewards
         };
         this.$store.commit("setUser", updateUser);
+        item.status = true;
+        this.user.rewards.status = true;
         this.snack = true;
         this.snackColor = "warning";
         this.snackText = "Data deleted";
@@ -117,9 +120,7 @@ export default {
             point: item.point
           }
         });
-        const rewards = this.user.rewards.filter(reward => {
-          return reward.id !== item.id;
-        });
+        const rewards = this.user.rewards;
         const updateUser = {
           // ...this.user,
           user: getUser.data.user,
@@ -130,7 +131,7 @@ export default {
         this.$store.commit("setUser", updateUser);
         this.snack = true;
         this.snackColor = "success";
-        this.snackText = item.point + "タスクポイントと経験値を獲得した";
+        this.snackText = "タスクポイントと経験値を獲得した";
       }
     },
     async editItem(reward) {
