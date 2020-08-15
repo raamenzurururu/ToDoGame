@@ -12,8 +12,10 @@
         @end="atEnd"
         element="ul"
       >
-        <li class="todo-list" v-for="todo in todos" :key="todo.point">
+        <li class="todo-list" v-for="todo in todos" :key="todo.sort">
           <span class="todo-point">{{ todo.point }}</span>
+          <v-hover v-slot:default="{ hover }">
+          </v-hover>
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-list-icon">
             <v-icon @click="editItem(todo)" color=black big>mdi-pencil</v-icon>

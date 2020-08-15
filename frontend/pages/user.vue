@@ -3,11 +3,12 @@
       <!-- <v-col class="user-status" cols="12" xs="12" sm="12" md="12" lg="8"> -->
         <!-- <v-row> -->
           <v-col cols="12" xs="5" sm="6" md="5" lg="6">
-            <h2>STATUS</h2>
-            <p>NAME：{{ user.name }}</p>
-            <p>LV：{{ user.level }}</p>
-            <p>EXP：{{ user.experience_point }}</p>
-            <p>TP：{{ user.point }}</p>
+            <h2>{{ user.name }}のステータス</h2>
+            <p>名前：{{ user.name }}</p>
+            <p>レベル：{{ user.level }}</p>
+            <p>次のレベルまであと{{}}</p>
+            <p>経験値：{{ user.experience_point }}</p>
+            <p>タスクポイント：{{ user.point }}</p>
           </v-col>
           <v-col cols="12" xs="5" sm="6" md="5" lg="6">
             <v-hover v-slot:default="{ hover }">

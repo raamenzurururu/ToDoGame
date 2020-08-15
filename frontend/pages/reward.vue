@@ -114,23 +114,6 @@ export default {
           console.log(error);
         });
     },
-    openModal: function() {
-      this.showContent = true;
-    },
-    closeModal: function() {
-      this.showContent = false;
-    },
-    moveToTop() {
-      const duration = 1000;
-      const interval = 25;
-      const step = -window.scrollY / Math.ceil(duration / interval);
-      const timer = setInterval(() => {
-        window.scrollBy(0, step);
-        if (window.scrollY <= 0) {
-          clearInterval(timer);
-        }
-      }, interval);
-    }
   }
 };
 </script>
