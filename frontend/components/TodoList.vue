@@ -15,7 +15,7 @@
         <li class="todo-list" v-for="todo in todos" :key="todo.point">
           <v-hover v-slot:default="{ hover }">
             <v-icon
-              color="blue"
+              color=yellow
               v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
             >
             </v-icon>
@@ -23,13 +23,13 @@
           <v-hover v-slot:default="{ hover }">
             <v-icon
               @click="completeItem(todo)"
-              color="blue"
+              color=red
               v-text="hover ? 'mdi-star' : 'mdi-star-outline'"
             >
             </v-icon>
           </v-hover>
-          <v-icon @click="editItem(todo)">mdi-pencil</v-icon>
-          <v-icon small @click="deleteItem(todo)">delete</v-icon>
+          <v-icon @click="editItem(todo)" color=black>mdi-pencil</v-icon>
+          <v-icon small @click="deleteItem(todo)" color=black>delete</v-icon>
           <span class="todo-point">{{ todo.point }}</span>
           {{ todo.title }}
         </li>
@@ -159,13 +159,15 @@ $accent-color: red;
 }
 
 .todo-list {
-  // list-style: none;
-  color: white;
+  list-style: none;
+  border-left: solid 8px $sub-color !important;
+  border-bottom: solid 2px gray !important;
+  color: black;
   margin: 10px;
   padding: 10px;
   border: 1px solid #7f7f7f;
   border-radius: 5px;
-  background-color: rgb(10, 9, 9);
+  background-color: white;
   cursor: grab;
   .todo-list-btn {
     background-color: white !important;
