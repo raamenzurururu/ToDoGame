@@ -1,43 +1,44 @@
 <template>
   <v-container class="user-page" v-if="currentUser">
-    <img src="../assets/mon_178.gif" />
-    <!-- <v-col class="user-status" cols="12" xs="12" sm="12" md="12" lg="8"> -->
-    <!-- <v-row> -->
-    <v-col cols="12" xs="5" sm="6" md="5" lg="6">
-      <h2>{{ currentUser.user.name }}のステータス</h2>
-      <p>名前：{{ currentUser.user.name }}</p>
-      <p>レベル：{{ currentUser.user.level }}</p>
-      <p>次のレベルまであと{{ currentUser.untilLevel }}</p>
-      <v-progress-linear
-        :height="12"
-        :rounded="true"
-        :value="currentUser.untilPercentage ? currentUser.untilPercentage: 0"
-        color="light-blue"
-        striped
-      >
-      </v-progress-linear>
-      <p>経験値：{{ currentUser.user.experience_point }}</p>
-      <p>タスクポイント：{{ currentUser.user.point ? currentUser.user.experience_point : 50 }}</p>
-    </v-col>
-    <v-col cols="12" xs="5" sm="6" md="5" lg="6">
-      <v-hover v-slot:default="{ hover }">
-        <router-link to="/reward">
-          <v-btn class="user-btn my-10">
-            <v-icon v-text="hover ? 'mdi-lock' : ''"> </v-icon>
-            REWARD
-          </v-btn>
-        </router-link>
-      </v-hover>
+    <v-row class="user-status" justify="center">
+      <v-col cols="12" xs="5" sm="6" md="5" lg="6">
+        <h2>{{ currentUser.user.name }}のステータス</h2>
+        <p>名前：{{ currentUser.user.name }}</p>
+        <p>レベル：{{ currentUser.user.level }}</p>
+        <p>次のレベルまであと{{ currentUser.untilLevel ? currentUser.untilLevel: 50 }}</p>
+        <v-progress-linear
+          :height="12"
+          :rounded="true"
+          :value="currentUser.untilPercentage ? currentUser.untilPercentage : 0"
+          color="light-blue"
+          striped
+        >
+        </v-progress-linear>
+        <p>経験値：{{ currentUser.user.experience_point }}</p>
+        <p>
+          タスクポイント：{{
+            currentUser.user.point ? currentUser.user.experience_point : 50
+          }}
+        </p>
+      </v-col>
+      <v-col cols="12" xs="5" sm="6" md="5" lg="6">
+        <v-hover v-slot:default="{ hover }">
+          <router-link to="/reward">
+            <v-btn class="user-btn my-10">
+              <v-icon v-text="hover ? 'mdi-lock' : ''"> </v-icon>
+              REWARD
+            </v-btn>
+          </router-link>
+        </v-hover>
 
-      <v-hover v-slot:default="{ hover }">
-        <v-btn class="user-btn" @click="logOut">
-          <v-icon v-text="hover ? 'mdi-logout-variant' : ''"> </v-icon>
-          BYE
-        </v-btn>
-      </v-hover>
-    </v-col>
-    <!-- </v-col> -->
-    <!-- </v-row> -->
+        <v-hover v-slot:default="{ hover }">
+          <v-btn class="user-btn" @click="logOut">
+            <v-icon v-text="hover ? 'mdi-logout-variant' : ''"> </v-icon>
+            BYE
+          </v-btn>
+        </v-hover>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -58,7 +59,7 @@ export default {
       show1: false,
       show2: false,
       error: "",
-      showContent: false,
+      showContent: false
     };
   },
   fetch({ store, redirect }) {

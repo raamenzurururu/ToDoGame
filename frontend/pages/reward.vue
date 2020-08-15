@@ -42,7 +42,7 @@
     <v-row justify="center">
       <v-col cols="12" xs="12" sm="12" md="12" lg="8">
         <div>
-          <AddTodo @submit="addTodo" />
+          <AddTodo @submit="addReward" />
         </div>
       </v-col>
     </v-row>
@@ -102,9 +102,10 @@ export default {
         const { data } = await axios.post("/v1/rewards", {
           reward
         });
+        const userReward = this.currentUser.reward ? this.currentUser.rewards : []
         this.$store.commit("setUser", {
           ...this.currentUser,
-          rewards: [...this.currentUser.rewards, data]
+          rewards: [...userReward, data]
         });
         this.$store.commit("clearErrors");
       } catch (error) {

@@ -13,7 +13,7 @@
         element="ul"
       >
         <li class="todo-list" v-for="todo in todos" :key="todo.sort">
-          <!-- <span class="todo-point">{{ todo.point }}</span> -->
+          <span class="todo-point">{{ todo.point }}</span>
           <v-icon size="30px">mdi-numeric-{{ todo.point }}-box-outline</v-icon>
           <v-hover v-slot:default="{ hover }">
             <v-icon @click="completeItem(todo)" size="25px" color="yellow" v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'">
@@ -87,7 +87,7 @@ export default {
         });
         const updateUser = {
           // ...this.user,
-          user: getUser.data.user,
+          // user: getUser.data.user,
           todos,
           untilPercentage: getUser.data.untilPercentage,
           untilLevel: getUser.data.untilLevel,

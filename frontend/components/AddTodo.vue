@@ -31,20 +31,15 @@
 
 <script>
 const maxNumber = 11;
-const numberRange = [...Array(maxNumber).keys()]; //スプレッド演算子
+const numberRange = [...Array(maxNumber).keys()]; 
 
 export default {
   data() {
     return {
       title: "",
       items: numberRange,
-      number: ""
+      number: "",
     };
-  },
-  computed: {
-    user() {
-      return this.$store.state.currentUser;
-    }
   },
   methods: {
     handleSubmit() {

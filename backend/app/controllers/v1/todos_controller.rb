@@ -39,7 +39,7 @@ class V1::TodosController < ApplicationController
     total_exp += todo.point
     user.experience_point = total_exp
     user.update(point: total_point,experience_point: total_exp)
-    user_level = user_level(user, total_exp)
+    user_level = calc_user_level(user, total_exp)
     if todo.destroy
       render json: {todo: todo, user: user, untilPercentage: user_level[:until_percentage], untilLevel: user_level[:until_level]}
     end

@@ -13,7 +13,7 @@
         element="ul"
       >
         <li class="reward-list" v-for="reward in rewards" :key="reward.sort">
-          <span class="reward-point">{{ reward.point }}</span>
+          <v-icon size="30px">mdi-numeric-{{ reward.point }}-box-outline</v-icon>
           <v-hover v-slot:default="{ hover }">
             <v-icon @click="completeItem(reward)" size="25px" color="red" v-text="hover ? 'mdi-heart' : 'mdi-heart-outline'">
             </v-icon>
