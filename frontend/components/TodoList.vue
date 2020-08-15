@@ -13,25 +13,20 @@
         element="ul"
       >
         <li class="todo-list" v-for="todo in todos" :key="todo.point">
-          <v-hover v-slot:default="{ hover }">
-            <v-icon
-              color=yellow
-              v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
-            >
-            </v-icon>
-          </v-hover>
-          <v-hover v-slot:default="{ hover }">
+          <!-- <v-hover v-slot:default="{ hover }">
             <v-icon
               @click="completeItem(todo)"
               color=red
-              v-text="hover ? 'mdi-star' : 'mdi-star-outline'"
+              v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
             >
             </v-icon>
-          </v-hover>
-          <v-icon @click="editItem(todo)" color=black>mdi-pencil</v-icon>
-          <v-icon small @click="deleteItem(todo)" color=black>delete</v-icon>
+          </v-hover> -->
           <span class="todo-point">{{ todo.point }}</span>
-          {{ todo.title }}
+          <span class="todo-title">{{ todo.title }}</span>
+          <div class="todo-list-icon">
+            <v-icon @click="editItem(todo)" color=black big>mdi-pencil</v-icon>
+            <v-icon small @click="deleteItem(todo)" color=black>delete</v-icon>
+          </div>
         </li>
       </draggable>
     </v-card>
@@ -48,6 +43,10 @@
         <v-btn class="update-btn" @click="updateItem(dialogText.id, dialogText.title, dialogText.point)">保存</v-btn>
       </v-card>
     </v-dialog>
+    <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+      {{ snackText }}
+      <v-btn text @click="snack = false">閉じる</v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -65,8 +64,11 @@ export default {
       selected: [],
       items: numberRange,
       editOn: true,
+      snack: false,
+      snackColor: "",
+      snackText: "",
       dialogText: "",
-      dialog: false
+      dialog: false,
     };
   },
   computed: {
@@ -94,6 +96,9 @@ export default {
           todos: this.todos
         };
         this.$store.commit("setUser", updateUser);
+        this.snack = true;
+        this.snackColor = "success";
+        this.snackText = item.point + "経験値を獲得した!"
       }
     },
     async deleteItem(item) {
@@ -110,6 +115,9 @@ export default {
           todos
         };
         this.$store.commit("setUser", updateUser);
+        this.snack = true;
+        this.snackColor = "warning";
+        this.snackText = "Data deleted";
       }
     },
     async editItem(todo) {
@@ -159,6 +167,7 @@ $accent-color: red;
 }
 
 .todo-list {
+  display: flex;
   list-style: none;
   border-left: solid 8px $sub-color !important;
   border-bottom: solid 2px gray !important;
@@ -169,12 +178,24 @@ $accent-color: red;
   border-radius: 5px;
   background-color: white;
   cursor: grab;
+  .todo-list-icon {
+    margin-left: auto;
+  }
   .todo-list-btn {
     background-color: white !important;
+  }
+  .todo-title {
+    padding-top: 3px
   }
   .todo-point {
     color: rgb(236, 11, 97);
     font-weight: bold;
+    display: inline-block;
+    width: 25px;
+    border-radius: center;
+    // background-color: pink;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+    border-bottom: solid 2px yellow;
   }
 }
 
