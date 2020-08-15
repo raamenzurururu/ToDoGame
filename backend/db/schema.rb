@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_010039) do
+ActiveRecord::Schema.define(version: 2020_08_15_021350) do
 
   create_table "level_settings", force: :cascade do |t|
     t.integer "level"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_010039) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "status", default: false, null: false
+    t.integer "sort", default: 0
   end
 
   create_table "todos", force: :cascade do |t|
