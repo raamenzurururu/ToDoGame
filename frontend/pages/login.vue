@@ -7,8 +7,10 @@
         <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
         <h2 class="login-explain">レベルアップ機能、報酬などであなたのモチベーションを高め、日々のやることをサクッと片付けるToDoアプリです。</h2>
         <div class="monster">
-          <img src="../assets/mon_178.gif">
+          <img class="mon" src="../assets/mon_178.gif">
           <img class="mon" src="../assets/mon_176.gif">
+          <img class="mon" src="../assets/mon_227.gif">
+          <img class="mon" src="../assets/mon_283.gif">
         </div>
         <div v-if="user"></div>
         <div class="guest" v-else>
@@ -18,15 +20,8 @@
             </v-btn>
           </v-hover>
         </div>
-        <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
-        <img class="mon" src="../assets/mon_139.gif">
-        <h3 class="login-explain">さらなる高みを目指して</h3>
-        <img class="mon" src="../assets/mon_283.gif">
-        <h3 class="login-explain">やるべきことをゲーム化して終わらせよう！</h3>
-        <img class="mon" src="../assets/mon_239.gif">
-        <h3 class="login-explain">毎日継続</h3>
-        <img class="mon" src="../assets/mon_224.gif">
       </v-col>
+
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
         <v-icon class="mb-2" size="80">mdi-chess-king</v-icon>
         <div class="instead-of-form">
@@ -34,6 +29,7 @@
           <p>※ToDoを終わらせてのんびりしよう.</p>
         </div>
       </v-col>
+
       <v-col
         class="login-button-wrapper"
         v-else
@@ -93,22 +89,32 @@
 
     <v-row class="introduction">
       <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
-        <h3>ToDo + Game =</h3>
-        <h1>YOU</h1>
+        <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
+        <h3 class="login-explain">さらなる高みを目指して</h3>
+        <h3 class="login-explain">やるべきことをゲーム化して終わらせよう！</h3>
+        <h3 class="login-explain">毎日継続</h3>
       </v-col>
     </v-row>
 
     <v-row class="introduction md-0">
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="" src="../assets/mon_260.gif" />
-        <h3>レベル50にして伝説の剣を手に入れよう</h3>
+        <img src="../assets/mon_260.gif" />
+        <h2 class="login-subtitle text-center">レベル50にして伝説の剣を手に入れよう</h2>
         <h3 class="login-explain">TP(TaskPoint)は報酬の開放に使用できるぞ！</h3>
       </v-col>
 
       <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="" src="../assets/mon_070.gif" />
-        <h3>それが成長へのコツ</h3>
-        <h3>
+        <img class="pt-10" src="../assets/mon_070.gif" />
+        <h2 class="login-subtitle text-center">冒険のように楽しめる仕組み</h2>
+        <h3 class="login-explain">
+          経験値をためてどんどんレベルアップしていこう
+        </h3>
+      </v-col>
+
+      <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
+        <img class="pt-10" src="../assets/mon_274.gif" />
+        <h2 class="login-subtitle text-center">それが成長へのコツ</h2>
+        <h3 class="login-explain">
           やることを完了させるたびに経験値が溜まっていく。より高みを。そしてレベルが高いといいことが？
         </h3>
       </v-col>
@@ -266,7 +272,10 @@ export default {
             })
             .then(res => {
               this.$store.commit("setLoading", false); 
-              this.$store.commit("setUser", res.data); //promiseの値をstoreに入れる
+              let param = {
+                user: res.data
+              }
+              this.$store.commit("setUser", param);
               this.$store.commit("setNotice", {
                 status: true,
                 message: this.name + "さん、新規登録が完了しました！"

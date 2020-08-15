@@ -14,7 +14,10 @@
       >
         <li class="todo-list" v-for="todo in todos" :key="todo.sort">
           <span class="todo-point">{{ todo.point }}</span>
+          <v-icon size="30px">mdi-numeric-{{ todo.point }}-box-outline</v-icon>
           <v-hover v-slot:default="{ hover }">
+            <v-icon @click="completeItem(todo)" size="25px" color="yellow" v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'">
+            </v-icon>
           </v-hover>
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-list-icon">
@@ -66,7 +69,7 @@ export default {
     };
   },
   computed: {
-    user() {
+    currentUser() {
       return this.$store.state.currentUser;
     }
   },
@@ -82,12 +85,12 @@ export default {
         const todos = this.user.todos.filter(todo => {
           return todo.id !== item.id;
         });
-        this.user.level += getUser.data.user.level;
-        this.user.point = getUser.data.user.point;
-        this.user.experience_point += getUser.data.user.experience_point;
         const updateUser = {
-          ...this.user,
-          todos: this.todos
+          // ...this.user,
+          user: getUser.data.user,
+          todos,
+          untilPercentage: getUser.data.untilPercentage,
+          untilLevel: getUser.data.untilLevel,
         };
         this.$store.commit("setUser", updateUser);
         this.snack = true;

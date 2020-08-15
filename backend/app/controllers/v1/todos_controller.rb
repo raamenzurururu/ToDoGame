@@ -1,3 +1,5 @@
+require_relative '../../domain/user_level.rb'
+
 class V1::TodosController < ApplicationController
   def create
     todo = Todo.new(todo_params)
@@ -37,15 +39,9 @@ class V1::TodosController < ApplicationController
     total_exp += todo.point
     user.experience_point = total_exp
     user.update(point: total_point,experience_point: total_exp)
-    levelSetting = LevelSetting.find_by(level: user.level + 1)
-    if levelSetting.present? && levelSetting.thresold <= user.experience_point
-      user.level = user.level + 1
-      user.update(level: user.level)
-      total_exp = 0
-    end
-
+    user_level = user_level(user, total_exp)
     if todo.destroy
-      render json: {todo: todo, user: user}
+      render json: {todo: todo, user: user, untilPercentage: user_level[:until_percentage], untilLevel: user_level[:until_level]}
     end
   end 
 

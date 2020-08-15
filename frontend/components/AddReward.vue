@@ -34,7 +34,6 @@ export default {
   data() {
     return {
       title: "",
-      // ここからタスクポイントに関する記述
       items: numberRange,
       number: ""
     };
@@ -43,7 +42,7 @@ export default {
     handleSubmit() {
       const reward = {
         title: this.title,
-        user_id: this.$store.state.currentUser.id,
+        user_id: this.$store.state.currentUser.user.id,
         point: this.number
       };
       this.$emit("submit", reward);

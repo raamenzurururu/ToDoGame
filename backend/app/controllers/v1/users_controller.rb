@@ -1,9 +1,18 @@
+require_relative '../../domain/user_level.rb'
+
 class V1::UsersController < ApplicationController
   def index
     if params[:uid]
       user = User.find_by(uid: params[:uid])
-      todos = user.todos.order(sort: "ASC")
-      render json: {user: user, todos: todos}
+      if !user.present?
+        render json: {}
+      else
+        todos = user.todos.order(sort: "ASC")
+        rewards = user.rewards.order(sort: "ASC")
+        total_exp = user.experience_point
+        user_level = user_level(user, total_exp)
+        render json: {user: user, todos: todos, rewards: rewards, untilPercentage: user_level[:until_percentage], untilLevel: user_level[:until_level]}
+      end
     else
       @users = User.all
       render json: @users
