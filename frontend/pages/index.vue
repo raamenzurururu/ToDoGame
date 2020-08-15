@@ -8,7 +8,7 @@
       <router-link to="/reward">報酬</router-link>
     </div>
       <AddTodo @submit="addTodo" />
-    <TodoList :todos="user.todos" />
+    <TodoList :todos="currentUser.todos" />
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
     TodoList
   },
   computed: {
-    user() {
+    currentUser() {
       return this.$store.state.currentUser;
     },
     errors() {
@@ -53,7 +53,7 @@ export default {
     async addTodo(todo) {
       const { data } = await axios.post("/v1/todos", { todo });
       this.$store.commit("setUser", {
-        ...this.user,
+        ...this.currentUser,
         todos: [...this.user.todos, data]
       });
     }
