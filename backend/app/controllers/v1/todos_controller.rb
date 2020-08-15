@@ -51,17 +51,15 @@ class V1::TodosController < ApplicationController
   end 
 
   def sort
-    params[:todos].each_with_index do |t,i|
+    params[:todo].each_with_index do |t,i|
       @todo = Todo.find(t[:id])
-      byebug
-      @todo.update( point: i )
+      @todo.update( sort: i )
     end
     render json: {result: "ok"}
   end
 
   private
     def todo_params
-      #pointを送れた
-      params.require(:todo).permit(:id, :title, :user_id, :point)   #{"todo"=>{"title"=>"英語", "user_id"=>6, "point"=>2}, "controller"=>"v1/todos", "action"=>"create"} permitted: false>
-    end                                                #paramsにはこんだけの情報が入っている
+      params.require(:todo).permit(:id, :title, :user_id, :point, :sort)   
+    end                                               
 end

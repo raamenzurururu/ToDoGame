@@ -166,6 +166,7 @@ $accent-color: red;
   border: 1px solid #7f7f7f;
   border-radius: 5px;
   background-color: rgb(10, 9, 9);
+  cursor: grab;
   .todo-list-btn {
     background-color: white !important;
   }
