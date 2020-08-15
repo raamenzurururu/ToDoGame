@@ -185,7 +185,8 @@ $accent-color: red;
     background-color: white !important;
   }
   .todo-title {
-    padding-top: 3px
+    padding-top: 2px;
+    margin-left: 10px;
   }
   .todo-point {
     color: rgb(236, 11, 97);
