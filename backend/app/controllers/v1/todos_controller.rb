@@ -1,9 +1,8 @@
 class V1::TodosController < ApplicationController
-  # POST /api/v1/todos
   def create
     todo = Todo.new(todo_params)
     if todo.save
-      render json: todo, status: :created #todoに保存したデータが入っている
+      render json: todo, status: :created 
     else
       if todo.errors.present?
         render json: { error_msg: todo.errors.full_message }, status: :unprocessable_entity
@@ -19,15 +18,14 @@ class V1::TodosController < ApplicationController
       render json: todo
   end
 
-  # DELETE /api/v1/todos/:id
   def destroy
     todo = Todo.find(params[:id])
     if todo.destroy
-      render json: todo                   #todoにデータが入っている
-    end                                   #title, user_id, created_at, updated_at
+      render json: todo                  
+    end                      
   end 
 
-  def complete  #todo達成用
+  def complete  
     todo = Todo.find(params[:id])
     user = User.find(todo.user_id)
 
@@ -43,6 +41,7 @@ class V1::TodosController < ApplicationController
     if levelSetting.present? && levelSetting.thresold <= user.experience_point
       user.level = user.level + 1
       user.update(level: user.level)
+      total_exp = 0
     end
 
     if todo.destroy
