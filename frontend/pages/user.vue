@@ -1,5 +1,6 @@
 <template>
   <v-container class="user-page" v-if="user">
+      <img src="../assets/mon_178.gif">
       <!-- <v-col class="user-status" cols="12" xs="12" sm="12" md="12" lg="8"> -->
         <!-- <v-row> -->
           <v-col cols="12" xs="5" sm="6" md="5" lg="6">
@@ -7,6 +8,8 @@
             <p>名前：{{ user.name }}</p>
             <p>レベル：{{ user.level }}</p>
             <p>次のレベルまであと{{}}</p>
+            <v-progress-linear :height="12" :rounded="true" :value="70" color="light-blue" striped>
+            </v-progress-linear>
             <p>経験値：{{ user.experience_point }}</p>
             <p>タスクポイント：{{ user.point }}</p>
           </v-col>
@@ -14,7 +17,7 @@
             <v-hover v-slot:default="{ hover }">
             <router-link to="/reward">
             <v-btn class="user-btn my-10">
-              <v-icon v-text="hover ? 'mdi-star' : ''">
+              <v-icon v-text="hover ? 'mdi-lock' : ''">
                 </v-icon>
                 REWARD
             </v-btn>
@@ -23,7 +26,7 @@
 
           <v-hover v-slot:default="{ hover }">
             <v-btn class="user-btn" @click="logOut">
-              <v-icon v-text="hover ? 'mdi-heart' : ''">
+              <v-icon v-text="hover ? 'mdi-logout-variant' : ''">
                 </v-icon>
                 BYE
             </v-btn>
@@ -86,7 +89,7 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: deeppink;
+$main-color: white;
 $sub-color: orange;
 
 $pc: 1024px;
@@ -138,17 +141,14 @@ $sp: 480px;
     font-weight: bold;
     font-size: 18px;
     &:hover {
-      border: 2px solid white;
-      color: blue;
+      border: 2px solid yellow;
+      color: white;
     }
   }
   list-title,
-  h1 {
+  h2 {
     text-align: center;
     color: $sub-color;
-  }
-  a {
-    text-decoration: none;
   }
   p {
     font-size: 20px;
