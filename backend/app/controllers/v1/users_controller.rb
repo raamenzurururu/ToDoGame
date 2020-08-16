@@ -1,4 +1,4 @@
-require_relative '../../domain/user_level.rb'
+require_relative '../../domain/calc_user_level.rb'
 
 class V1::UsersController < ApplicationController
   def index
@@ -11,7 +11,7 @@ class V1::UsersController < ApplicationController
         rewards = user.rewards.order(sort: "ASC")
         total_exp = user.experience_point
         user_level = calc_user_level(user, total_exp)
-        render json: {user: user, todos: todos, rewards: rewards, untilPercentage: user_level[:until_percentage], untilLevel: user_level[:until_level]}
+        render json: { user: user, todos: todos, rewards: rewards, untilPercentage: user_level[:until_percentage], untilLevel: user_level[:until_level] }
       end
     else
       @users = User.all

@@ -1,4 +1,4 @@
-require_relative '../../domain/user_level.rb'
+require_relative '../../domain/calc_user_level.rb'
 
 class V1::TodosController < ApplicationController
   def create
@@ -17,7 +17,7 @@ class V1::TodosController < ApplicationController
   def update
     todo = Todo.find(params[:id])
     todo.update(todo_params)
-      render json: todo
+    render json: todo
   end
 
   def destroy

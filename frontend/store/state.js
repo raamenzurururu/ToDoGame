@@ -3,10 +3,18 @@ const state = {
     user: {
       experience_point: 0
     },
+    todo: {
+      point: "",
+      title: "",
+    },
+    reward: {
+      point: "",
+      title: "",
+    },
     todos: [],
     rewards: [],
     untilPercentage: null,
-    untilLevel: null
+    untilLevel: null,
   },
   loading: false,
   notification: {

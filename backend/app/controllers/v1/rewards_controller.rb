@@ -8,6 +8,7 @@ class V1::RewardsController < ApplicationController
         render json: { error_msg: reward.errors.full_messages }, status: :unprocessable_entity
       else
         render json: reward.errors, status: :unprocessable_entity
+      end
     end
   end
 
