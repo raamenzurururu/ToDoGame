@@ -1,13 +1,13 @@
 <template>
   <v-form>
-    <v-container class="add-todo">
+    <v-container class="add-reward">
       <v-row>
         <v-col class="pr-0" cols="3" xs="6" sm="2" md="1" lg="1">
-          <v-select label="TP" v-model="number" :items="items">You</v-select>
+          <v-select label="TP" v-model="reward.point" :items="items">You</v-select>
         </v-col>
         <v-col class="pr-0" cols="9" xs="5" sm="6" md="7" lg="7">
           <v-text-field
-            v-model="title"
+            v-model="reward.title"
             :counter="20"
             label="reward"
             required
@@ -15,7 +15,7 @@
         </v-col>
         <v-col class="pr-0" cols="12" xs="6" sm="4" md="4" lg="4">
           <v-hover v-slot:default="{ hover }">
-            <v-btn class="todo-btn" @click="handleSubmit">
+            <v-btn class="reward-btn" @click="handleSubmit">
               <v-icon v-text="hover ? 'mdi-star' : ''">
                 </v-icon>
                 Press
@@ -31,23 +31,30 @@ const maxNumber = 11;
 const numberRange = [...Array(maxNumber).keys()];
 
 export default {
+  props: {
+    reward: {
+      default: {
+        title: "",
+        point: null
+      },
+      rewuired: true
+    }
+  },
   data() {
     return {
-      title: "",
       items: numberRange,
-      number: ""
     };
   },
   methods: {
     handleSubmit() {
       const reward = {
-        title: this.title,
+        title: this.reward.title,
         user_id: this.$store.state.currentUser.user.id,
-        point: this.number
+        point: this.reward.point
       };
       this.$emit("submit", reward);
-      this.title = "";
-      this.number = "";
+      this.reward.title = "";
+      this.reward.point = "";
     }
   }
 };
@@ -66,20 +73,16 @@ $main-color: deeppink;
   width: 50%;
 }
 
-.add-todo {
+.add-reward {
   border: 2px white solid;
 
-  .todo-btn {
+  .reward-btn {
     @include btn;
 
     &:hover {
       border: 2px solid blue;
       color: white
     }
-  }
-
-  .mdi-star {
-    color: red !important;
   }
 }
 </style>

@@ -96,16 +96,16 @@ export default {
     async deleteItem(item) {
       const res = confirm("本当に削除しますか？");
       if (res) {
-        await axios.delete(`/v1/rewards/${item.id}`);
+        const getUse = await axios.delete(`/v1/rewards/${item.id}`);
         const rewards = this.user.rewards.filter(reward => {
           return reward.id !== item.id;
         });
         const updateUser = {
           ...this.user,
+          user: getUser.data.user,
           rewards
         };
         this.$store.commit("setUser", updateUser);
-        item.status = true;
         this.user.rewards.status = true;
         this.snack = true;
         this.snackColor = "warning";
@@ -120,15 +120,18 @@ export default {
             point: item.point
           }
         });
+        const todos = getUser.data.todos;
         const rewards = this.user.rewards;
         const updateUser = {
           // ...this.user,
           user: getUser.data.user,
           rewards,
+          todos,
           untilPercentage: getUser.data.untilPercentage,
           untilLevel: getUser.data.untilLevel,
         };
         this.$store.commit("setUser", updateUser);
+        item.status = true;
         this.snack = true;
         this.snackColor = "success";
         this.snackText = "タスクポイントと経験値を獲得した";
