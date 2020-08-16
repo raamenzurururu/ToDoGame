@@ -9,7 +9,7 @@
           <v-text-field
             v-model="reward.title"
             :counter="20"
-            label="reward"
+            label="報酬"
             required
           ></v-text-field>
         </v-col>
@@ -18,9 +18,10 @@
             <v-btn class="reward-btn" @click="handleSubmit">
               <v-icon v-text="hover ? 'mdi-star' : ''">
                 </v-icon>
-                Press
+                登録
             </v-btn>
           </v-hover>
+        </v-col>
       </v-row>
     </v-container>
   </v-form>
@@ -37,7 +38,7 @@ export default {
         title: "",
         point: null
       },
-      rewuired: true
+      required: true
     }
   },
   data() {

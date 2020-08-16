@@ -35,7 +35,7 @@
     <v-dialog class="edit-dialog" v-model="dialog">
       <v-card>
         <v-card-title>
-          <h2 class="list-title">ToDo編集</h2>
+          <h2 class="list-title">報酬編集</h2>
         </v-card-title>
         <p>やること</p>
         <v-text-field
