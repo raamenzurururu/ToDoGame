@@ -1,51 +1,38 @@
 <template>
-  <v-container class="user-page" v-if="user">
-    <v-row justify="center">
-      <v-col class="user-status" cols="12" xs="6" sm="8" md="10" lg="7">
-        <v-row>
-          <v-col cols="12" xs="6" sm="8" md="10" lg="6">
-            <h2>STATUS</h2>
-            <p>NAME：{{ user.name }}</p>
-            <p>LV：{{ user.level }}</p>
-            <p>EXP：{{ user.experience_point }}</p>
-            <p>TP：{{ user.point }}</p>
-          </v-col>
-          <v-col cols="12" xs="6" sm="8" md="5" lg="6">
-            <p>右</p>
-            <router-link to="/reward">報酬ページへ</router-link>
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
-    <v-row justify="center">
-      <v-col cols="12" xs="6" sm="12" md="12" lg="8">
-        <div>
-          <AddTodo @submit="addTodo" />
-        </div>
-      </v-col>
-    </v-row>
-    <TodoList :todos="user.todos" />
-  </v-container>
+  <v-row class="user-status" id="v-step-2">
+    <v-col cols="12" xs="5" sm="6" md="6" lg="6">
+      <p>
+        名前：{{ currentUser.user.name}}
+        <v-icon class="mb-2" color="yellow" size="30" v-if="currentUser.user.level == 10">mdi-crown</v-icon>
+      </p>
+      <div class="user-point">
+        <p class="user-task-point">
+          <v-icon class="mb-1" size="30" color="yellow">mdi-alpha-p-circle</v-icon>
+          {{ currentUser.user.point }}
+        </p>
+      </div>
+    </v-col>
+    <v-col cols="12" xs="5" sm="6" md="6" lg="6">
+      <p class="user-level">レベル：{{ currentUser.user.level }}</p>
+      <p v-if="currentUser.user.level !== 10">
+        次のレベルまであと
+        {{ currentUser.untilLevel ? currentUser.untilLevel : 50 }} EXP
+      </p>
+      <p v-else>最大レベルです！</p>
+      <v-progress-linear :height="12" :rounded="true" straped
+        :value="currentUser.untilPercentage ? currentUser.untilPercentage : 0" color="light-blue"></v-progress-linear>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
-import AddTodo from "@/components/AddTodo";
-import TodoList from "@/components/TodoList";
-import axios from "@/plugins/axios";
-import firebase from "@/plugins/firebase";
 export default {
   data() {
     return {
-      email: "",
-      name: "",
-      level: "",
-      point: "",
-      experience_point: "",
-      password: "",
-      passwordConfirm: "",
       show1: false,
       show2: false,
       error: "",
+      showContent: false
     };
   },
   fetch({ store, redirect }) {
@@ -59,7 +46,7 @@ export default {
     );
   },
   computed: {
-    user() {
+    currentUser() {
       return this.$store.state.currentUser;
     }
   },

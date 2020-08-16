@@ -23,7 +23,7 @@
             <v-hover v-slot:default="{ hover }">
               <router-link to="/reward">
                 <v-btn class="user-btn my-10">
-                  <v-icon v-text="hover ? 'mdi-star' : ''"> </v-icon>
+                  <v-icon v-text="hover ? 'mdi-treasure-chest' : ''"> </v-icon>
                   PRIZE
                 </v-btn>
               </router-link>
@@ -31,7 +31,7 @@
 
             <v-hover v-slot:default="{ hover }">
               <v-btn class="user-btn" @click="logOut">
-                <v-icon v-text="hover ? 'mdi-chess-king' : ''"> </v-icon>
+                <v-icon v-text="hover ? 'mdi-logout-variant' : ''"> </v-icon>
                 BYE
               </v-btn>
             </v-hover>
@@ -130,7 +130,7 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: deeppink;
+$main-color: white;
 $sub-color: orange;
 
 .user-page {
@@ -146,8 +146,8 @@ $sub-color: orange;
     font-weight: bold;
     font-size: 18px;
     &:hover {
-      border: 2px solid white;
-      color: blue;
+      border: 2px solid yellow;
+      color: yellow;
     }
   }
   h2,

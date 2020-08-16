@@ -81,7 +81,7 @@
         <v-hover v-slot:default="{ hover }">
           <v-btn class="login-button" @click="signup">
             <v-icon v-text="hover ? 'mdi-chess-king' : ''"></v-icon>
-            GO GAME
+            GO PLAY
           </v-btn>
         </v-hover>
       </v-col>

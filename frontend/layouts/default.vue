@@ -32,7 +32,7 @@
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title class="pl-0">
-        <router-link to="/" class="toolbar-title"><v-icon class="mb-2" size="38" color=yellow>mdi-crown-outline</v-icon>ToDo<span class="title-first">Game</span></router-link>
+        <router-link to="/user" class="toolbar-title"><v-icon class="mb-2" size="38" color=yellow>mdi-crown-outline</v-icon>ToDo<span class="title-first">Game</span></router-link>
       </v-toolbar-title>
       <v-spacer />
     </v-app-bar>
@@ -42,7 +42,7 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>素材提供【Rド】</span>
+      <span>素材提供【Rド】様</span>
     </v-footer>
   </v-app>
 </template>
@@ -68,11 +68,11 @@ export default {
     Success
   },
   computed: {
-    user() {
+    currentUser() {
       return this.$store.state.currentUser;
     },
     items() {
-      if (this.user) {
+      if (this.currentUser) {
         return [
           {
             icon: "mdi-crown",

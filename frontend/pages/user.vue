@@ -1,11 +1,15 @@
 <template>
   <v-container class="user-page" v-if="currentUser">
     <v-row class="user-status" justify="center">
-      <v-col cols="12" xs="5" sm="6" md="5" lg="6">
+      <v-col cols="12" xs="5" sm="6" md="5" lg="4">
         <h2>{{ currentUser.user.name }}のステータス</h2>
         <p>名前：{{ currentUser.user.name }}</p>
         <p>レベル：{{ currentUser.user.level }}</p>
-        <p>次のレベルまであと{{ currentUser.untilLevel ? currentUser.untilLevel: 50 }}</p>
+        <p>
+          次のレベルまであと{{
+            currentUser.untilLevel ? currentUser.untilLevel : 50
+          }}
+        </p>
         <v-progress-linear
           :height="12"
           :rounded="true"
@@ -25,7 +29,7 @@
         <v-hover v-slot:default="{ hover }">
           <router-link to="/reward">
             <v-btn class="user-btn my-10">
-              <v-icon v-text="hover ? 'mdi-lock' : ''"> </v-icon>
+              <v-icon v-text="hover ? 'mdi-treasure-chest' : ''"> </v-icon>
               REWARD
             </v-btn>
           </router-link>
@@ -39,10 +43,32 @@
         </v-hover>
       </v-col>
     </v-row>
+
+    <v-row justify="center">
+      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
+        <div>
+          <AddTodo @submit="addTodo" />
+        </div>
+      </v-col>
+    </v-row>
+    <div class="errors text-center" v-if="$store.state.errors">
+      <span v-for="error in $store.state.errors" :key="error">
+        <div>{{ error }}</div>
+      </span>
+    </div>
+    <v-row justify="center">
+      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
+        <div>
+          <TodoList :todos="currentUser.todos" />
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import AddTodo from "@/components/AddTodo";
+import TodoList from "@/components/TodoList";
 import axios from "@/plugins/axios";
 import firebase from "@/plugins/firebase";
 
@@ -72,12 +98,33 @@ export default {
       }
     );
   },
+  components: {
+    AddTodo,
+    TodoList
+  },
   computed: {
     currentUser() {
       return this.$store.state.currentUser;
     }
   },
   methods: {
+    async addTodo(todo) {
+      try {
+        const { data } = await axios.post("/v1/todos", {
+          todo
+        });
+        console.log(data);
+        this.$store.commit("setUser", {
+          ...this.currentUser,
+          todos: [...this.currentUser.todos, data]
+        });
+        this.$store.commit("clearErrors");
+      } catch (error) {
+        console.log("UserPage: 112", error);
+        const { data } = error.response;
+        this.$store.commit("setError", data.error_msg);
+      }
+    },
     logOut() {
       firebase
         .auth()
