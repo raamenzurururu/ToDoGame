@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Coming soon...</h1>
+    <h1>ボスと戦う！！！</h1>
     <img class="mon" src="../assets/mon_178.gif">
   </div>
 </template>

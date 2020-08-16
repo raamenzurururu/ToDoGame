@@ -76,7 +76,7 @@ export default {
         return [
           {
             icon: "mdi-crown",
-            title: "ToDoGame",
+            title: "?",
             to: "/"
           },
           {

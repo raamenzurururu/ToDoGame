@@ -1,8 +1,8 @@
 <template>
   <v-container class="user-page" v-if="currentUser">
-    <v-row class="user-status" justify="center">
+    <v-row class="user-status">
       <v-col cols="12" xs="5" sm="6" md="5" lg="4">
-        <h2>{{ currentUser.user.name }}のステータス</h2>
+        <h2 id="v-step-0">{{ currentUser.user.name }}のステータス</h2>
         <p>名前：{{ currentUser.user.name }}</p>
         <p>レベル：{{ currentUser.user.level }}</p>
         <p>
@@ -29,19 +29,19 @@
         <v-hover v-slot:default="{ hover }">
           <router-link to="/reward">
             <v-btn class="user-btn my-10">
-              <v-icon v-text="hover ? 'mdi-treasure-chest' : ''"> </v-icon>
-              REWARD
+              <v-icon id="v-step-1" v-text="hover ? 'mdi-treasure-chest' : ''"> </v-icon>
+              報酬
             </v-btn>
           </router-link>
         </v-hover>
+      </v-col>
 
-        <v-hover v-slot:default="{ hover }">
+        <!-- <v-hover v-slot:default="{ hover }">
           <v-btn class="user-btn" @click="logOut">
             <v-icon v-text="hover ? 'mdi-logout-variant' : ''"> </v-icon>
             BYE
           </v-btn>
-        </v-hover>
-      </v-col>
+        </v-hover> -->
     </v-row>
 
     <v-row justify="center">
@@ -80,8 +80,6 @@ export default {
       level: "",
       point: "",
       experience_point: "",
-      password: "",
-      passwordConfirm: "",
       show1: false,
       show2: false,
       error: "",
@@ -113,37 +111,39 @@ export default {
         const { data } = await axios.post("/v1/todos", {
           todo
         });
-        console.log(data);
+        console.log(this.currentUser);
+        const userTodo = this.currentUser.todos ? this.currentUser.todos : []
         this.$store.commit("setUser", {
           ...this.currentUser,
-          todos: [...this.currentUser.todos, data]
+          todos: [...userTodo, data]
         });
         this.$store.commit("clearErrors");
       } catch (error) {
-        console.log("UserPage: 112", error);
+        console.log("UserPage: 110", error);
         const { data } = error.response;
         this.$store.commit("setError", data.error_msg);
       }
     },
-    logOut() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$store.commit("setUser", null);
-          this.$router.push("/");
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+    // logOut() {
+    //   firebase
+    //     .auth()
+    //     .signOut()
+    //     .then(() => {
+    //       this.$store.commit("setUser", null);
+    //       this.$router.push("/");
+    //     })
+    //     .catch(error => {
+    //       console.log(error);
+    //     });
+    // }
   }
 };
 </script>
 
 <style lang="scss">
 $main-color: white;
-$sub-color: orange;
+$sub-color: yellow;
+$accent-color: red;
 
 $pc: 1024px;
 $tab: 680px;
