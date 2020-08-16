@@ -47,7 +47,7 @@
     <v-row justify="center">
       <v-col cols="12" xs="12" sm="12" md="12" lg="8">
         <div>
-          <AddTodo @submit="addTodo" />
+          <AddTodo @submit="addTodo" :todo="currentUser.todo" />
         </div>
       </v-col>
     </v-row>

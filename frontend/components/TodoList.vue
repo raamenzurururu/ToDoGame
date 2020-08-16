@@ -87,7 +87,7 @@ export default {
         });
         const updateUser = {
           // ...this.user,
-          // user: getUser.data.user,
+          user: getUser.data.user,
           todos,
           untilPercentage: getUser.data.untilPercentage,
           untilLevel: getUser.data.untilLevel,

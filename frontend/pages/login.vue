@@ -216,6 +216,8 @@ export default {
     return {
       email: "",
       name: "",
+      level: "",
+      experience_point: "",
       point: "",
       password: "",
       passwordConfirm: "",
@@ -302,11 +304,11 @@ export default {
         });
     },
     login() {
-      this.$store.commit("setLoading", true);
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
+          this.$store.commit("setLoading", true);
           this.$store.commit("setNotice", {
             status: true,
             message: "ログインしました"

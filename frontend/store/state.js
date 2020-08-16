@@ -18,8 +18,8 @@ const state = {
   },
   loading: false,
   notification: {
-      status: false,
-      message: ""
+    status: false,
+    message: ""
   },
   errors: []
 }
