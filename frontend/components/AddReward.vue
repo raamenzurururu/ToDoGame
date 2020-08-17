@@ -2,20 +2,21 @@
   <v-form>
     <v-container class="add-reward">
       <v-row>
-        <v-col class="pr-0" cols="3" xs="6" sm="2" md="1" lg="1">
-          <v-select label="TP" v-model="reward.point" :items="items">You</v-select>
+        <v-col class="pr-0 pb-0" cols="3" xs="2" sm="2" md="2" lg="2">
+          <v-select label="TP" v-model="number" :items="items" outlined></v-select>
         </v-col>
-        <v-col class="pr-0" cols="9" xs="5" sm="6" md="7" lg="7">
+        <v-col class="pl-0 pb-0" cols="9" xs="8" sm="8" md="8" lg="8">
           <v-text-field
-            v-model="reward.title"
+            v-model="title"
             :counter="20"
             label="報酬"
             required
+            outlined
           ></v-text-field>
         </v-col>
-        <v-col class="pr-0" cols="12" xs="6" sm="4" md="4" lg="4">
+        <v-col class="px-0 pb-0" cols="12" xs="12" sm="2" md="2" lg="2">
           <v-hover v-slot:default="{ hover }">
-            <v-btn class="reward-btn" @click="handleSubmit">
+            <v-btn class="reward-btn" my-2 mx-1 @click="handleSubmit">
               <v-icon v-text="hover ? 'mdi-star' : ''">
                 </v-icon>
                 登録
