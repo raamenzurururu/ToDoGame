@@ -1,6 +1,6 @@
 <template>
   <v-container class="user-page" v-if="currentUser">
-    <Status class="mb-5"/>
+    <Status class="mb-5" />
     <AddReward class="mb-5" @submit="addReward" :reward="currentUser.reward" />
     <RewardList :rewards="currentUser.rewards" />
   </v-container>
@@ -24,7 +24,7 @@ export default {
       show1: false,
       show2: false,
       error: "",
-      showContent: false,
+      showContent: false
     };
   },
   fetch({ store, redirect }) {
@@ -52,7 +52,9 @@ export default {
         const { data } = await axios.post("/v1/rewards", {
           reward
         });
-        const userReward = this.currentUser.reward ? this.currentUser.rewards : []
+        const userReward = this.currentUser.reward
+          ? this.currentUser.rewards
+          : [];
         this.$store.commit("setUser", {
           ...this.currentUser,
           rewards: [...userReward, data]
@@ -74,7 +76,7 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    },
+    }
   }
 };
 </script>
@@ -86,6 +88,25 @@ $sub-color: orange;
 .user-page {
   user-status {
     border: 2px white solid;
+    margin: 0 auto;
+    width: 66%;
+    background-color: grey;
+
+    .coin-img {
+      width: 20%;
+      display: inline-block;
+    }
+
+    .user-point {
+      display: flex;
+      .user-task-point {
+        font-size: x-large;
+        color: rgb(238, 238, 37);
+        padding-left: 2%;
+        padding-top: 8px;
+        margin-bottom: 0px;
+      }
+    }
   }
 
   .user-btn {
