@@ -34,6 +34,13 @@
       <v-toolbar-title class="pl-0">
         <router-link to="/user" class="toolbar-title"><v-icon class="mb-2" size="38" color=yellow>mdi-crown-outline</v-icon>ToDo<span class="title-first">Game</span></router-link>
       </v-toolbar-title>
+
+      <v-hover v-slot:default="{ hover }">
+        <v-btn class="user-btn" @click="logOut">
+          <v-icon v-text="hover ? 'mdi-logout-variant' : ''"></v-icon>here
+        </v-btn>
+      </v-hover>
+
       <v-spacer />
     </v-app-bar>
     <v-content>
@@ -50,6 +57,8 @@
 <script>
 import Loading from "@/components/Loading";
 import Success from "@/components/Success";
+import firebase from "@/plugins/firebase";
+import axios from "@/plugins/axios";
 
 export default {
   data() {
@@ -71,6 +80,20 @@ export default {
     currentUser() {
       return this.$store.state.currentUser;
     },
+    // methods: {
+    //   logOut() {
+    //     firebase
+    //       .auth()
+    //       .signOut()
+    //       .then(() => {
+    //         this.$store.commit("setUser", null);
+    //         this.$router.push("/");
+    //       })
+    //       .catch(error => {
+    //         console.log(error);
+    //       });
+    //   }
+    // },
     items() {
       if (this.currentUser) {
         return [
@@ -123,6 +146,16 @@ $main-color: yellow;
       color: $main-color;
     }
   }
+
+  .page-link {
+    background-color: yellow;
+    margin-left: 5%;
+  }
+
+  .page-link-title {
+    padding-top: 15%;
+  }
+
   .v-content_wrap {
     background-color: black !important;
   }
