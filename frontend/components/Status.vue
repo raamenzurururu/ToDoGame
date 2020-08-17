@@ -1,28 +1,28 @@
 <template>
-  <v-row class="user-status" id="v-step-2">
-    <v-col cols="12" xs="5" sm="6" md="6" lg="6">
-      <p>
-        名前：{{ currentUser.user.name}}
-        <v-icon class="mb-2" color="yellow" size="30" v-if="currentUser.user.level == 10">mdi-crown</v-icon>
-      </p>
-      <div class="user-point">
-        <p class="user-task-point">
-          <v-icon class="mb-1" size="30" color="yellow">mdi-alpha-p-circle</v-icon>
-          {{ currentUser.user.point }}
-        </p>
-      </div>
-    </v-col>
-    <v-col cols="12" xs="5" sm="6" md="6" lg="6">
-      <p class="user-level">レベル：{{ currentUser.user.level }}</p>
-      <p v-if="currentUser.user.level !== 10">
-        次のレベルまであと
-        {{ currentUser.untilLevel ? currentUser.untilLevel : 50 }} EXP
-      </p>
-      <p v-else>最大レベルです！</p>
-      <v-progress-linear :height="12" :rounded="true" straped
-        :value="currentUser.untilPercentage ? currentUser.untilPercentage : 0" color="light-blue"></v-progress-linear>
-    </v-col>
-  </v-row>
+  <v-container class="user-page" v-if="currentUser">
+    <v-row class="user-status">
+      <v-col cols="12" xs="5" sm="6" md="5" lg="5">
+        <p>名前：{{ currentUser.user.name }}</p>
+        <div class="user-point">
+          <img class="coin-img" src="../assets/coin.gif">
+          <p class="user-task-point">{{ currentUser.user.point }}</p>
+        </div>
+      </v-col>
+
+      <v-col cols="12" xs="5" sm="6" md="5" lg="5">
+        <p class="user-level">レベル:{{ currentUser.user.level }}</p>
+        <p>次のレベルまであと{{ currentUser.untilLevel ? currentUser.untilLevel : 50 }} EXP</p>
+      </v-col>
+        <v-progress-linear
+          :height="12"
+          :rounded="true"
+          :value="currentUser.untilPercentage ? currentUser.untilPercentage : 0"
+          color="light-blue"
+          striped
+        >
+        </v-progress-linear>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -50,8 +50,7 @@ export default {
       return this.$store.state.currentUser;
     }
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 
@@ -59,12 +58,15 @@ export default {
 $main-color: deeppink;
 $sub-color: #33dddd;
 
-.user-page {
-  user-status {
-    border: 2px white solid;
-  }
+.user-status {
+  border: 2px white solid;
+  margin: 0 auto;
+  width: 66%;
+  background-color: grey;
 }
+
 h2 {
   text-align: center;
   color: $sub-color;
 }
+</style>
