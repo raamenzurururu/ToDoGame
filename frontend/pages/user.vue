@@ -1,15 +1,18 @@
 <template>
   <v-container class="user-page" v-if="currentUser">
     <v-row class="user-status">
-      <v-col cols="12" xs="5" sm="6" md="5" lg="4">
-        <h2 id="v-step-0">{{ currentUser.user.name }}のステータス</h2>
+      <v-col cols="12" xs="5" sm="6" md="5" lg="5">
         <p>名前：{{ currentUser.user.name }}</p>
-        <p>レベル：{{ currentUser.user.level }}</p>
-        <p>
-          次のレベルまであと{{
-            currentUser.untilLevel ? currentUser.untilLevel : 50
-          }}
-        </p>
+        <div class="user-point">
+          <img class="coin-img" src="../assets/coin.gif">
+          <p class="user-task-point">{{ currentUser.user.point }}</p>
+        </div>
+      </v-col>
+
+      <v-col cols="12" xs="5" sm="6" md="5" lg="5">
+        <p class="user-level">レベル:{{ currentUser.user.level }}</p>
+        <p>次のレベルまであと{{ currentUser.untilLevel ? currentUser.untilLevel : 50 }} EXP</p>
+      </v-col>
         <v-progress-linear
           :height="12"
           :rounded="true"
@@ -18,14 +21,8 @@
           striped
         >
         </v-progress-linear>
-        <p>経験値：{{ currentUser.user.experience_point }}</p>
-        <p>
-          タスクポイント：{{
-            currentUser.user.point ? currentUser.user.experience_point : 50
-          }}
-        </p>
-      </v-col>
-      <v-col cols="12" xs="5" sm="6" md="5" lg="6">
+
+      <!-- <v-col cols="12" xs="5" sm="6" md="5" lg="6">
         <v-hover v-slot:default="{ hover }">
           <router-link to="/reward">
             <v-btn class="user-btn my-10">
@@ -34,7 +31,7 @@
             </v-btn>
           </router-link>
         </v-hover>
-      </v-col>
+      </v-col> -->
 
         <!-- <v-hover v-slot:default="{ hover }">
           <v-btn class="user-btn" @click="logOut">
@@ -45,9 +42,9 @@
     </v-row>
 
     <v-row justify="center">
-      <v-col cols="12" xs="12" sm="12" md="12" lg="8">
+      <v-col class="pb-0" cols="12" xs="12" sm="12" md="12" lg="8">
         <div>
-          <AddTodo @submit="addTodo" :todo="currentUser.todo" />
+          <AddTodo @submit="addTodo" />
         </div>
       </v-col>
     </v-row>
@@ -171,6 +168,22 @@ $sp: 480px;
     border: 2px white solid;
     margin: 0 auto;
     width: 66%;
+    background-color: grey;
+  }
+
+  .coin-img {
+    width: 10%;
+    height: 10%;
+    display: inline-block;
+  }
+
+  .user-point {
+    display: flex;
+    .user-task-point {
+      font-size: x-large;
+      color: blue;
+      padding-left: 5%;
+    }
   }
 
   .user-status {
@@ -199,7 +212,6 @@ $sp: 480px;
   }
   list-title,
   h2 {
-    text-align: center;
     color: $sub-color;
   }
   p {
