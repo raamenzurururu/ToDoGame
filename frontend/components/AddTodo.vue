@@ -2,7 +2,7 @@
   <v-form>
     <v-container class="add-todo">
       <v-row>
-        <v-col class="pr-0" cols="3" xs="6" sm="2" md="1" lg="2">
+        <v-col id="v-step-0" class="pr-0" cols="3" xs="6" sm="2" md="1" lg="2">
           <v-select label="TP" v-model="todo.point" :items="items" outlined>Point</v-select>
         </v-col>
         <!-- v-bind: 属性名 = "設定する値" -->
