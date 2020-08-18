@@ -1,23 +1,22 @@
 <template>
   <div>
-    <v-btn class="header-btn ml-1" @click="logOutWindow = true">
+    <v-btn>
       <v-hover v-slot:default="{ hover }">
         <v-icon
           :disabled="dialog"
           :loading="dialog"
           @click="dialog = true"
-          size="20px"
-          color="orange"
-          v-text="hover ? 'mdi-coffee-to-go' : 'mdi-coffee'"
+          color="red"
+          v-text="hover ? 'mdi-heart-multiple' : 'mdi-heart-multiple-outline'"
         >
         </v-icon>
       </v-hover>
     </v-btn>
 
     <v-dialog v-model="dialog" hide-overlay persistent width="300">
-      <v-card color="primary" dark>
+      <v-card color="green" dark>
         <v-card-text>
-          Please stand by
+          休憩してね♪
           <v-progress-linear
             indeterminate
             color="white"
@@ -46,3 +45,7 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+
+</style>

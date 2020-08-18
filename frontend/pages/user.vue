@@ -21,24 +21,6 @@
           striped
         >
         </v-progress-linear>
-
-      <!-- <v-col cols="12" xs="5" sm="6" md="5" lg="6">
-        <v-hover v-slot:default="{ hover }">
-          <router-link to="/reward">
-            <v-btn class="user-btn my-10">
-              <v-icon id="v-step-1" v-text="hover ? 'mdi-treasure-chest' : ''"> </v-icon>
-              報酬
-            </v-btn>
-          </router-link>
-        </v-hover>
-      </v-col> -->
-
-        <!-- <v-hover v-slot:default="{ hover }">
-          <v-btn class="user-btn" @click="logOut">
-            <v-icon v-text="hover ? 'mdi-logout-variant' : ''"> </v-icon>
-            BYE
-          </v-btn>
-        </v-hover> -->
     </v-row>
 
     <v-row justify="center">
@@ -95,7 +77,7 @@ export default {
   },
   components: {
     AddTodo,
-    TodoList
+    TodoList,
   },
   computed: {
     currentUser() {

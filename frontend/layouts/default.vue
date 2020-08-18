@@ -64,6 +64,8 @@
         </v-btn>
       </v-toolbar-items>
 
+      <Vdialog></Vdialog>
+
       <!-- <v-toolbar-items class="page-link" v-if="user">
         <v-btn class="header-btn ml-1" @click="logOutWindow = true">
           <v-hover v-slot:default="{ hover }">
@@ -89,6 +91,7 @@
 <script>
 import Loading from "@/components/Loading";
 import Success from "@/components/Success";
+import Vdialog from "@/components/Vuetify/Vdialog";
 import firebase from "@/plugins/firebase";
 import axios from "@/plugins/axios";
 
@@ -109,6 +112,7 @@ export default {
   components: {
     Loading,
     Success,
+    Vdialog,
   },
   computed: {
     user() {
