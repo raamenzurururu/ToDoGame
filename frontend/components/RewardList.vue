@@ -35,7 +35,7 @@
           <span class="reward-title">{{ reward.title }}</span>
           <div class="reward-list-icon">
             <v-icon v-if="reward.status" big color="white">lock_open</v-icon>
-            <v-icon v-else big color="white">lock</v-icon>
+            <v-icon v-else big color="red">lock</v-icon>
             <v-icon @click="editItem(todo)" color="black" big
               >mdi-pencil</v-icon
             >

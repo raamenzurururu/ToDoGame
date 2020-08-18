@@ -27,6 +27,23 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
+
+        <v-list-item v-if="user" @click="logOutWindow = true">
+          <v-list-item-action>
+            <v-icon>mdi-key</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>ログアウト</v-list-item-title>
+          </v-list-item-content>
+          <v-dialog v-model="logOutWindow">
+            <v-card>
+              <v-card-title>ログアウトしますか？</v-card-title>
+              <v-btn @click="logOut">はい</v-btn>
+              <v-btn @click="logOutWindow = false">いいえ</v-btn>
+            </v-card>
+          </v-dialog>
+        </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
     <v-app-bar class="tool-bar" :clipped-left="clipped" fixed app>
@@ -35,11 +52,11 @@
         <router-link to="/user" class="toolbar-title"><v-icon class="mb-2" size="38" color=yellow>mdi-crown-outline</v-icon>ToDo<span class="title-first">Game</span></router-link>
       </v-toolbar-title>
 
-      <v-hover v-slot:default="{ hover }">
+      <!-- <v-hover v-slot:default="{ hover }">
         <v-btn class="logout-btn" @click="logOut">
           <v-icon v-text="hover ? 'mdi-logout-variant' : ''"></v-icon>here
         </v-btn>
-      </v-hover>
+      </v-hover> -->
 
       <v-spacer />
     </v-app-bar>
@@ -114,6 +131,21 @@ export default {
         ];
       }
     },
+    methods: {
+      logOut() {
+        this.logOutWindow = false;
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            this.$store.commit("setUser", null);
+            this.$router.push("/");
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    }
   }
 };
 </script>
