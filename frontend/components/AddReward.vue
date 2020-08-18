@@ -3,11 +3,11 @@
     <v-container class="add-reward">
       <v-row>
         <v-col class="pr-0 pb-0" cols="3" xs="2" sm="2" md="2" lg="2">
-          <v-select label="TP" v-model="number" :items="items" outlined></v-select>
+          <v-select label="TP" v-model="reward.point" :items="items" outlined></v-select>
         </v-col>
         <v-col class="pl-0 pb-0" cols="9" xs="8" sm="8" md="8" lg="8">
           <v-text-field
-            v-model="title"
+            v-model="reward.title"
             :counter="20"
             label="報酬"
             required

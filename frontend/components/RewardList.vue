@@ -13,14 +13,29 @@
         element="ul"
       >
         <li class="reward-list" v-for="reward in rewards" :key="reward.sort">
-          <v-icon size="30px">mdi-numeric-{{ reward.point }}-box-outline</v-icon>
+          <v-icon size="30px"
+            >mdi-numeric-{{ reward.point }}-box-outline</v-icon
+          >
           <v-hover v-slot:default="{ hover }">
-            <v-icon @click="completeItem(reward)" size="25px" color="red" v-text="hover ? 'mdi-heart' : 'mdi-heart-outline'">
+            <v-icon
+              v-if ="!reward.status"
+              @click="completeItem(reward)"
+              size="25px"
+              color="red"
+              v-text="hover ? 'mdi-heart' : 'mdi-heart-outline'"
+            >
+            </v-icon>
+            <v-icon
+              v-else
+              size="25px"
+              color="blue"
+            >check
             </v-icon>
           </v-hover>
           <span class="reward-title">{{ reward.title }}</span>
           <div class="reward-list-icon">
-            <span>{{ reward.status }}</span>
+            <v-icon v-if="reward.status" big color="white">lock_open</v-icon>
+            <v-icon v-else big color="white">lock</v-icon>
             <v-icon @click="editItem(todo)" color="black" big
               >mdi-pencil</v-icon
             >
@@ -32,7 +47,14 @@
       </draggable>
     </v-card>
 
-    <v-dialog class="edit-dialog" v-model="dialog" @save="save" @cancel="cancel" @open="open" @close="close">
+    <v-dialog
+      class="edit-dialog"
+      v-model="dialog"
+      @save="save"
+      @cancel="cancel"
+      @open="open"
+      @close="close"
+    >
       <v-card>
         <v-card-title>
           <h2 class="list-title">報酬編集</h2>
@@ -128,7 +150,7 @@ export default {
           rewards,
           todos,
           untilPercentage: getUser.data.untilPercentage,
-          untilLevel: getUser.data.untilLevel,
+          untilLevel: getUser.data.untilLevel
         };
         this.$store.commit("setUser", updateUser);
         item.status = true;
