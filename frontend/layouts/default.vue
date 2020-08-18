@@ -83,7 +83,8 @@ export default {
       miniVariant: false,
       right: false,
       rightDrawer: false,
-      title: "ToDoGame"
+      title: "ToDoGame",
+      logOutWindow: false,
     };
   },
   components: {
