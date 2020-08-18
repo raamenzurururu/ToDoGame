@@ -37,9 +37,9 @@
           </v-list-item-content>
           <v-dialog v-model="logOutWindow">
             <v-card>
-              <v-card-title>ログアウトしますか？</v-card-title>
-              <v-btn @click="logOut">はい</v-btn>
-              <v-btn @click="logOutWindow = false">いいえ</v-btn>
+              <v-card-title class="headline grey lighten-2" color="red">ログアウトしますか？</v-card-title>
+              <v-btn color="orange" @click="logOut">はい</v-btn>
+              <v-btn color="orange" @click="logOutWindow = false">いいえ</v-btn>
             </v-card>
           </v-dialog>
         </v-list-item>
@@ -54,6 +54,24 @@
           >ToDo<span class="title-first">Game</span></router-link
         >
       </v-toolbar-title>
+
+      <v-toolbar-items class="page-link" v-if="user">
+        <v-btn class="header-btn ml-1" @click="logOutWindow = true">
+          <v-hover v-slot:default="{ hover }">
+            <v-icon size="25px" color="orange" v-text="hover ? 'mdi-account-off' : 'mdi-account-hard-hat'">
+            </v-icon>
+          </v-hover>
+        </v-btn>
+      </v-toolbar-items>
+
+      <!-- <v-toolbar-items class="page-link" v-if="user">
+        <v-btn class="header-btn ml-1" @click="logOutWindow = true">
+          <v-hover v-slot:default="{ hover }">
+            <v-icon size="20px" color="orange" v-text="hover ? 'mdi-coffee-to-go' : 'mdi-coffee'">
+            </v-icon>
+          </v-hover>
+        </v-btn>
+      </v-toolbar-items> -->
 
       <v-spacer />
     </v-app-bar>
@@ -85,14 +103,15 @@ export default {
       rightDrawer: false,
       title: "ToDoGame",
       logOutWindow: false,
+      logoutConfirm: false
     };
   },
   components: {
     Loading,
-    Success
+    Success,
   },
   computed: {
-    currentUser() {
+    user() {
       return this.$store.state.currentUser;
     },
     items() {
@@ -128,21 +147,21 @@ export default {
           }
         ];
       }
-    },
-    methods: {
-      logOut() {
-        this.logOutWindow = false;
-        firebase
-          .auth()
-          .signOut()
-          .then(() => {
-            this.$store.commit("setUser", null);
-            this.$router.push("/");
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
+    }
+  },
+  methods: {
+    logOut() {
+      this.logOutWindow = false;
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$store.commit("setUser", null);
+          this.$router.push("/");
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
@@ -151,27 +170,27 @@ export default {
 <style lang="scss">
 $main-color: yellow;
 
-  $pc: 1024px;
-  $tab: 680px;
-  $sp: 480px;
+$pc: 1024px;
+$tab: 680px;
+$sp: 480px;
 
-  @mixin pc {
-    @media (max-width: ($pc)) {
-      @content;
-    }
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
   }
+}
 
-  @mixin tab {
-    @media (max-width: ($tab)) {
-      @content;
-    }
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
   }
+}
 
-  @mixin sp {
-    @media (max-width: ($sp)) {
-      @content;
-    }
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
   }
+}
 
 .app {
   .toolbar-title {
