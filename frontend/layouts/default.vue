@@ -43,20 +43,17 @@
             </v-card>
           </v-dialog>
         </v-list-item>
-
       </v-list>
     </v-navigation-drawer>
     <v-app-bar class="tool-bar" :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title class="pl-0">
-        <router-link to="/user" class="toolbar-title"><v-icon class="mb-2" size="38" color=yellow>mdi-crown-outline</v-icon>ToDo<span class="title-first">Game</span></router-link>
+        <router-link to="/user" class="toolbar-title"
+          ><v-icon class="mb-2" size="38" color="yellow"
+            >mdi-crown-outline</v-icon
+          >ToDo<span class="title-first">Game</span></router-link
+        >
       </v-toolbar-title>
-
-      <!-- <v-hover v-slot:default="{ hover }">
-        <v-btn class="logout-btn" @click="logOut">
-          <v-icon v-text="hover ? 'mdi-logout-variant' : ''"></v-icon>here
-        </v-btn>
-      </v-hover> -->
 
       <v-spacer />
     </v-app-bar>
@@ -157,7 +154,7 @@ $main-color: yellow;
   .toolbar-title {
     color: white;
     text-decoration: none;
-    font-family: 'sans-serif';
+    font-family: "sans-serif";
     font-size: 30px;
     font-weight: bold;
     .title-first {
@@ -180,11 +177,10 @@ $main-color: yellow;
       background-color: aquamarine;
       margin: 0 0 0 auto;
     }
-}
+  }
 
   .v-content_wrap {
     background-color: black !important;
   }
 }
-
 </style>

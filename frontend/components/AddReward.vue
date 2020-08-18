@@ -3,7 +3,12 @@
     <v-container class="add-reward">
       <v-row>
         <v-col class="pr-0 pb-0" cols="3" xs="2" sm="2" md="2" lg="2">
-          <v-select label="TP" v-model="reward.point" :items="items" outlined></v-select>
+          <v-select
+            label="TP"
+            v-model="reward.point"
+            :items="items"
+            outlined
+          ></v-select>
         </v-col>
         <v-col class="pl-0 pb-0" cols="9" xs="8" sm="8" md="8" lg="8">
           <v-text-field
@@ -17,9 +22,8 @@
         <v-col class="px-0 pb-0" cols="12" xs="12" sm="2" md="2" lg="2">
           <v-hover v-slot:default="{ hover }">
             <v-btn class="reward-btn" my-2 mx-1 @click="handleSubmit">
-              <v-icon v-text="hover ? 'mdi-star' : ''">
-                </v-icon>
-                登録
+              <v-icon v-text="hover ? 'mdi-star' : ''"> </v-icon>
+              登録
             </v-btn>
           </v-hover>
         </v-col>
@@ -44,7 +48,7 @@ export default {
   },
   data() {
     return {
-      items: numberRange,
+      items: numberRange
     };
   },
   methods: {
@@ -83,7 +87,7 @@ $main-color: deeppink;
 
     &:hover {
       border: 2px solid blue;
-      color: white
+      color: white;
     }
   }
 }

@@ -48,6 +48,7 @@
     </v-card>
 
     <v-dialog
+      v-if="!reward.status"
       class="edit-dialog"
       v-model="dialog"
       @save="save"
