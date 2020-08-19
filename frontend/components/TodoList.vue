@@ -217,7 +217,7 @@ $accent-color: red;
   padding: 10px;
   border: 1px solid #7f7f7f;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgb(17, 159, 202);
   cursor: grab;
   .todo-list-icon {
     margin-left: auto;

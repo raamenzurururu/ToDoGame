@@ -161,9 +161,9 @@
         mx-2
         mb-2
         cols="12"
-        sm="12"
-        md="4"
-        lg="4"
+        sm="9"
+        md="3"
+        lg="3"
       >
         <img src="../assets/mon_274.gif" />
         <h2 class="login-subtitle-3 text-center">それが成長へのコツ</h2>
@@ -475,6 +475,16 @@ $sp: 480px;
     height: 40%;
   }
 
+//   img {
+//     margin: 0 auto;
+//     width: 70%;
+//     height: 70%;
+//     @include sp {
+//     width: 100%;
+//     height: 100%;
+//   }
+// }
+
   .mon {
     width: 20%;
 
@@ -645,29 +655,30 @@ $sp: 480px;
 }
 
 .login-subtitle-1 {
-  color: rgb(255, 255, 255);
-  background: rgb(62, 172, 35);
+  color: white;
 }
 
 .login-explain-1 {
-  color: rgb(0, 0, 0);
+  color: black;
   text-align: center;
   margin: 30px 0;
-  background: rgb(62, 172, 35);
 }
 .login-subtitle-2 {
-  color: rgb(255, 255, 255);
-  background: rgb(65, 46, 46);
+  color: white;
 }
 
 .login-explain-2 {
-  color: rgb(0, 0, 0);
+  color: black;
   text-align: center;
   margin: 30px 0;
-  background-color: rgb(65, 46, 46, 0.5);
 }
 .login-subtitle-3 {
-  color: rgb(255, 255, 255);
+  color: white;
+}
+.login-explain-3 {
+  color: black;
+  text-align: center;
+  margin: 30px 0;
 }
 
 .introduction {
@@ -679,19 +690,19 @@ $sp: 480px;
 
   .sub-introduction-1 {
     text-align: center;
-    background-image: url("../assets/bg1.jpg");
+    background-color: #aa3535;
     border: 3px solid skyblue;
   }
 
-  .sub-introduction-1 {
+  .sub-introduction-2 {
     text-align: center;
-    background-image: url("../assets/bg2.jpg");
+    background-color:rgb(62, 172, 35);
     border: 3px solid skyblue;
   }
 
-  .sub-introduction-1 {
+  .sub-introduction-3 {
     text-align: center;
-    background-image: url("../assets/bg3.jpg");
+    background-color:rgb(11, 214, 236);
     border: 3px solid skyblue;
   }
 }
