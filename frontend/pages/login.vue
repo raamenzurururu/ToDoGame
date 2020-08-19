@@ -36,7 +36,7 @@
             erase-style="clear"
             :type-delay="140"
             :erase-delay="270"
-            :repeat="0"
+            :repeat="Infinity"
             caret-animation='expand'
           ></vue-typer>
         </div>

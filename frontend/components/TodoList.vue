@@ -12,15 +12,13 @@
         @end="atEnd"
         element="ul"
       >
-        <li 
-          class="todo-list"
-          v-for="todo in todos"
-          :key="todo.sort"
-        >
-          <v-icon size="30px">mdi-numeric-{{ todo.point }}-circle-outline</v-icon>
+        <li class="todo-list" v-for="todo in todos" :key="todo.sort">
+          <v-icon size="30px"
+            >mdi-numeric-{{ todo.point }}-circle-outline</v-icon
+          >
           <v-hover v-slot:default="{ hover }">
             <v-icon
-              @click="completeItem(todo)"
+              @click="completeDialog = true"
               size="25px"
               color="yellow"
               v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
@@ -28,15 +26,29 @@
             </v-icon>
           </v-hover>
 
+          <v-dialog v-model="completeDialog">
+            <v-card>
+              <v-card-title>やることを達成しましたか？</v-card-title>
+              <v-btn @click="completeItem(todo)">はい</v-btn>
+              <v-btn @click="completeDialog = false">いいえ</v-btn>
+            </v-card>
+          </v-dialog>
+
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-list-icon">
             <v-icon @click="editItem(todo)" color="black" big
               >mdi-pencil</v-icon
             >
-            <v-icon small @click="deleteItem(todo)" color="black"
-              >delete</v-icon
-            >
+            <v-icon small @click="deleteDialog = true" color="black">delete</v-icon>
           </div>
+
+          <v-dialog v-model="deleteDialog">
+            <v-card>
+              <v-card-title>やることを削除しますか？</v-card-title>
+              <v-btn @click="deleteItem(todo)">はい</v-btn>
+              <v-btn @click="deleteDialog = false">いいえ</v-btn>
+            </v-card>
+          </v-dialog>
         </li>
       </draggable>
     </v-card>
@@ -68,6 +80,7 @@
         >
       </v-card>
     </v-dialog>
+
     <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
       {{ snackText }}
       <v-btn text @click="snack = false">閉じる</v-btn>
@@ -93,7 +106,9 @@ export default {
       snackColor: "",
       snackText: "",
       dialogText: "",
-      dialog: false
+      dialog: false,
+      completeDialog: false,
+      deleteDialog: false
     };
   },
   computed: {
@@ -103,47 +118,43 @@ export default {
   },
   methods: {
     async completeItem(item) {
-      const res = confirm("本当に達成しましたか？");
-      if (res) {
-        const getUser = await axios.get(`/v1/todos/${item.id}`, {
-          params: {
-            point: item.point
-          }
-        });
-        const todos = this.user.todos.filter(todo => {
-          return todo.id !== item.id;
-        });
-        const updateUser = {
-          // ...this.user,
-          user: getUser.data.user,
-          todos,
-          untilPercentage: getUser.data.untilPercentage,
-          untilLevel: getUser.data.untilLevel
-        };
-        this.$store.commit("setUser", updateUser);
-        this.snack = true;
-        this.snackColor = "success";
-        this.snackText = item.point + "タスクポイントと経験値を獲得した!";
-      }
+      const getUser = await axios.get(`/v1/todos/${item.id}`, {
+        params: {
+          point: item.point
+        }
+      });
+      const todos = this.user.todos.filter(todo => {
+        return todo.id !== item.id;
+      });
+      const updateUser = {
+        // ...this.user,
+        user: getUser.data.user,
+        todos,
+        untilPercentage: getUser.data.untilPercentage,
+        untilLevel: getUser.data.untilLevel
+      };
+      this.$store.commit("setUser", updateUser);
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = item.point + "タスクポイントと経験値を獲得した!";
+      this.completeDialog = false
     },
     async deleteItem(item) {
-      const res = confirm("本当に削除しますか？");
-      if (res) {
-        await axios.delete(`/v1/todos/${item.id}`); //.then(() => {
-        //this.$router.push("/login");
-        //}); //これで飛ばせる
-        const todos = this.user.todos.filter(todo => {
-          return todo.id !== item.id;
-        });
-        const updateUser = {
-          ...this.user,
-          todos
-        };
-        this.$store.commit("setUser", updateUser);
-        this.snack = true;
-        this.snackColor = "warning";
-        this.snackText = "Data deleted";
-      }
+      await axios.delete(`/v1/todos/${item.id}`); //.then(() => {
+      //this.$router.push("/login");
+      //}); //これで飛ばせる
+      const todos = this.user.todos.filter(todo => {
+        return todo.id !== item.id;
+      });
+      const updateUser = {
+        ...this.user,
+        todos
+      };
+      this.$store.commit("setUser", updateUser);
+      this.snack = true;
+      this.snackColor = "warning";
+      this.snackText = "Data deleted";
+      this.deleteDialog = false
     },
     async editItem(todo) {
       this.dialog = true;

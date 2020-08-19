@@ -86,7 +86,6 @@ $sub-color: rgb(11, 214, 236) !important;
       color: rgba(8, 113, 233, 0.884);
     }
   }
-
 }
 
 .col-md-4 > .bt {
