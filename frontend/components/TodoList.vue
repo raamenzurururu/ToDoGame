@@ -12,17 +12,30 @@
         @end="atEnd"
         element="ul"
       >
-        <li class="todo-list" v-for="todo in todos" :key="todo.sort">
-          <span class="todo-point">{{ todo.point }}</span>
-          <v-icon size="30px">mdi-numeric-{{ todo.point }}-box-outline</v-icon>
+        <li 
+          class="todo-list"
+          v-for="todo in todos"
+          :key="todo.sort"
+        >
+          <v-icon size="30px">mdi-numeric-{{ todo.point }}-circle-outline</v-icon>
           <v-hover v-slot:default="{ hover }">
-            <v-icon @click="completeItem(todo)" size="25px" color="yellow" v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'">
+            <v-icon
+              @click="completeItem(todo)"
+              size="25px"
+              color="yellow"
+              v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
+            >
             </v-icon>
           </v-hover>
+          
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-list-icon">
-            <v-icon @click="editItem(todo)" color=black big>mdi-pencil</v-icon>
-            <v-icon small @click="deleteItem(todo)" color=black>delete</v-icon>
+            <v-icon @click="editItem(todo)" color="black" big
+              >mdi-pencil</v-icon
+            >
+            <v-icon small @click="deleteItem(todo)" color="black"
+              >delete</v-icon
+            >
           </div>
         </li>
       </draggable>
@@ -34,10 +47,25 @@
           <h2 class="list-title">ToDo編集</h2>
         </v-card-title>
         <p>やること</p>
-        <v-text-field class="dialog-title" v-model="dialogText.title" filled></v-text-field>
+        <v-text-field
+          class="dialog-title"
+          v-model="dialogText.title"
+          filled
+        ></v-text-field>
         <p>ポイント</p>
-        <v-select class="dialog-point" single-line :items="items" v-model="dialogText.point" :value="dialogText.point" filled></v-select>
-        <v-btn class="update-btn" @click="updateItem(dialogText.id, dialogText.title, dialogText.point)">保存</v-btn>
+        <v-select
+          class="dialog-point"
+          single-line
+          :items="items"
+          v-model="dialogText.point"
+          :value="dialogText.point"
+          filled
+        ></v-select>
+        <v-btn
+          class="update-btn"
+          @click="updateItem(dialogText.id, dialogText.title, dialogText.point)"
+          >保存</v-btn
+        >
       </v-card>
     </v-dialog>
     <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -65,7 +93,7 @@ export default {
       snackColor: "",
       snackText: "",
       dialogText: "",
-      dialog: false,
+      dialog: false
     };
   },
   computed: {
@@ -90,12 +118,12 @@ export default {
           user: getUser.data.user,
           todos,
           untilPercentage: getUser.data.untilPercentage,
-          untilLevel: getUser.data.untilLevel,
+          untilLevel: getUser.data.untilLevel
         };
         this.$store.commit("setUser", updateUser);
         this.snack = true;
         this.snackColor = "success";
-        this.snackText = item.point + "タスクポイントと経験値を獲得した!"
+        this.snackText = item.point + "タスクポイントと経験値を獲得した!";
       }
     },
     async deleteItem(item) {
@@ -128,7 +156,7 @@ export default {
           point: point
         }
       });
-      this.dialog = false
+      this.dialog = false;
     },
     async atEnd() {
       let result = await axios.patch(`v1/todos`, {
@@ -214,7 +242,7 @@ $accent-color: red;
     margin-left: 5%;
   }
   .update-btn {
-    @include btn
+    @include btn;
   }
 }
 </style>

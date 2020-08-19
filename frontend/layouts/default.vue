@@ -28,7 +28,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item v-if="user" @click="logOutWindow = true">
+        <v-list-item v-if="currentUser" @click="logOutWindow = true">
           <v-list-item-action>
             <v-icon>mdi-key</v-icon>
           </v-list-item-action>
@@ -55,10 +55,10 @@
         >
       </v-toolbar-title>
 
-      <v-toolbar-items class="page-link" v-if="user">
+      <v-toolbar-items class="page-link" v-if="currentUser">
         <v-btn class="header-btn ml-1" @click="logOutWindow = true">
           <v-hover v-slot:default="{ hover }">
-            <v-icon size="25px" color="orange" v-text="hover ? 'mdi-account-off' : 'mdi-account-hard-hat'">
+            <v-icon size="25px" color="blue" v-text="hover ? 'mdi-key-remove' : 'mdi-key-star'">
             </v-icon>
           </v-hover>
         </v-btn>
@@ -115,7 +115,7 @@ export default {
     Vdialog,
   },
   computed: {
-    user() {
+    currentUser() {
       return this.$store.state.currentUser;
     },
     items() {

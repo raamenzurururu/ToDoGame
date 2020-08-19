@@ -2,8 +2,13 @@
   <v-form>
     <v-container class="add-todo">
       <v-row>
-        <v-col id="v-step-0" class="pr-0" cols="3" xs="6" sm="2" md="1" lg="2">
-          <v-select label="TP" v-model="todo.point" :items="items" outlined>Point</v-select>
+        <v-col class="pr-0" cols="3" xs="6" sm="2" md="2" lg="2">
+          <v-select
+            label="TP"
+            v-model="todo.point"
+            :items="items"
+            outlined
+          ></v-select>
         </v-col>
         <!-- v-bind: 属性名 = "設定する値" -->
         <v-col class="pr-0" cols="9" xs="8" sm="8" md="8" lg="8">
@@ -17,13 +22,9 @@
           ></v-text-field>
         </v-col>
         <v-col class="pr-0" cols="12" xs="2" sm="2" md="2" lg="2">
-          <v-hover v-slot:default="{ hover }">
-            <v-btn class="todo-btn" my-2 mx-1 @click="handleSubmit">
-              <v-icon v-text="hover ? 'mdi-chess-king' : ''">
-                </v-icon>
-                POST
-            </v-btn>
-          </v-hover>
+          <v-btn class="todo-btn" @click="handleSubmit">
+            登録
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -32,19 +33,19 @@
 
 <script>
 const maxNumber = 11;
-const numberRange = [...Array(maxNumber).keys()]; 
+const numberRange = [...Array(maxNumber).keys()];
 
 export default {
   props: {
     todo: {
       type: Object,
-      'default': () => ({ title:"",point: 0}) ,
+      default: () => ({ title: "", point: 0 }),
       required: true
     }
   },
   data() {
     return {
-      items: numberRange,
+      items: numberRange
     };
   },
   methods: {
@@ -63,12 +64,12 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: yellow;
+$main-color: blue;
 
 @mixin btn {
   background-color: white;
-  border: 2px solid $main-color;
-  color: $main-color;
+  border: 2px solid white;
+  color: white;
   display: inline-block;
   font-weight: bold;
   margin: 15px;
@@ -76,19 +77,15 @@ $main-color: yellow;
 }
 
 .add-todo {
-
   .todo-btn {
     @include btn;
 
     &:hover {
       border: 2px solid blue;
-      color: white
+      color: rgba(8, 113, 233, 0.884);
     }
   }
 
-  .mdi-chess-king {
-    color: black !important;
-  }
 }
 
 .col-md-4 > .bt {

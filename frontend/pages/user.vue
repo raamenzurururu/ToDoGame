@@ -150,7 +150,7 @@ $sp: 480px;
     border: 2px white solid;
     margin: 0 auto;
     width: 66%;
-    background-color: grey;
+    background-color: rgb(57, 151, 186);
   }
 
   .coin-img {

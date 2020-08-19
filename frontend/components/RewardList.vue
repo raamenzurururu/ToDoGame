@@ -7,7 +7,7 @@
       </v-card-title>
       <draggable class="pl-0" v-model="rewards" :options="{ animation: 200, delay: 50 }" @end="atEnd" element="ul">
         <li class="reward-list" v-for="reward in rewards" :key="reward.sort">
-          <v-icon size="30px">mdi-numeric-{{ reward.point }}-box-outline</v-icon>
+          <v-icon size="30px">mdi-numeric-{{ reward.point }}-circle-outline</v-icon>
           <v-hover v-slot:default="{ hover }">
             <v-icon v-if="!reward.status" @click="openCompleteDialog(reward)" size="25px" color="yellow"
               v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'">
@@ -255,7 +255,7 @@
     padding: 10px;
     border: 1px solid #7f7f7f;
     border-radius: 6px;
-    background-color: rgb(16, 162, 219);
+    background-color: rgb(43, 128, 240);
     cursor: grab;
     .reward-list-icon {
       margin-left: auto;
