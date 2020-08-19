@@ -500,6 +500,7 @@ $sp: 480px;
     text-align: center;
     font-size: 70px;
     font-family: sans-serif;
+    text-shadow: 3px 5px #10729c;
     margin-bottom: 0px;
 
     .login-title-first {
