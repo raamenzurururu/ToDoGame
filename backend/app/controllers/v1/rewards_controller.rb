@@ -27,13 +27,19 @@ class V1::RewardsController < ApplicationController
 
   def complete
     reward = Reward.find(params[:id])
-    reward.update(status: true)
     user = User.find(reward.user_id)
-    losepoint = user.point.to_i
-    losepoint -= reward.point
-    user.point = losepoint
-    user.update(point: losepoint)
-    render json: {reward: reward, user: user}
+    if user.point <= reward.point
+      render json: {error_msg: ["TP(タスクポイント)が足りません"]}, status: :unprocessable_entity
+    else
+      user = User.find(reward.user_id)
+      losepoint = user.point.to_i
+      losepoint -= reward.point
+
+      reward.update(status: true)
+      user.update(point: losepoint)
+      user.point = losepoint
+      render json: {reward: reward, user: user}
+    end
   end
 
   def sort
