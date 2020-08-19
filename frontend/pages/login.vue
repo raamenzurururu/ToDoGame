@@ -1,5 +1,6 @@
 <template>
   <v-container class="login-page">
+    <h1 v-if="countHiddenPage >= 5">あなたのために祈ってます。</h1>
     <h1 class="login-title">ToDo<span class="login-title-first">Game</span></h1>
     <v-row>
       <v-col cols="12" sm="12" md="6" lg="6">
@@ -24,6 +25,8 @@
 
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
         <img class="girl" src="../assets/mon_214.gif">
+        <v-icon id="call" :color="color" @click="countCall()" class="mb-16 call" :size="size">mdi-christianity-outline</v-icon>
+        <h1 v-if="countHiddenPage >= 10">どうか、すすんでください。</h1>
         <div class="instead-of-form">
           <vue-typer
             :text="[
@@ -239,6 +242,9 @@ export default {
       show1: false,
       show2: false,
       dialog: false,
+      countHiddenPage: 0,
+      color: "",
+      size: 80,
       items: [
         {
           src: Pipo
@@ -393,6 +399,11 @@ export default {
         title.classList.add(name);
       };
       setTimeout(check, 1000, "checked");
+    },
+    countCall() {
+      this.countHiddenPage ++;
+      this.size += 10;
+      this.color = "blue"
     }
   }
 };
@@ -605,4 +616,10 @@ $sp: 480px;
   width: 10px;
   background-color: #aa3535;
 }
+
+.blue {
+  color: blue;
+}
+
+
 </style>
