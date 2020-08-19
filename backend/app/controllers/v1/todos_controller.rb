@@ -33,23 +33,30 @@ class V1::TodosController < ApplicationController
       todo = Todo.find(params[:id])
       user = User.find(todo.user_id)
 
-      total_point = user.point.to_i
-      total_point += todo.point
-      user.point = total_point
+      totalPoint = user.point.to_i
+      totalPoint += todo.point
+      user.point = totalPoint
 
-      total_exp = user.experience_point
-      total_exp += todo.point
-      user.experience_point = total_exp
-      user.update(point: total_point,experience_point: total_exp)
+      totalExp = user.experience_point
+      totalExp += todo.point
+      user.experience_point = totalExp
+      user.update(point: totalPoint,experience_point: totalExp)
+
       levelSetting = LevelSetting.find_by(level: user.level + 1)
-      if levelSetting.present? && levelSetting.thresold <= user.experience_point
-        user.level = user.level + 1
+
+      if levelSetting.present?
+      levelSetting.thresold <= user.experience_point
+        user.level += 1
         user.update(level: user.level)
-        total_exp = 0
       end
+
+      # until_percentage = totalExp.quo(levelSetting.thresold).to_f.round(2)*100
+      # until_level = levelSetting.thresold - totalExp
+
+      # return {until_percentage: until_percentage, until_level: until_level}
       
       if todo.destroy
-        render json: {todo: todo, user: user }
+        render json: {todo: todo, user: user}
       end
     end
 

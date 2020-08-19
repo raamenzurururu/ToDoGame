@@ -22,7 +22,7 @@
       <v-progress-linear
         :height="12"
         :rounded="true"
-        :value="currentUser.untilPercentage ? currentUser.untilPercentage : 0"
+        :value="30"
         color="light-blue"
         striped
       >
@@ -156,7 +156,7 @@ $sp: 480px;
     border: 2px white solid;
     margin: 0 auto;
     width: 66%;
-    background-color: rgb(57, 151, 186);
+    background-color: grey;
   }
 
   .coin-img {
