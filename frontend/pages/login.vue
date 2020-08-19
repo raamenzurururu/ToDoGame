@@ -39,6 +39,7 @@
         <h1 v-if="countHiddenPage >= 10">どうか、すすんでください。</h1>
         <div class="instead-of-form">
           <vue-typer
+            style="font-family: dot;"
             :text="[
               'ゆうしゃさま。　がいようを　さいごまで　よんで　くださいますのね？',
               'ああ！わたしのことばを　きいてくださるかたが　いらっしゃるなんて！',
@@ -112,7 +113,19 @@
       </v-col>
     </v-row>
 
-    <v-row class="introduction">
+    <vue-typer
+      style="font-family: dot;"
+      :text="[
+        'ここからハジマル。　ながいたび。　きみはたくさんの、、、たすくをこなし、、、もっと。もっと。カシコクナル。さあ、、、イマすぐに、、、はじめよう。いくんだ。ユウシャよ、、、',
+      ]"
+      erase-style="clear"
+      :type-delay="230"
+      :erase-delay="300"
+      :repeat="Infinity"
+      caret-animation="expand"
+    ></vue-typer>
+
+    <v-row class="introduction" style="font-family: dot;">
       <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
         <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
         <h3 class="login-explain">さらなる高みを目指して</h3>
@@ -480,15 +493,15 @@ $sp: 480px;
     height: 40%;
   }
 
-//   img {
-//     margin: 0 auto;
-//     width: 70%;
-//     height: 70%;
-//     @include sp {
-//     width: 100%;
-//     height: 100%;
-//   }
-// }
+  //   img {
+  //     margin: 0 auto;
+  //     width: 70%;
+  //     height: 70%;
+  //     @include sp {
+  //     width: 100%;
+  //     height: 100%;
+  //   }
+  // }
 
   .mon {
     width: 20%;
@@ -541,6 +554,7 @@ $sp: 480px;
       padding-top: 20px;
     }
   }
+
   .introduction {
     margin: 100px auto 50px;
 
@@ -702,13 +716,13 @@ $sp: 480px;
 
   .sub-introduction-2 {
     text-align: center;
-    background-color:rgb(62, 172, 35);
+    background-color: rgb(62, 172, 35);
     border: 3px solid skyblue;
   }
 
   .sub-introduction-3 {
     text-align: center;
-    background-color:rgb(11, 214, 236);
+    background-color: rgb(11, 214, 236);
     border: 3px solid skyblue;
   }
 }
