@@ -27,7 +27,7 @@
             >
             </v-icon>
           </v-hover>
-          
+
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-list-icon">
             <v-icon @click="editItem(todo)" color="black" big
@@ -173,7 +173,7 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: yellow !important;
+$main-color: rgb(12, 238, 234) !important;
 $sub-color: #dd8b10;
 $accent-color: red;
 
@@ -186,6 +186,11 @@ $accent-color: red;
   width: 70%;
   font-weight: bold;
 }
+
+.list-title {
+  color: rgb(6, 6, 201);
+}
+
 .v-icon {
   display: flex;
   justify-content: center;
@@ -227,9 +232,6 @@ $accent-color: red;
 
 .v-dialog {
   width: 70%;
-  h2 {
-    color: $sub-color;
-  }
   p {
     margin-left: 5%;
   }

@@ -81,7 +81,7 @@
         <v-hover v-slot:default="{ hover }">
           <v-btn class="login-button" @click="signup">
             <v-icon v-text="hover ? 'mdi-chess-king' : ''"></v-icon>
-            GO PLAY
+            始める
           </v-btn>
         </v-hover>
       </v-col>
@@ -173,7 +173,7 @@
             <v-hover v-slot:default="{ hover }">
               <v-btn class="dialog-btn" @click="login">
                 <v-icon v-text="hover ? 'mdi-chess-queen' : ''"></v-icon>
-                GO GAME
+                ログインする
               </v-btn>
             </v-hover>
             <p v-if="error" class="errors">{{ error }}</p>
@@ -389,8 +389,8 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: yellow !important;
-$sub-color: #dd8b10;
+$main-color: #03a9f5 !important;
+$sub-color: rgb(11, 214, 236) !important;
 $accent-color: red;
 
 $pc: 1024px;
@@ -418,7 +418,7 @@ $sp: 480px;
 
 
 @mixin explain {
-  color: $sub-color;
+  color: $main-color;
   font-family: sans-serif;
   margin-bottom: 10px;
 }
@@ -465,8 +465,8 @@ $sp: 480px;
   .login-button-wrapper {
     .login-button {
       background-color: black !important;
-      border: 2px solid white;
-      color: white;
+      border: 2px solid $main-color;
+      color: $sub-color;
       width: 100%;
     }
     .skull {
@@ -496,21 +496,21 @@ $sp: 480px;
     margin-top: 30px;
   }
   .mdi-chess-queen {
-    color: black !important;
+    color: $main-color !important;
   }
 
   .mdi-chess-knight {
-    color: black !important;
+    color: $main-color !important;
   }
 
   .login-button {
     &:hover {
-      border: 2px solid yellow;
-      color: yellow;
+      border: 2px solid $main-color;
+      color: $sub-color;
     }
   }
   .checked {
-    color: red;
+    color: $accent-color;
   }
   .login-button-wrapper {
     text-align: center;
@@ -548,11 +548,11 @@ $sp: 480px;
   width: 45%;
   font-weight: bold;
   .mdi-chess-queen {
-    color: black !important;
+    color: $main-color !important;
   }
   &:hover {
-    border: 2px solid white;
-    color: white;
+    border: 2px solid $main-color;
+    color: $sub-color;
   }
 }
 .headline {
@@ -564,8 +564,8 @@ $sp: 480px;
   margin-top: 59px;
   .guest-btn {
     &:hover {
-      border: 2px solid yellow;
-      color: yellow;
+      border: 2px solid $main-color;
+      color: $sub-color;
     }
     @include sp {
       font-size: 25px;
@@ -574,6 +574,4 @@ $sp: 480px;
     }
   }
 }
-
-
 </style>

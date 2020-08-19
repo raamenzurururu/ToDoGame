@@ -49,7 +49,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title class="pl-0">
         <router-link to="/user" class="toolbar-title"
-          ><v-icon class="mb-2" size="38" color="yellow"
+          ><v-icon class="mb-2 title-icon" size="38"
             >mdi-crown-outline</v-icon
           >ToDo<span class="title-first">Game</span></router-link
         >
@@ -172,7 +172,7 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: yellow;
+$main-color: rgb(11, 214, 236);
 
 $pc: 1024px;
 $tab: 680px;
@@ -210,6 +210,9 @@ $sp: 480px;
 
   .tool-bar {
     display: flex;
+    .title-icon {
+      color: $main-color;
+    }
   }
 
   .page-link {
