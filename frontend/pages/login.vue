@@ -466,8 +466,13 @@ $sp: 480px;
 
 @mixin explain {
   color: $main-color;
-  font-family: sans-serif;
+  font-family: dot;
   margin-bottom: 10px;
+}
+
+@font-face {
+  font-family: dot;
+  src: url("../assets/fonts/k8x12S.ttf") format("truetype");
 }
 
 .login-page {
