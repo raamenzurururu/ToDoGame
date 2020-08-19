@@ -2,25 +2,31 @@
   <v-container class="user-page" v-if="currentUser">
     <v-row class="user-status">
       <v-col cols="12" xs="5" sm="6" md="5" lg="5">
-        <p>名前：{{ currentUser.user.name }}</p>
+        <p>名前：{{ currentUser.user.name }}<v-icon
+              class="mb-2"
+              color="yellow"
+              size="30"
+              v-if="(currentUser.user.level = 10)"
+              >mdi-crown</v-icon>
         <div class="user-point">
-          <img class="coin-img" src="../assets/coin.gif">
-          <p class="user-task-point">{{ currentUser.user.point }}</p>
+          <img class="coin-img" src="../assets/coin.gif" />
+          <p class="user-task-point">{{ currentUser.user.point}}</p>
         </div>
       </v-col>
 
       <v-col cols="12" xs="5" sm="6" md="5" lg="5">
         <p class="user-level">レベル:{{ currentUser.user.level }}</p>
-        <p>次のレベルまであと{{ currentUser.untilLevel ? currentUser.untilLevel : 50 }} EXP</p>
+        <p v-if="currentUser.user.level">次のレベルまであと{{currentUser.untilLevel ? currentUser.untilLevel : 0}} EXP</p>
+        <p v-else>あなたは最大レベルになりました</p>
       </v-col>
-        <v-progress-linear
-          :height="12"
-          :rounded="true"
-          :value="currentUser.untilPercentage ? currentUser.untilPercentage : 0"
-          color="light-blue"
-          striped
-        >
-        </v-progress-linear>
+      <v-progress-linear
+        :height="12"
+        :rounded="true"
+        :value="currentUser.untilPercentage ? currentUser.untilPercentage : 0"
+        color="light-blue"
+        striped
+      >
+      </v-progress-linear>
     </v-row>
 
     <v-row justify="center">
@@ -77,7 +83,7 @@ export default {
   },
   components: {
     AddTodo,
-    TodoList,
+    TodoList
   },
   computed: {
     currentUser() {
@@ -91,7 +97,7 @@ export default {
           todo
         });
         console.log(this.currentUser);
-        const userTodo = this.currentUser.todos ? this.currentUser.todos : []
+        const userTodo = this.currentUser.todos ? this.currentUser.todos : [];
         this.$store.commit("setUser", {
           ...this.currentUser,
           todos: [...userTodo, data]
@@ -102,7 +108,7 @@ export default {
         const { data } = error.response;
         this.$store.commit("setError", data.error_msg);
       }
-    },
+    }
     // logOut() {
     //   firebase
     //     .auth()
