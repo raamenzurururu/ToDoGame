@@ -23,11 +23,22 @@
       </v-col>
 
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
-        <v-icon class="mb-2" size="80">mdi-cat</v-icon>
+        <img class="girl" src="../assets/mon_214.gif">
         <div class="instead-of-form">
-          <p>※ここに居てはダメだ</p>
-          <p>※ToDoを終わらせてのんびりしよう.</p>
-          <vue-typer text="Hello World!"></vue-typer>
+          <vue-typer
+            :text="[
+              'ゆうしゃさま。　がいようを　さいごまで　よんで　くださいますのね？',
+              'ああ！わたしのことばを　きいてくださるかたが　いらっしゃるなんて！',
+              '、、、。',
+              'ここからでるには　れべるを５０にしなければなりません。',
+              'このわたし　を　すくってください。',
+            ]"
+            erase-style="clear"
+            :type-delay="140"
+            :erase-delay="270"
+            :repeat="0"
+            caret-animation='expand'
+          ></vue-typer>
         </div>
       </v-col>
 
@@ -423,6 +434,10 @@ $sp: 480px;
 }
 
 .login-page {
+  .girl {
+    height: 40%;
+  }
+
   .mon {
     width: 20%;
 
@@ -572,5 +587,22 @@ $sp: 480px;
       height: 70px !important;
     }
   }
+}
+
+.vue-typer {
+  font-size: 20px;
+}
+
+.vue-typer .custom.char {
+  color: #c47d8a;
+  background-color: #252424;
+}
+.vue-typer .custom.char.selected {
+  background-color: #087df1;
+}
+
+.vue-typer .custom.caret {
+  width: 10px;
+  background-color: #aa3535;
 }
 </style>
