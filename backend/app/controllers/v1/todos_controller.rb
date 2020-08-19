@@ -51,6 +51,7 @@ class V1::TodosController < ApplicationController
       end
 
       # until_percentage = totalExp.quo(levelSetting.thresold).to_f.round(2)*100
+      # こいつが原因でthresoldがnilになってた
       # until_level = levelSetting.thresold - totalExp
 
       # return {until_percentage: until_percentage, until_level: until_level}
