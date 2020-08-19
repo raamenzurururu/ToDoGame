@@ -120,8 +120,8 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: white;
-$sub-color: yellow;
+$main-color: #03a9f5 !important;
+$sub-color: rgb(11, 214, 236) !important;
 $accent-color: red;
 
 $pc: 1024px;

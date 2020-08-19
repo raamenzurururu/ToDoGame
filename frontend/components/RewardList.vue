@@ -211,9 +211,10 @@
 </script>
 
 <style lang="scss">
-  $main-color: yellow;
-  $sub-color: blue;
-  $accent-color: deeppink;
+$main-color: #03a9f5 !important;
+$sub-color: rgb(11, 214, 236) !important;
+$accent-color: red;
+
   @mixin sp {
     @media (max-width: ($sp)) {
       @content;

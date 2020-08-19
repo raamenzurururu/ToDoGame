@@ -173,8 +173,8 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: rgb(12, 238, 234) !important;
-$sub-color: #dd8b10;
+$main-color: #03a9f5 !important;
+$sub-color: rgb(11, 214, 236) !important;
 $accent-color: red;
 
 @mixin btn {

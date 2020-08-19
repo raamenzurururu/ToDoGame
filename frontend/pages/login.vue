@@ -16,7 +16,7 @@
         <div class="guest" v-else>
           <v-hover v-slot:default="{ hover }">
             <v-btn class="login-button" @click="guestLogin">
-              <v-icon v-text="hover ? 'mdi-chess-rook' : ''"></v-icon>ゲストログイン
+              <v-icon v-text="hover ? 'mdi-feather' : ''"></v-icon>ゲストログイン
             </v-btn>
           </v-hover>
         </div>
@@ -80,7 +80,7 @@
         </form>
         <v-hover v-slot:default="{ hover }">
           <v-btn class="login-button" @click="signup">
-            <v-icon v-text="hover ? 'mdi-chess-king' : ''"></v-icon>
+            <v-icon v-text="hover ? 'mdi-paw' : ''"></v-icon>
             始める
           </v-btn>
         </v-hover>
@@ -151,7 +151,7 @@
     </v-btn> -->
     <v-dialog content-class="dialog" v-model="dialog" max-width="60%">
       <v-card>
-        <v-card-title class="headline"><h3>Login</h3></v-card-title>
+        <v-card-title class="headline"><h3>ログイン</h3></v-card-title>
         <v-card-text>
           <form>
             <v-text-field
@@ -172,7 +172,7 @@
             ></v-text-field>
             <v-hover v-slot:default="{ hover }">
               <v-btn class="dialog-btn" @click="login">
-                <v-icon v-text="hover ? 'mdi-chess-queen' : ''"></v-icon>
+                <v-icon v-text="hover ? 'mdi-paw' : ''"></v-icon>
                 ログインする
               </v-btn>
             </v-hover>
@@ -368,21 +368,16 @@ export default {
         });
     },
     moveToTop() {
-      const duration = 1000; // 移動速度（1秒で終了）
-      const interval = 25; // 0.025秒ごとに移動
-      const step = -window.scrollY / Math.ceil(duration / interval); // 1回に移動する距離
-      const timer = setInterval(() => {
-        window.scrollBy(0, step); // スクロール位置を移動
-
-        if (window.scrollY <= 0) {
-          clearInterval(timer);
-          const title = document.getElementById("login-signup");
-          const check = function(name) {
-            title.classList.add(name);
-          };
-          setTimeout(check, 250, "checked");
-        }
-      }, interval);
+      let element = document.getElementById("login-signup")
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+      const title = document.getElementById("login-signup");
+      const check = function(name) {
+        title.classList.add(name);
+      };
+      setTimeout(check, 1000, "checked");
     }
   }
 };

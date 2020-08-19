@@ -64,7 +64,8 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: blue;
+$main-color: #03a9f5 !important;
+$sub-color: rgb(11, 214, 236) !important;
 
 @mixin btn {
   background-color: white;
