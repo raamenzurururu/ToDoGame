@@ -28,7 +28,7 @@
 
           <v-dialog v-model="completeDialog">
             <v-card>
-              <v-card-title>やることを達成しましたか？</v-card-title>
+              <v-card-title>『{{ todo.title }}』を達成しましたか？</v-card-title>
               <v-btn @click="completeItem(todo)">はい</v-btn>
               <v-btn @click="completeDialog = false">いいえ</v-btn>
             </v-card>
@@ -44,7 +44,7 @@
 
           <v-dialog v-model="deleteDialog">
             <v-card>
-              <v-card-title>やることを削除しますか？</v-card-title>
+              <v-card-title>削除しますか？</v-card-title>
               <v-btn @click="deleteItem(todo)">はい</v-btn>
               <v-btn @click="deleteDialog = false">いいえ</v-btn>
             </v-card>
@@ -153,7 +153,7 @@ export default {
       this.$store.commit("setUser", updateUser);
       this.snack = true;
       this.snackColor = "warning";
-      this.snackText = "Data deleted";
+      this.snackText = "削除しました";
       this.deleteDialog = false
     },
     async editItem(todo) {
@@ -228,6 +228,7 @@ $accent-color: red;
   .todo-title {
     padding-top: 2px;
     margin-left: 10px;
+    max-width: 45%;
   }
   .todo-point {
     color: rgb(236, 11, 97);
