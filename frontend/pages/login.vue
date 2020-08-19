@@ -494,9 +494,6 @@ $sp: 480px;
       color: $sub-color;
       width: 100%;
     }
-    .skull {
-      padding-left: 40%;
-    }
     .instead-of-form {
       border: 2px white solid;
       padding-top: 20px;

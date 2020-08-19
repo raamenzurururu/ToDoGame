@@ -52,5 +52,10 @@
     <img class="mon" src="../assets/mon_178.gif">
     <img class="mon" src="../assets/mon_178.gif">
     <img class="mon" src="../assets/mon_178.gif">
+    <img class="mon" src="../assets/mon_178.gif">
+    <img class="mon" src="../assets/mon_178.gif">
+    <img class="mon" src="../assets/mon_178.gif">
+    <img class="mon" src="../assets/mon_178.gif">
+    <img class="mon" src="../assets/mon_178.gif">
   </div>
 </template>
