@@ -6,26 +6,36 @@
       <v-col cols="12" sm="12" md="6" lg="6">
         <!-- 根拠のある言葉にしていく -->
         <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
-        <h2 class="login-explain">レベルアップ機能、報酬などであなたのモチベーションを高め、日々のやることをサクッと片付けるToDoアプリです。</h2>
+        <h2 class="login-explain">
+          レベルアップ機能、報酬などであなたのモチベーションを高め、日々のやることをサクッと片付けるToDoアプリです。
+        </h2>
         <div class="monster">
-          <img class="mon" src="../assets/mon_178.gif">
-          <img class="mon" src="../assets/mon_176.gif">
-          <img class="mon" src="../assets/mon_227.gif">
-          <img class="mon" src="../assets/mon_283.gif">
+          <img class="mon" src="../assets/mon_178.gif" />
+          <img class="mon" src="../assets/mon_176.gif" />
+          <img class="mon" src="../assets/mon_227.gif" />
+          <img class="mon" src="../assets/mon_283.gif" />
         </div>
         <div v-if="user"></div>
         <div class="guest" v-else>
           <v-hover v-slot:default="{ hover }">
             <v-btn class="login-button" @click="guestLogin">
-              <v-icon v-text="hover ? 'mdi-feather' : ''"></v-icon>ゲストログイン
+              <v-icon v-text="hover ? 'mdi-feather' : ''"></v-icon
+              >ゲストログイン
             </v-btn>
           </v-hover>
         </div>
       </v-col>
 
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
-        <img class="girl" src="../assets/mon_214.gif">
-        <v-icon id="call" :color="color" @click="countCall()" class="mb-16 call" :size="size">mdi-christianity-outline</v-icon>
+        <img class="girl" src="../assets/mon_214.gif" />
+        <v-icon
+          id="call"
+          :color="color"
+          @click="countCall()"
+          class="mb-16 call"
+          :size="size"
+          >mdi-christianity-outline</v-icon
+        >
         <h1 v-if="countHiddenPage >= 10">どうか、すすんでください。</h1>
         <div class="instead-of-form">
           <vue-typer
@@ -34,13 +44,13 @@
               'ああ！わたしのことばを　きいてくださるかたが　いらっしゃるなんて！',
               '、、、。',
               'ここからでるには　れべるを５０にしなければなりません。',
-              'このわたし　を　すくってください。',
+              'このわたし　を　すくってください。'
             ]"
             erase-style="clear"
             :type-delay="140"
             :erase-delay="270"
             :repeat="Infinity"
-            caret-animation='expand'
+            caret-animation="expand"
           ></vue-typer>
         </div>
       </v-col>
@@ -111,31 +121,59 @@
       </v-col>
     </v-row>
 
-    <v-row class="introduction md-0">
-      <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
+    <v-row class="introduction md-0 justify-center">
+      <v-col
+        class="sub-introduction-1"
+        mx-2
+        mb-2
+        cols="12"
+        sm="9"
+        md="3"
+        lg="3"
+      >
         <img src="../assets/mon_260.gif" />
-        <h2 class="login-subtitle text-center">レベル50にして伝説の剣を手に入れよう</h2>
-        <h3 class="login-explain">TP(TaskPoint)は報酬の開放に使用できるぞ！</h3>
+        <h2 class="login-subtitle-1 text-center">
+          レベル50にして伝説の剣を手に入れよう
+        </h2>
+        <h3 class="login-explain-1">
+          TP(TaskPoint)は報酬の開放に使用できるぞ！
+        </h3>
       </v-col>
 
-      <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="pt-10" src="../assets/mon_070.gif" />
-        <h2 class="login-subtitle text-center">冒険のように楽しめる仕組み</h2>
-        <h3 class="login-explain">
+      <v-col
+        class="sub-introduction-2"
+        mx-2
+        mb-2
+        cols="12"
+        sm="9"
+        md="3"
+        lg="3"
+      >
+        <img src="../assets/mon_070.gif" />
+        <h2 class="login-subtitle-2 text-center">冒険のように楽しめる仕組み</h2>
+        <h3 class="login-explain-2">
           経験値をためてどんどんレベルアップしていこう
         </h3>
       </v-col>
 
-      <v-col class="sub-introduction" cols="12" sm="12" md="4" lg="4">
-        <img class="pt-10" src="../assets/mon_274.gif" />
-        <h2 class="login-subtitle text-center">それが成長へのコツ</h2>
-        <h3 class="login-explain">
-          やることを完了させるたびに経験値が溜まっていく。より高みを。そしてレベルが高いといいことが？
+      <v-col
+        class="sub-introduction-3"
+        mx-2
+        mb-2
+        cols="12"
+        sm="12"
+        md="4"
+        lg="4"
+      >
+        <img src="../assets/mon_274.gif" />
+        <h2 class="login-subtitle-3 text-center">それが成長へのコツ</h2>
+        <h3 class="login-explain-3">
+          やることを完了させるたびに経験値が溜まっていく。
         </h3>
       </v-col>
     </v-row>
 
-    <v-row>
+    <!-- <v-row>
       <v-col cols="12" sm="12" md="12" lg="10">
         <v-carousel height="100%">
           <v-carousel-item
@@ -145,7 +183,7 @@
           ></v-carousel-item>
         </v-carousel>
       </v-col>
-    </v-row>
+    </v-row> -->
 
     <v-hover v-slot:default="{ hover }">
       <div v-if="user"></div>
@@ -222,13 +260,11 @@
 <script>
 import axios from "@/plugins/axios";
 import firebase from "@/plugins/firebase";
-import Pipo from "@/assets/pipo-pic003.jpg";
-import Forest from "@/assets/bg1.jpg";
-import { VueTyper } from 'vue-typer'
+import { VueTyper } from "vue-typer";
 
 export default {
   components: {
-    'vue-typer': VueTyper
+    "vue-typer": VueTyper
   },
   data() {
     return {
@@ -245,14 +281,6 @@ export default {
       countHiddenPage: 0,
       color: "",
       size: 80,
-      items: [
-        {
-          src: Pipo
-        },
-        {
-          src: Forest
-        }
-      ],
       showContent: false,
       error: ""
     };
@@ -272,11 +300,11 @@ export default {
     signup() {
       if (this.password !== this.passwordConfirm) {
         this.error = "※パスワードとパスワード確認が一致していません";
-        return
+        return;
       }
       if (this.name == "") {
         this.error = "名前を入力してください";
-        return
+        return;
       }
       this.$store.commit("setLoading", false);
       firebase
@@ -294,10 +322,10 @@ export default {
               user
             })
             .then(res => {
-              this.$store.commit("setLoading", false); 
+              this.$store.commit("setLoading", false);
               let param = {
                 user: res.data
-              }
+              };
               this.$store.commit("setUser", param);
               this.$store.commit("setNotice", {
                 status: true,
@@ -389,7 +417,7 @@ export default {
         });
     },
     moveToTop() {
-      let element = document.getElementById("login-signup")
+      let element = document.getElementById("login-signup");
       element.scrollIntoView({
         behavior: "smooth",
         block: "center"
@@ -401,9 +429,9 @@ export default {
       setTimeout(check, 1000, "checked");
     },
     countCall() {
-      this.countHiddenPage ++;
+      this.countHiddenPage++;
       this.size += 10;
-      this.color = "blue"
+      this.color = "blue";
     }
   }
 };
@@ -435,8 +463,6 @@ $sp: 480px;
     @content;
   }
 }
-
-
 
 @mixin explain {
   color: $main-color;
@@ -618,5 +644,55 @@ $sp: 480px;
   color: blue;
 }
 
+.login-subtitle-1 {
+  color: rgb(255, 255, 255);
+  background: rgb(62, 172, 35);
+}
 
+.login-explain-1 {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin: 30px 0;
+  background: rgb(62, 172, 35);
+}
+.login-subtitle-2 {
+  color: rgb(255, 255, 255);
+  background: rgb(65, 46, 46);
+}
+
+.login-explain-2 {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin: 30px 0;
+  background-color: rgb(65, 46, 46, 0.5);
+}
+.login-subtitle-3 {
+  color: rgb(255, 255, 255);
+}
+
+.introduction {
+  margin: 100px auto 50px;
+  img {
+    margin: 0 auto 30px;
+    display: block;
+  }
+
+  .sub-introduction-1 {
+    text-align: center;
+    background-image: url("../assets/bg1.jpg");
+    border: 3px solid skyblue;
+  }
+
+  .sub-introduction-1 {
+    text-align: center;
+    background-image: url("../assets/bg2.jpg");
+    border: 3px solid skyblue;
+  }
+
+  .sub-introduction-1 {
+    text-align: center;
+    background-image: url("../assets/bg3.jpg");
+    border: 3px solid skyblue;
+  }
+}
 </style>
