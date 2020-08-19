@@ -23,10 +23,11 @@
       </v-col>
 
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
-        <v-icon class="mb-2" size="80">mdi-chess-king</v-icon>
+        <v-icon class="mb-2" size="80">mdi-cat</v-icon>
         <div class="instead-of-form">
           <p>※ここに居てはダメだ</p>
           <p>※ToDoを終わらせてのんびりしよう.</p>
+          <vue-typer text="Hello World!"></vue-typer>
         </div>
       </v-col>
 
@@ -209,9 +210,12 @@ import axios from "@/plugins/axios";
 import firebase from "@/plugins/firebase";
 import Pipo from "@/assets/pipo-pic003.jpg";
 import Forest from "@/assets/bg1.jpg";
+import { VueTyper } from 'vue-typer'
 
 export default {
-  components: {},
+  components: {
+    'vue-typer': VueTyper
+  },
   data() {
     return {
       email: "",
