@@ -49,9 +49,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title class="pl-0">
         <router-link to="/user" class="toolbar-title"
-          ><v-icon class="mb-2 title-icon" size="38"
-            >mdi-crown-outline</v-icon
-          >ToDo<span class="title-first">Game</span></router-link
+          ><img class="sword" src="../assets/icon002.png" />ToDo<span class="title-first">Game</span></router-link
         >
       </v-toolbar-title>
 
@@ -64,7 +62,7 @@
         </v-btn>
       </v-toolbar-items>
 
-      <Vdialog></Vdialog>
+      <!-- <Vdialog></Vdialog> -->
 
       <!-- <v-toolbar-items class="page-link" v-if="user">
         <v-btn class="header-btn ml-1" @click="logOutWindow = true">
@@ -91,7 +89,7 @@
 <script>
 import Loading from "@/components/Loading";
 import Success from "@/components/Success";
-import Vdialog from "@/components/Vuetify/Vdialog";
+// import Vdialog from "@/components/Vuetify/Vdialog";
 import firebase from "@/plugins/firebase";
 import axios from "@/plugins/axios";
 
@@ -112,7 +110,7 @@ export default {
   components: {
     Loading,
     Success,
-    Vdialog,
+    // Vdialog,
   },
   computed: {
     currentUser() {
@@ -196,16 +194,27 @@ $sp: 480px;
   }
 }
 
+@font-face {
+  font-family: dot;
+  src: url("../assets/fonts/k8x12S.ttf") format("truetype");
+}
+
 .app {
   .toolbar-title {
     color: white;
     text-decoration: none;
-    font-family: "sans-serif";
-    font-size: 30px;
+    font-family: "dot";
+    font-size: 35px;
+    letter-spacing: 5px;
     font-weight: bold;
     .title-first {
       color: $main-color;
     }
+  }
+
+  .sword {
+    padding-right: 10px;
+    margin-top: 5px;
   }
 
   .tool-bar {
