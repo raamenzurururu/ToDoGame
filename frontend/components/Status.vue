@@ -4,7 +4,7 @@
       <v-col cols="12" xs="5" sm="6" md="5" lg="5">
         <p>名前：{{ currentUser.user.name }}</p>
         <div class="user-point">
-          <img class="coin-img" src="../assets/coin.gif">
+          <img class="coin-img" src="../assets/icon021.png">
           <p class="user-task-point">{{ currentUser.user.point }}</p>
         </div>
       </v-col>

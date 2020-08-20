@@ -66,8 +66,9 @@
       >
         <form>
           <h1 id="login-signup" class="login-form-title text-center">
-            新規登録はこちら
+            新規登録<span class="login-font-h">は</span>こちら
           </h1>
+          <!-- 文字を傾けたい -->
           <v-text-field
             v-model="name"
             :counter="10"
@@ -516,8 +517,9 @@ $sp: 480px;
 
   .login-title {
     text-align: center;
-    font-size: 70px;
-    font-family: sans-serif;
+    font-size: 79px;
+    font-family: dot;
+    letter-spacing: 15px;
     text-shadow: 3px 5px #10729c;
     margin-bottom: 0px;
 
@@ -525,9 +527,16 @@ $sp: 480px;
       color: $main-color;
     }
   }
+
   .login-subtitle,
   .login-form-title {
     @include explain;
+    letter-spacing: 10px;
+    span.login-font-h {
+      display: inline-block;     /* インラインブロック化 */
+      transform: rotate( 35deg );
+      color: red;
+    }
   }
   .login-explain {
     text-align: center;
@@ -542,6 +551,7 @@ $sp: 480px;
     margin: 15px;
     font-weight: bold;
   }
+
   .login-button-wrapper {
     .login-button {
       background-color: black !important;
