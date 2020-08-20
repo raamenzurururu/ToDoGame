@@ -81,7 +81,7 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>素材提供【Rド】様</span>
+      <span class="footer">素材提供【Rド】様<img class="min-map" src="../assets/icon016.png" /></span>
     </v-footer>
   </v-app>
 </template>
@@ -240,5 +240,15 @@ $sp: 480px;
   .v-content_wrap {
     background-color: black !important;
   }
+
+  .footer {
+    font-family: dot;
+    font-size: 20px;
+  }
+
+  .min-map {
+    padding-left: 6px;
+  }
+
 }
 </style>
