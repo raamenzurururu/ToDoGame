@@ -7,7 +7,8 @@
         <!-- 根拠のある言葉にしていく -->
         <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
         <h2 class="login-explain">
-          レベルアップ機能、報酬などであなたのモチベーションを高め、日々のやることをサクッと片付けるToDoアプリです。
+          <span>ゲーム感覚</span>で日々のやることをこなす<br>
+          ToDoアプリです。
         </h2>
         <div class="monster">
           <img class="mon" src="../assets/mon_178.gif" />
@@ -66,7 +67,7 @@
       >
         <form>
           <h1 id="login-signup" class="login-form-title text-center">
-            新規登録<span class="login-font-h">は</span>こちら
+            新規登録<span>は</span>こちら
           </h1>
           <!-- 文字を傾けたい -->
           <v-text-field
@@ -108,7 +109,7 @@
         <v-hover v-slot:default="{ hover }">
           <v-btn class="login-button" @click="signup">
             <v-icon v-text="hover ? 'mdi-paw' : ''"></v-icon>
-            始める
+            はじめる
           </v-btn>
         </v-hover>
       </v-col>
@@ -145,12 +146,10 @@
         md="3"
         lg="3"
       >
-        <img src="../assets/mon_260.gif" />
-        <h2 class="login-subtitle-1 text-center">
-          レベル50にして伝説の剣を手に入れよう
-        </h2>
+        <img src="../assets/mon_235.gif" />
+        <h3 class="login-subtitle-1 text-center">冒険のように楽しめる仕組み</h3>
         <h3 class="login-explain-1">
-          TP(TaskPoint)は報酬の開放に使用できるぞ！
+          いつだって僕ら
         </h3>
       </v-col>
 
@@ -163,10 +162,12 @@
         md="3"
         lg="3"
       >
-        <img src="../assets/mon_070.gif" />
-        <h2 class="login-subtitle-2 text-center">冒険のように楽しめる仕組み</h2>
+        <img src="../assets/mon_260.gif" />
+        <h3 class="login-subtitle-2 text-center">
+          レベル上げを楽しもう！
+        </h3>
         <h3 class="login-explain-2">
-          経験値をためてどんどんレベルアップしていこう
+          きっと誰だって
         </h3>
       </v-col>
 
@@ -179,10 +180,10 @@
         md="3"
         lg="3"
       >
-        <img src="../assets/mon_274.gif" />
-        <h2 class="login-subtitle-3 text-center">それが成長へのコツ</h2>
+        <img src="../assets/mon_270.gif" />
+        <h3 class="login-subtitle-3 text-center">それが成長へのコツ</h3>
         <h3 class="login-explain-3">
-          やることを完了させるたびに経験値が溜まっていく。
+          楽しみたいはず。
         </h3>
       </v-col>
     </v-row>
@@ -532,7 +533,7 @@ $sp: 480px;
   .login-form-title {
     @include explain;
     letter-spacing: 10px;
-    span.login-font-h {
+    span {
       display: inline-block;     /* インラインブロック化 */
       transform: rotate( 35deg );
       color: red;
@@ -541,6 +542,9 @@ $sp: 480px;
   .login-explain {
     text-align: center;
     margin-bottom: 30px;
+    span {
+      color: red;
+    }
   }
   @mixin login-bottom-btn {
     background-color: black !important;
@@ -554,6 +558,8 @@ $sp: 480px;
 
   .login-button-wrapper {
     .login-button {
+      font-family: dot;
+      font-size: 20px;
       background-color: black !important;
       border: 2px solid $main-color;
       color: $sub-color;
@@ -689,6 +695,8 @@ $sp: 480px;
 }
 
 .login-explain-1 {
+  font-family: dot;
+  font-size: 30px;
   color: black;
   text-align: center;
   margin: 30px 0;
@@ -698,6 +706,8 @@ $sp: 480px;
 }
 
 .login-explain-2 {
+  font-family: dot;
+  font-size: 30px;
   color: black;
   text-align: center;
   margin: 30px 0;
@@ -706,6 +716,8 @@ $sp: 480px;
   color: white;
 }
 .login-explain-3 {
+  font-family: dot;
+  font-size: 30px;
   color: black;
   text-align: center;
   margin: 30px 0;
@@ -720,13 +732,13 @@ $sp: 480px;
 
   .sub-introduction-1 {
     text-align: center;
-    background-color: #aa3535;
+    background-color: rgb(62, 172, 35);
     border: 3px solid skyblue;
   }
 
   .sub-introduction-2 {
     text-align: center;
-    background-color: rgb(62, 172, 35);
+    background-color: #aa3535;
     border: 3px solid skyblue;
   }
 

@@ -144,7 +144,7 @@ export default {
           },
           {
             icon: "mdi-chess-queen",
-            title: "新規登録",
+            title: "おまけ",
             to: "/signup"
           }
         ];
