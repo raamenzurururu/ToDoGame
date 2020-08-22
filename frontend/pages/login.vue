@@ -6,17 +6,39 @@
       <v-col cols="12" sm="12" md="6" lg="6">
         <!-- 根拠のある言葉にしていく -->
         <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
-        <h2 class="login-explain">
-          <span>ゲーム感覚</span>で日々のやることをこなす<br>
+          <vue-typer
+            class="login-explain"
+            style="font-family: dot;"
+            :text="[
+              'ゲーム感覚で日々のやることをこなす',
+              'ToDoアプリです',
+              'きみはもっと。もっと。カシコクナル',
+              'さあ、、、イマすぐに、、、はじめよう。',
+              'いくんだ。ユウシャよ、、、'
+            ]"
+            erase-style="clear"
+            :type-delay="230"
+            :erase-delay="300"
+            :repeat="Infinity"
+            caret-animation="expand"
+          ></vue-typer>
+        <!-- <h2 class="login-explain">
+          <span>ゲーム感覚</span>で日々のやることをこなす<br />
           ToDoアプリです。
-        </h2>
+        </h2> -->
         <div class="monster">
           <img class="mon" src="../assets/mon_178.gif" />
           <img class="mon" src="../assets/mon_176.gif" />
           <img class="mon" src="../assets/mon_227.gif" />
           <img class="mon" src="../assets/mon_283.gif" />
         </div>
-        <div v-if="user"></div>
+        <div class="guest">
+          <a class="btn cubic"
+            ><span class="hovering">ここからはじまる</span
+            ><span class="default">冒険が</span></a
+          >
+        </div>
+        <!-- <div v-if="user"></div>
         <div class="guest" v-else>
           <v-hover v-slot:default="{ hover }">
             <v-btn class="login-button" @click="guestLogin">
@@ -24,7 +46,7 @@
               >ゲストログイン
             </v-btn>
           </v-hover>
-        </div>
+        </div> -->
       </v-col>
 
       <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
@@ -115,17 +137,20 @@
       </v-col>
     </v-row>
 
-    <vue-typer
+    <!-- <vue-typer
       style="font-family: dot;"
       :text="[
-        'ここからハジマル。　ながいたび。　きみはたくさんの、、、たすくをこなし、、、もっと。もっと。カシコクナル。さあ、、、イマすぐに、、、はじめよう。いくんだ。ユウシャよ、、、',
+        'ここからハジマル。　ながいたび。',
+        'きみはもっと。もっと。カシコクナル',
+        'さあ、、、イマすぐに、、、はじめよう。',
+        'いくんだ。ユウシャよ、、、'
       ]"
       erase-style="clear"
       :type-delay="230"
       :erase-delay="300"
       :repeat="Infinity"
       caret-animation="expand"
-    ></vue-typer>
+    ></vue-typer> -->
 
     <v-row class="introduction" style="font-family: dot;">
       <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
@@ -495,16 +520,6 @@ $sp: 480px;
     height: 40%;
   }
 
-  //   img {
-  //     margin: 0 auto;
-  //     width: 70%;
-  //     height: 70%;
-  //     @include sp {
-  //     width: 100%;
-  //     height: 100%;
-  //   }
-  // }
-
   .mon {
     width: 20%;
 
@@ -514,6 +529,57 @@ $sp: 480px;
   }
   .monster {
     text-align: center;
+  }
+
+  .btn {
+    position: relative;
+    display: inline-block;
+    transform-style: preserve-3d;
+    perspective: 300px;
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+    cursor: pointer;
+
+    &.cubic {
+      & span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 1px solid $main-color;
+        line-height: 48px;
+        text-align: center;
+        transition: all 0.3s;
+        border-radius: 10%;
+        font-family: dot;
+        letter-spacing: 5px;
+      }
+
+      & .hovering {
+        background-color: black;
+        color: $sub-color;
+        transform: rotateX(90deg);
+        transform-origin: center center -25px;
+      }
+
+      & .default {
+        background-color: black;
+        color: $sub-color;
+        transform: rotateX(0);
+        transform-origin: center center -25px;
+      }
+
+      &:hover {
+        & .hovering {
+          transform: rotateX(0);
+        }
+        & .default {
+          transform: rotateX(-90deg);
+        }
+      }
+    }
   }
 
   .login-title {
@@ -534,17 +600,14 @@ $sp: 480px;
     @include explain;
     letter-spacing: 10px;
     span {
-      display: inline-block;     /* インラインブロック化 */
-      transform: rotate( 35deg );
+      display: inline-block; /* インラインブロック化 */
+      transform: rotate(35deg);
       color: red;
     }
   }
   .login-explain {
-    text-align: center;
-    margin-bottom: 30px;
-    span {
-      color: red;
-    }
+    display: flex;
+    justify-content: center;
   }
   @mixin login-bottom-btn {
     background-color: black !important;
@@ -658,7 +721,7 @@ $sp: 480px;
 
 .guest {
   text-align: center;
-  margin-top: 59px;
+  margin-top: 37px;
   .guest-btn {
     &:hover {
       border: 2px solid $main-color;
