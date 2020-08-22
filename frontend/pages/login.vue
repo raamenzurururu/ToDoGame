@@ -703,6 +703,10 @@ $sp: 480px;
   color: black;
   text-align: center;
   margin: 30px 0;
+  &:hover {
+    transform: translate(-5.5px, -5.5px);
+    box-shadow: 5px 5px 0 0 rgb(62, 172, 35);
+  }
 }
 .login-subtitle-2 {
   color: white;
@@ -714,6 +718,10 @@ $sp: 480px;
   color: black;
   text-align: center;
   margin: 30px 0;
+  &:hover {
+    transform: translate(-5.5px, -5.5px);
+    box-shadow: 5px 5px 0 0 #aa3535;
+  }
 }
 .login-subtitle-3 {
   color: white;
@@ -724,6 +732,10 @@ $sp: 480px;
   color: black;
   text-align: center;
   margin: 30px 0;
+  &:hover {
+    transform: translate(-5.5px, -5.5px);
+    box-shadow: 5px 5px 0 0 rgb(11, 214, 236);
+  }
 }
 
 .introduction {
