@@ -3,7 +3,8 @@
     <h1 v-if="countHiddenPage >= 5">あなたのために祈ってます。</h1>
     <h1 class="login-title">ToDo<span class="login-title-first">Game</span></h1>
     <v-row>
-      <v-col cols="12" sm="12" md="6" lg="6">
+      <div v-if="user"></div>
+      <v-col v-else cols="12" sm="12" md="6" lg="6">
         <!-- 根拠のある言葉にしていく -->
         <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
         <vue-typer
@@ -49,13 +50,13 @@
         </div> -->
       </v-col>
 
-      <v-col v-if="user" cols="12" sm="12" md="6" lg="6">
+      <v-col v-if="user" class="extra-explain" cols="12" sm="12" md="12" lg="12">
         <img class="girl" src="../assets/mon_214.gif" />
         <v-icon
           id="call"
           :color="color"
           @click="countCall()"
-          class="mb-16 call"
+          class="mb-5 call"
           :size="size"
           >mdi-christianity-outline</v-icon
         >
@@ -64,11 +65,10 @@
           <vue-typer
             style="font-family: dot;"
             :text="[
-              'ゆうしゃさま。　がいようを　さいごまで　よんで　くださいますのね？',
+              'ゆうしゃさま。 さいごまで　よんで　くださいますのね？',
               'ああ！わたしのことばを　きいてくださるかたが　いらっしゃるなんて！',
-              '、、、。',
-              'ここからでるには　れべるを５０にしなければなりません。',
-              'このわたし　を　すくってください。'
+              'じゅうじかをおして　わたしのことばを',
+              'きいてください、、、。',
             ]"
             erase-style="clear"
             :type-delay="140"
@@ -151,8 +151,8 @@
       :repeat="Infinity"
       caret-animation="expand"
     ></vue-typer> -->
-
-    <v-row class="introduction" style="font-family: dot;">
+    <div v-if="user"></div>
+    <v-row v-else class="introduction" style="font-family: dot;">
       <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
         <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
         <h3 class="login-explain">さらなる高みを目指して</h3>
@@ -161,7 +161,8 @@
       </v-col>
     </v-row>
 
-    <v-row class="introduction md-0 justify-center">
+    <div v-if="user"></div>
+    <v-row v-else class="introduction md-0 justify-center">
       <v-col
         class="sub-introduction-1"
         mx-2
@@ -324,7 +325,7 @@ export default {
       dialog: false,
       countHiddenPage: 0,
       color: "",
-      size: 80,
+      size: 65,
       showContent: false,
       error: ""
     };
@@ -520,8 +521,13 @@ $sp: 480px;
 }
 
 .login-page {
-  .girl {
-    height: 40%;
+  .extra-explain {
+    text-align: center;
+    flex-direction: column;
+    .girl {
+    height: 60%;
+    margin-top: 40px;
+    }
   }
 
   .mon {
@@ -701,9 +707,7 @@ $sp: 480px;
     color: $accent-color;
   }
 }
-.v-window__container {
-  border: solid 5px white;
-}
+
 
 .dialog-btn {
   background-color: black;
@@ -713,9 +717,7 @@ $sp: 480px;
   margin: 15px;
   width: 45%;
   font-weight: bold;
-  .mdi-chess-queen {
-    color: $main-color !important;
-  }
+  
   &:hover {
     border: 2px solid $main-color;
     color: $sub-color;

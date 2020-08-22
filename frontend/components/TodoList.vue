@@ -36,10 +36,10 @@
 
           <span class="todo-title">{{ todo.title }}</span>
           <div class="todo-list-icon">
-            <v-icon @click="editItem(todo)" color="black" big
+            <v-icon @click="editItem(todo)" color="white" big
               >mdi-pencil</v-icon
             >
-            <v-icon small @click="deleteDialog = true" color="black">delete</v-icon>
+            <v-icon @click="deleteDialog = true" color="white">delete</v-icon>
           </div>
 
           <v-dialog v-model="deleteDialog">
