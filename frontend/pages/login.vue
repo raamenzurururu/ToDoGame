@@ -6,22 +6,22 @@
       <v-col cols="12" sm="12" md="6" lg="6">
         <!-- 根拠のある言葉にしていく -->
         <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
-          <vue-typer
-            class="login-explain"
-            style="font-family: dot;"
-            :text="[
-              'ゲーム感覚で日々のやることをこなす',
-              'ToDoアプリです。',
-              'きみはもっと。もっと。カシコクナル',
-              'さあ、、、イマすぐに、、、はじめよう。',
-              'いくんだ。ユウシャよ、、、。'
-            ]"
-            erase-style="clear"
-            :type-delay="200"
-            :erase-delay="200"
-            :repeat="Infinity"
-            caret-animation="expand"
-          ></vue-typer>
+        <vue-typer
+          class="login-explain"
+          style="font-family: dot;"
+          :text="[
+            'ゲーム感覚で日々のやることをこなす',
+            'ToDoアプリです。',
+            'きみはもっと。もっと。カシコクナル',
+            'さあ、、、イマすぐに、、、はじめよう。',
+            'いくんだ。ユウシャよ、、、。'
+          ]"
+          erase-style="clear"
+          :type-delay="200"
+          :erase-delay="200"
+          :repeat="Infinity"
+          caret-animation="expand"
+        ></vue-typer>
         <!-- <h2 class="login-explain">
           <span>ゲーム感覚</span>で日々のやることをこなす<br />
           ToDoアプリです。
@@ -172,7 +172,9 @@
         lg="3"
       >
         <img src="../assets/mon_235.gif" />
-        <h3 class="login-subtitle-1 text-center">冒険のように楽しめる仕組み</h3>
+        <h3 class="login-subtitle-1">
+          冒険のように楽しめる<img class="item1" src="../assets/icon003.png" />
+        </h3>
         <h3 class="login-explain-1">
           いつだって僕ら
         </h3>
@@ -188,8 +190,8 @@
         lg="3"
       >
         <img src="../assets/mon_260.gif" />
-        <h3 class="login-subtitle-2 text-center">
-          レベル上げを楽しもう！
+        <h3 class="login-subtitle-2">
+          レベル上げを楽しもう<img class="item2" src="../assets/icon025.png" />
         </h3>
         <h3 class="login-explain-2">
           きっと誰だって
@@ -206,7 +208,9 @@
         lg="3"
       >
         <img src="../assets/mon_270.gif" />
-        <h3 class="login-subtitle-3 text-center">それが成長へのコツ</h3>
+        <h3 class="login-subtitle-3 text-center">
+          それが成長へのコツ<img class="item3" src="../assets/icon024.png" />
+        </h3>
         <h3 class="login-explain-3">
           楽しみたいはず。
         </h3>
@@ -761,6 +765,15 @@ $sp: 480px;
 
 .login-subtitle-1 {
   color: white;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  .item1 {
+    position: absolute;
+    padding-left: 210px;
+    padding-top: 3px;
+  }
 }
 
 .login-explain-1 {
@@ -771,11 +784,19 @@ $sp: 480px;
   margin: 30px 0;
   &:hover {
     transform: translate(-5.5px, -5.5px);
-    box-shadow: 5px 5px 0 0 rgb(62, 172, 35);
   }
 }
 .login-subtitle-2 {
   color: white;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  .item2 {
+    position: absolute;
+    padding-left: 210px;
+    padding-top: 3px;
+  }
 }
 
 .login-explain-2 {
@@ -786,11 +807,19 @@ $sp: 480px;
   margin: 30px 0;
   &:hover {
     transform: translate(-5.5px, -5.5px);
-    box-shadow: 5px 5px 0 0 #aa3535;
   }
 }
 .login-subtitle-3 {
   color: white;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  .item3 {
+    position: absolute;
+    padding-left: 190px;
+    padding-top: 3px;
+  }
 }
 .login-explain-3 {
   font-family: dot;
@@ -800,7 +829,6 @@ $sp: 480px;
   margin: 30px 0;
   &:hover {
     transform: translate(-5.5px, -5.5px);
-    box-shadow: 5px 5px 0 0 rgb(11, 214, 236);
   }
 }
 

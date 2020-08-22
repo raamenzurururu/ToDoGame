@@ -242,8 +242,13 @@ $sp: 480px;
   }
 
   .footer {
+    position: relative;
     font-family: dot;
-    font-size: 20px;
+    font-size: 15px;
+    letter-spacing: 7px;
+    .min-map {
+      position: absolute;
+    }
   }
 
   .min-map {
