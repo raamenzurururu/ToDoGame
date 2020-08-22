@@ -121,7 +121,7 @@ export default {
         return [
           {
             icon: "mdi-crown",
-            title: "?",
+            title: "へるぷ",
             to: "/"
           },
           {

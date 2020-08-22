@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>ボスと戦う！！！</h1>
+    <h1>使い方の説明</h1>
+    <p>TP = タスクポイントだよ</p>
     <img class="mon" src="../assets/mon_178.gif">
     <img class="mon" src="../assets/mon_178.gif">
     <img class="mon" src="../assets/mon_178.gif">

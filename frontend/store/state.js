@@ -13,8 +13,6 @@ const state = {
     },
     todos: [],
     rewards: [],
-    untilPercentage: null,
-    untilLevel: null,
   },
   loading: false,
   notification: {

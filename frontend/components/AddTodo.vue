@@ -82,8 +82,8 @@ $sub-color: rgb(11, 214, 236) !important;
     @include btn;
 
     &:hover {
-      border: 2px solid blue;
-      color: rgba(8, 113, 233, 0.884);
+      border: 2px solid $sub-color;
+      color: $main-color;
     }
   }
 }
@@ -92,10 +92,5 @@ $sub-color: rgb(11, 214, 236) !important;
   color: white;
   padding: 10px 40px !important;
   border: 2px solid white;
-}
-
-.bt:hover {
-  color: yellow;
-  border: 2px solid yellow;
 }
 </style>

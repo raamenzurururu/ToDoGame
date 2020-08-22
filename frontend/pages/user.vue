@@ -3,7 +3,7 @@
     <v-row class="user-status">
       <v-col cols="12" xs="5" sm="6" md="5" lg="5">
         <p>名前：{{ currentUser.user.name }}<v-icon
-              class="mb-2"
+              class="mb-3"
               color="yellow"
               size="30"
               v-if="(currentUser.user.level = 10)"
@@ -16,17 +16,8 @@
 
       <v-col cols="12" xs="5" sm="6" md="5" lg="5">
         <p class="user-level">レベル:{{ currentUser.user.level }}</p>
-        <p v-if="currentUser.user.level">次のレベルまであと{{currentUser.untilLevel ? currentUser.untilLevel : 0}} EXP</p>
-        <p v-else>あなたは最大レベルになりました</p>
+        <p v-if="(currentUser.user.level == 10)">あなたは最大レベルになりました</p>
       </v-col>
-      <v-progress-linear
-        :height="12"
-        :rounded="true"
-        :value="30"
-        color="light-blue"
-        striped
-      >
-      </v-progress-linear>
     </v-row>
 
     <v-row justify="center">

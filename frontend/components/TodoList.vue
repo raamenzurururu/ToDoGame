@@ -135,8 +135,8 @@ export default {
       };
       this.$store.commit("setUser", updateUser);
       this.snack = true;
-      this.snackColor = "success";
-      this.snackText = item.point + "タスクポイントと経験値を獲得した!";
+      this.snackColor = "black";
+      this.snackText = item.point + "コインを手に入れた";
       this.completeDialog = false
     },
     async deleteItem(item) {
@@ -152,7 +152,7 @@ export default {
       };
       this.$store.commit("setUser", updateUser);
       this.snack = true;
-      this.snackColor = "warning";
+      this.snackColor = "black";
       this.snackText = "削除しました";
       this.deleteDialog = false
     },
@@ -212,12 +212,13 @@ $accent-color: red;
   list-style: none;
   border-left: solid 8px $sub-color !important;
   border-bottom: solid 2px gray !important;
+  border-left: solid 8px yellow !important;
   color: black;
   margin: 10px;
   padding: 10px;
   border: 1px solid #7f7f7f;
   border-radius: 5px;
-  background-color: rgb(17, 159, 202);
+  background-color:rgb(43, 128, 240);
   cursor: grab;
   .todo-list-icon {
     margin-left: auto;
@@ -236,7 +237,6 @@ $accent-color: red;
     display: inline-block;
     width: 25px;
     border-radius: center;
-    // background-color: pink;
     box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
     border-bottom: solid 2px yellow;
   }
