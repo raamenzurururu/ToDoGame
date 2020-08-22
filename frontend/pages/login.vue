@@ -11,14 +11,14 @@
             style="font-family: dot;"
             :text="[
               'ゲーム感覚で日々のやることをこなす',
-              'ToDoアプリです',
+              'ToDoアプリです。',
               'きみはもっと。もっと。カシコクナル',
               'さあ、、、イマすぐに、、、はじめよう。',
-              'いくんだ。ユウシャよ、、、'
+              'いくんだ。ユウシャよ、、、。'
             ]"
             erase-style="clear"
-            :type-delay="230"
-            :erase-delay="300"
+            :type-delay="200"
+            :erase-delay="200"
             :repeat="Infinity"
             caret-animation="expand"
           ></vue-typer>
@@ -529,6 +529,7 @@ $sp: 480px;
   }
   .monster {
     text-align: center;
+    margin-top: 25px;
   }
 
   .btn {
@@ -608,6 +609,7 @@ $sp: 480px;
   .login-explain {
     display: flex;
     justify-content: center;
+    margin-top: 37px;
   }
   @mixin login-bottom-btn {
     background-color: black !important;
@@ -721,7 +723,7 @@ $sp: 480px;
 
 .guest {
   text-align: center;
-  margin-top: 37px;
+  margin-top: 40px;
   .guest-btn {
     &:hover {
       border: 2px solid $main-color;
@@ -737,10 +739,11 @@ $sp: 480px;
 
 .vue-typer {
   font-size: 20px;
+  letter-spacing: 10px;
 }
 
 .vue-typer .custom.char {
-  color: #c47d8a;
+  color: white;
   background-color: #252424;
 }
 .vue-typer .custom.char.selected {
@@ -749,7 +752,7 @@ $sp: 480px;
 
 .vue-typer .custom.caret {
   width: 10px;
-  background-color: #aa3535;
+  background-color: $main-color;
 }
 
 .blue {
