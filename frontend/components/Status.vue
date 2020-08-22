@@ -46,8 +46,8 @@ export default {
 </script>
 
 <style lang="scss">
-$main-color: deeppink;
-$sub-color: #33dddd;
+$main-color: #03a9f5 !important;
+$sub-color: rgb(11, 214, 236) !important;
 
 .user-status {
   border: 2px white solid;

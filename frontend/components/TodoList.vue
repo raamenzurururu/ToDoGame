@@ -130,8 +130,6 @@ export default {
         // ...this.user,
         user: getUser.data.user,
         todos,
-        untilPercentage: getUser.data.untilPercentage,
-        untilLevel: getUser.data.untilLevel
       };
       this.$store.commit("setUser", updateUser);
       this.snack = true;

@@ -5,7 +5,7 @@
         <v-col class="pr-0" cols="3" xs="6" sm="2" md="2" lg="2">
           <v-select
             label="TP"
-            v-model="todo.point"
+            v-model="point"
             :items="items"
             outlined
           ></v-select>
@@ -13,7 +13,7 @@
         <!-- v-bind: 属性名 = "設定する値" -->
         <v-col class="pr-0" cols="9" xs="8" sm="8" md="8" lg="8">
           <v-text-field
-            v-model="todo.title"
+            v-model="title"
             :rules="[v => !!v || 'まだまだいけるよ！']"
             :counter="15"
             label="やるべきこと"
@@ -36,28 +36,24 @@ const maxNumber = 11;
 const numberRange = [...Array(maxNumber).keys()];
 
 export default {
-  props: {
-    todo: {
-      type: Object,
-      default: () => ({ title: "", point: 0 }),
-      required: true
-    }
-  },
+  props: ["todo"],
   data() {
     return {
-      items: numberRange
+      items: numberRange,
+      title: "",
+      point: ""
     };
   },
   methods: {
     handleSubmit() {
       const todo = {
-        title: this.todo.title,
+        title: this.title,
         user_id: this.$store.state.currentUser.user.id,
-        point: this.todo.point
+        point: this.point
       };
       this.$emit("submit", todo);
-      this.todo.title = "";
-      this.todo.point = "";
+      this.title = "";
+      this.point = "";
     }
   }
 };
