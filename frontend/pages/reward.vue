@@ -1,6 +1,6 @@
 <template>
   <v-container class="user-page" v-if="currentUser">
-    <Status class="mb-5" />
+    <Status />
     <AddReward class="mb-5" @submit="addReward" :reward="currentUser.reward" />
     <RewardList :rewards="currentUser.rewards" />
   </v-container>
@@ -9,6 +9,7 @@
 <script>
 import AddReward from "@/components/AddReward";
 import RewardList from "@/components/RewardList";
+import Status from "@/components/Status";
 import axios from "@/plugins/axios";
 import firebase from "@/plugins/firebase";
 export default {
@@ -39,7 +40,8 @@ export default {
   },
   components: {
     AddReward,
-    RewardList
+    RewardList,
+    Status
   },
   computed: {
     currentUser() {
