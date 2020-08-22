@@ -21,8 +21,8 @@
               v-if="!reward.status"
               @click="openCompleteDialog(reward)"
               size="25px"
-              color="yellow"
-              v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
+              color="red"
+              v-text="hover ? 'mdi-heart-multiple' : 'mdi-heart-outline'"
             >
             </v-icon>
             <v-icon v-else size="25px" color="blue">check </v-icon>

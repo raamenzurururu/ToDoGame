@@ -70,7 +70,7 @@ $sub-color: rgb(11, 214, 236) !important;
   display: inline-block;
   font-weight: bold;
   margin: 15px;
-  width: 60%;
+  width: 93%;
 }
 
 .add-reward {

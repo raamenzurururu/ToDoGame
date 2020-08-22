@@ -8,11 +8,6 @@
         </div>
       </v-col>
     </v-row>
-    <div class="errors text-center" v-if="$store.state.errors">
-      <span v-for="error in $store.state.errors" :key="error">
-        <div>{{ error }}</div>
-      </span>
-    </div>
     <v-row justify="center">
       <v-col cols="12" xs="12" sm="12" md="12" lg="8">
         <div>
@@ -127,28 +122,6 @@ $sp: 480px;
 
 .user-page {
   .user-status {
-    border: 2px white solid;
-    margin: 0 auto;
-    width: 66%;
-    background-color: $main-color;
-  }
-
-  .coin-img {
-    width: 10%;
-    height: 10%;
-    display: inline-block;
-  }
-
-  .user-point {
-    display: flex;
-    .user-task-point {
-      font-size: x-large;
-      color: blue;
-      padding-left: 5%;
-    }
-  }
-
-  .user-status {
     @include pc {
       width: 100%;
     }
@@ -158,27 +131,6 @@ $sp: 480px;
     @include sp {
       width: 100% !important;
     }
-  }
-
-  .user-btn {
-    background-color: black !important;
-    border: 2px solid $main-color;
-    color: $main-color;
-    width: 100%;
-    font-weight: bold;
-    font-size: 18px;
-    &:hover {
-      border: 2px solid yellow;
-      color: white;
-    }
-  }
-  list-title,
-  h2 {
-    color: $sub-color;
-  }
-  p {
-    font-size: 20px;
-    font-weight: bold;
   }
 }
 </style>

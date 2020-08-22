@@ -28,7 +28,9 @@
 
           <v-dialog v-model="completeDialog">
             <v-card>
-              <v-card-title>『{{ todo.title }}』を達成しましたか？</v-card-title>
+              <v-card-title
+                >『{{ todo.title }}』を達成しましたか？</v-card-title
+              >
               <v-btn @click="completeItem(todo)">はい</v-btn>
               <v-btn @click="completeDialog = false">いいえ</v-btn>
             </v-card>
@@ -129,13 +131,13 @@ export default {
       const updateUser = {
         // ...this.user,
         user: getUser.data.user,
-        todos,
+        todos
       };
       this.$store.commit("setUser", updateUser);
       this.snack = true;
       this.snackColor = "black";
       this.snackText = item.point + "コインを手に入れた";
-      this.completeDialog = false
+      this.completeDialog = false;
     },
     async deleteItem(item) {
       await axios.delete(`/v1/todos/${item.id}`); //.then(() => {
@@ -152,7 +154,7 @@ export default {
       this.snack = true;
       this.snackColor = "black";
       this.snackText = "削除しました";
-      this.deleteDialog = false
+      this.deleteDialog = false;
     },
     async editItem(todo) {
       this.dialog = true;
@@ -216,7 +218,7 @@ $accent-color: red;
   padding: 10px;
   border: 1px solid #7f7f7f;
   border-radius: 5px;
-  background-color:rgb(43, 128, 240);
+  background-color: rgb(43, 128, 240);
   cursor: grab;
   .todo-list-icon {
     margin-left: auto;
@@ -256,5 +258,13 @@ $accent-color: red;
   .update-btn {
     @include btn;
   }
+}
+
+h2 {
+  color: $main-color;
+}
+p {
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>
