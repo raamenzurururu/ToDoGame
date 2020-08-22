@@ -3,7 +3,7 @@
     <v-col class="pr-0" cols="3" xs="6" sm="2" md="2" lg="2">
       <v-select
         label="TP"
-        v-model="reward.point"
+        v-model="point"
         :items="items"
         outlined
       ></v-select>
@@ -11,7 +11,7 @@
     <v-col class="pr-0" cols="9" xs="8" sm="8" md="8" lg="8">
       <v-text-field
         id="reward-title"
-        v-model="reward.title"
+        v-model="title"
         :counter="20"
         label="報酬"
         required
@@ -27,33 +27,29 @@
   </v-row>
 </template>
 <script>
-const numberRange = [...Array(9).keys()].map(i => ++i);
+
+const maxNumber = 11;
+const numberRange = [...Array(maxNumber).keys()];
+
 export default {
-  props: {
-    reward: {
-      type: Object,
-      default: {
-        title: "",
-        point: null
-      },
-      required: true
-    }
-  },
+  props: ["reward"],
   data() {
     return {
-      items: numberRange
+      items: numberRange,
+      title: "",
+      point: "",
     };
   },
   methods: {
     handleSubmit() {
       const reward = {
-        title: this.reward.title,
+        title: this.title,
         user_id: this.$store.state.currentUser.user.id,
-        point: this.reward.point
+        point: this.point
       };
       this.$emit("submit", reward);
-      this.reward.title = "";
-      this.reward.point = "";
+      this.title = "";
+      this.point = "";
     }
   },
 };
