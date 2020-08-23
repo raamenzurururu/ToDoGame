@@ -3,8 +3,10 @@
     <Status />
     <v-row justify="center">
       <v-col class="pb-0" cols="12" xs="12" sm="12" md="12" lg="8">
-        <div>
-          <AddReward @submit="addReward" />
+        <div class="parent">
+          <img class="child" src="../assets/mon_285.gif" />
+          <p class="child">コインを使って報酬をもらおう</p>
+          <!-- <AddReward @submit="addReward" /> -->
         </div>
       </v-col>
     </v-row>
@@ -19,7 +21,7 @@
 </template>
 
 <script>
-import AddReward from "@/components/AddReward";
+// import AddReward from "@/components/AddReward";
 import RewardList from "@/components/RewardList";
 import Status from "@/components/Status";
 import axios from "@/plugins/axios";
@@ -49,7 +51,7 @@ export default {
     );
   },
   components: {
-    AddReward,
+    // AddReward,
     RewardList,
     Status
   },
@@ -58,25 +60,25 @@ export default {
       return this.$store.state.currentUser;
     }
   },
-  methods: {
-    async addReward(reward) {
-      try {
-        const { data } = await axios.post("/v1/rewards", {
-          reward
-        });
-        const userReward = this.currentUser.reward ? this.currentUser.rewards : [];
-        this.$store.commit("setUser", {
-          ...this.currentUser,
-          rewards: [...userReward, data]
-        });
-        this.$store.commit("clearErrors");
-      } catch (error) {
-        console.log("UserPage: 110", error);
-        const { data } = error.response;
-        this.$store.commit("setError", data.error_msg);
-      }
-    }
-  }
+  // methods: {
+  //   async addReward(reward) {
+  //     try {
+  //       const { data } = await axios.post("/v1/rewards", {
+  //         reward
+  //       });
+  //       const userReward = this.currentUser.reward ? this.currentUser.rewards : [];
+  //       this.$store.commit("setUser", {
+  //         ...this.currentUser,
+  //         rewards: [...userReward, data]
+  //       });
+  //       this.$store.commit("clearErrors");
+  //     } catch (error) {
+  //       console.log("UserPage: 110", error);
+  //       const { data } = error.response;
+  //       this.$store.commit("setError", data.error_msg);
+  //     }
+  //   }
+  // }
 };
 </script>
 
@@ -106,6 +108,11 @@ $sp: 480px;
   }
 }
 
+@font-face {
+  font-family: dot;
+  src: url("../assets/fonts/k8x12S.ttf") format("truetype");
+}
+
 .user-page {
   .user-status {
     @include pc {
@@ -116,6 +123,17 @@ $sp: 480px;
     }
     @include sp {
       width: 100% !important;
+    }
+  }
+  .parent {
+    text-align: center;
+    .child {
+      display: inline-block;
+      font-family: dot;
+      letter-spacing: 10px;
+      font-size: 30px;
+      color: $main-color;
+      vertical-align: middle;
     }
   }
 }

@@ -2,7 +2,7 @@
   <div>
     <v-card class="pb-5">
       <v-card-title>
-        <h2 class="list-title">報酬</h2>
+        <h2 class="list-title">報酬一覧</h2>
         <v-spacer></v-spacer>
       </v-card-title>
       <draggable
