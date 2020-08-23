@@ -76,9 +76,12 @@ $sub-color: rgb(11, 214, 236) !important;
       border: 2px solid blue;
       color: rgba(8, 113, 233, 0.884);
     }
-    span {
-      margin-top: -9px;
-    }
   }
+}
+
+.col-md-4 > .bt {
+  color: white;
+  padding: 10px 40px !important;
+  border: 2px solid white;
 }
 </style>

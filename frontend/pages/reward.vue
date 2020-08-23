@@ -36,8 +36,6 @@ export default {
       level: "",
       point: "",
       experience_point: "",
-      password: "",
-      passwordConfirm: "",
       show1: false,
       show2: false,
       error: "",
@@ -83,18 +81,6 @@ export default {
         this.$store.commit("setError", data.error_msg);
       }
     },
-    logOut() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$store.commit("setUser", null);
-          this.$router.push("/");
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
   }
 };
 </script>
@@ -103,4 +89,39 @@ export default {
 $main-color: #03a9f5 !important;
 $sub-color: rgb(11, 214, 236) !important;
 $accent-color: red;
+
+$pc: 1024px;
+$tab: 680px;
+$sp: 480px;
+
+@mixin pc {
+  @media (max-width: ($pc)) {
+    @content;
+  }
+}
+
+@mixin tab {
+  @media (max-width: ($tab)) {
+    @content;
+  }
+}
+@mixin sp {
+  @media (max-width: ($sp)) {
+    @content;
+  }
+}
+
+.user-page {
+  .user-status {
+    @include pc {
+      width: 100%;
+    }
+    @include tab {
+      width: 100% !important;
+    }
+    @include sp {
+      width: 100% !important;
+    }
+  }
+}
 </style>
