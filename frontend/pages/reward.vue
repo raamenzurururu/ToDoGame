@@ -4,11 +4,7 @@
     <v-row justify="center">
       <v-col class="pb-0" cols="12" xs="12" sm="12" md="12" lg="8">
         <div>
-          <AddReward
-            class="mb-5"
-            @submit="addReward"
-            :reward="currentUser.reward"
-          />
+          <AddReward @submit="addReward" />
         </div>
       </v-col>
     </v-row>
@@ -68,19 +64,18 @@ export default {
         const { data } = await axios.post("/v1/rewards", {
           reward
         });
-        const userReward = this.currentUser.reward
-          ? this.currentUser.rewards
-          : [];
+        const userReward = this.currentUser.reward ? this.currentUser.rewards : [];
         this.$store.commit("setUser", {
           ...this.currentUser,
           rewards: [...userReward, data]
         });
         this.$store.commit("clearErrors");
       } catch (error) {
+        console.log("UserPage: 110", error);
         const { data } = error.response;
         this.$store.commit("setError", data.error_msg);
       }
-    },
+    }
   }
 };
 </script>

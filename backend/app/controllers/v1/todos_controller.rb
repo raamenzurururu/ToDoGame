@@ -49,12 +49,6 @@ class V1::TodosController < ApplicationController
         user.level += 1
         user.update(level: user.level)
       end
-
-      # until_percentage = totalExp.quo(levelSetting.thresold).to_f.round(2)*100
-      # こいつが原因でthresoldがnilになってた
-      # until_level = levelSetting.thresold - totalExp
-
-      # return {until_percentage: until_percentage, until_level: until_level}
       
       if todo.destroy
         render json: {todo: todo, user: user}

@@ -15,7 +15,7 @@
 
         <div class="user-point">
           <img class="coin-img" src="../assets/icon021.png" />
-          <p class="user-task-point">{{ currentUser.user.point }}</p>
+          <p class="user-task-point">{{ currentUser.user.point }}コイン</p>
         </div>
       </v-col>
 
