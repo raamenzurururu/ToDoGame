@@ -22,7 +22,6 @@
         <v-list-item
           v-for="subItem in item.items"
           :key="subItem.title"
-          @click=""
         >
           <v-list-item-content>
             <v-list-item-title v-text="subItem.title"></v-list-item-title>
@@ -42,14 +41,14 @@
               <v-card-title
                 >『{{ subItem.title }}』を{{ subItem.point }}コインで購入しますか？</v-card-title
               >
-              <v-btn @click="completeItem(todo)">はい</v-btn>
+              <v-btn @click="completeItem(subItem)">はい</v-btn>
               <v-btn @click="completeDialog = false">いいえ</v-btn>
             </v-card>
           </v-dialog>
 
           <v-list-item-action>
             <v-list-item-action-text v-text="subItem.point + 'コイン'"></v-list-item-action-text>
-            <v-icon v-if="!active" color="grey lighten-1">
+            <v-icon v-if="!completeDialog" color="grey lighten-1">
               mdi-currency-usd-circle-outline
             </v-icon>
             <v-icon v-else color="yellow">
@@ -63,6 +62,7 @@
 </template>
 
 <script>
+import axios from "@/plugins/axios";
 export default {
   data() {
     return {
@@ -110,6 +110,28 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    async completeItem(item) {
+      const getUser = await axios.get(`/v1/rewards/${item.id}`, {
+        params: {
+          point: this.subItem.point
+        }
+      });
+      const rewards = this.user.todos.filter(todo => {
+        return todo.id !== item.id;
+      });
+      const updateUser = {
+        // ...this.user,
+        user: getUser.data.user,
+        todos
+      };
+      this.$store.commit("setUser", updateUser);
+      this.snack = true;
+      this.snackColor = "black";
+      this.snackText = item.point + "コインを手に入れた";
+      this.completeDialog = false;
+    },
   }
 };
 </script>
@@ -118,4 +140,19 @@ export default {
 $main-color: #03a9f5 !important;
 $sub-color: rgb(11, 214, 236) !important;
 $accent-color: red;
+
+.v-dialog {
+  width: 70%;
+  p {
+    margin-left: 5%;
+  }
+  .dialog-title {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .dialog-point {
+    width: 40%;
+    margin-left: 5%;
+  }
+}
 </style>
