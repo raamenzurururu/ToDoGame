@@ -10,6 +10,7 @@
       :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
+      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
       app
     >
       <v-list>
@@ -138,12 +139,12 @@ export default {
       } else {
         return [
           {
-            icon: "mdi-chess-king",
-            title: "ログイン",
-            to: "/login"
+            icon: "mdi-cat",
+            title: "ろぐいん",
+            to: "/login",
           },
           {
-            icon: "mdi-chess-queen",
+            icon: "mdi-hand-heart-outline",
             title: "おまけ",
             to: "/signup"
           }
@@ -253,6 +254,12 @@ $sp: 480px;
 
   .min-map {
     padding-left: 6px;
+  }
+
+  .v-list-item__title {
+    font-family: dot;
+    font-size: 20px;
+    letter-spacing: 5px;
   }
 
 }
