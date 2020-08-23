@@ -1,187 +1,88 @@
 <template>
-  <div>
-    <v-card class="pb-5">
-      <v-card-title>
-        <h2 class="list-title">報酬一覧</h2>
-        <v-spacer></v-spacer>
-      </v-card-title>
-      <draggable
-        class="pl-0"
-        v-model="rewards"
-        :options="{ animation: 200, delay: 50 }"
-        @end="atEnd"
-        element="ul"
+  <v-card max-width="730" class="mx-auto">
+    <v-toolbar color="blue" dark>
+      <v-toolbar-title>報酬</v-toolbar-title>
+      <v-spacer></v-spacer>
+    </v-toolbar>
+
+    <v-list>
+      <v-list-group
+        v-for="item in items"
+        :key="item.title"
+        v-model="item.active"
+        :prepend-icon="item.action"
+        no-action
       >
-        <li class="reward-list" v-for="reward in rewards" :key="reward.sort">
-          <v-icon size="30px"
-            >mdi-numeric-{{ reward.point }}-circle-outline</v-icon
-          >
-          <v-hover v-slot:default="{ hover }">
-            <v-icon
-              v-if="!reward.status"
-              @click="completeDialog = true"
-              size="25px"
-              color="red"
-              v-text="hover ? 'mdi-heart-multiple' : 'mdi-heart-outline'"
-            >
-            </v-icon>
-          </v-hover>
+        <template v-slot:activator>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item-content>
+        </template>
 
-          <v-dialog v-model="completeDialog">
-            <v-card>
-              <v-card-title
-                >『{{ reward.title }}』を達成しましたか？</v-card-title
-              >
-              <v-btn @click="completeItem(reward)">はい</v-btn>
-              <v-btn @click="completeDialog = false">いいえ</v-btn>
-            </v-card>
-          </v-dialog>
-
-          <span class="reward-title">{{ reward.title }}</span>
-          <div class="reward-list-icon">
-            <v-icon v-if="reward.status" color="yellow">lock_open</v-icon>
-            <v-icon v-else color="yellow">lock</v-icon>
-            <v-icon @click="editItem(reward)" color="white" big
-              >mdi-pencil</v-icon
-            >
-            <v-icon @click="deleteDialog = true" color="white">delete</v-icon>
-          </div>
-
-          <v-dialog v-model="deleteDialog">
-            <v-card>
-              <v-card-title>削除しますか？</v-card-title>
-              <v-btn @click="deleteItem(reward)">はい</v-btn>
-              <v-btn @click="deleteDialog = false">いいえ</v-btn>
-            </v-card>
-          </v-dialog>
-        </li>
-      </draggable>
-    </v-card>
-
-    <v-dialog class="edit-dialog" v-model="dialog">
-      <v-card>
-        <v-card-title>
-          <h2 class="list-title">ToDo編集</h2>
-        </v-card-title>
-        <p>やること</p>
-        <v-text-field
-          class="dialog-title"
-          v-model="dialogText.title"
-          filled
-        ></v-text-field>
-        <p>ポイント</p>
-        <v-select
-          class="dialog-point"
-          single-line
-          :items="items"
-          v-model="dialogText.point"
-          :value="dialogText.point"
-          filled
-        ></v-select>
-        <v-btn
-          class="update-btn"
-          @click="updateItem(dialogText.id, dialogText.title, dialogText.point)"
-          >保存</v-btn
+        <v-list-item
+          v-for="subItem in item.items"
+          :key="subItem.title"
+          @click=""
         >
-      </v-card>
-    </v-dialog>
-
-    <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-      {{ snackText }}
-      <v-btn text @click="snack = false">閉じる</v-btn>
-    </v-snackbar>
-  </div>
+          <v-list-item-content>
+            <v-list-item-title v-text="subItem.title"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-group>
+    </v-list>
+  </v-card>
 </template>
 
 <script>
-const maxNumber = 11;
-const numberRange = [...Array(maxNumber).keys()];
-
-import axios from "@/plugins/axios";
-
 export default {
-  props: ["rewards"],
   data() {
     return {
-      singleSelect: true,
-      selected: [],
-      items: numberRange,
-      editOn: true,
-      snack: false,
-      snackColor: "",
-      snackText: "",
-      dialogText: "",
-      dialog: false,
-      completeDialog: false,
-      deleteDialog: false
+      items: [
+        {
+          action: "restaurant",
+          title: "食事",
+          active: true,
+          items: [
+            { title: "コーヒーを飲む" },
+            { title: "お菓子を食べる" },
+            { title: "寿司を食べる" }
+          ]
+        },
+        {
+          action: "local_activity",
+          title: "Attractions",
+          items: [{ title: "List Item" }]
+        },
+        {
+          action: "mdi-hot-tub",
+          title: "リラックス",
+          items: [
+            { title: "１５分寝る" },
+            { title: "お風呂に入る" }
+          ]
+        },
+        {
+          action: "directions_run",
+          title: "Family",
+          items: [{ title: "List Item" }]
+        },
+        {
+          action: "healing",
+          title: "Health",
+          items: [{ title: "List Item" }]
+        },
+        {
+          action: "mdi-emoticon-kiss-outline",
+          title: "むふふ",
+          items: [{ title: "恋人に会う" }]
+        },
+        {
+          action: "local_offer",
+          title: "Promotions",
+          items: [{ title: "List Item" }]
+        }
+      ]
     };
-  },
-  computed: {
-    user() {
-      return this.$store.state.currentUser;
-    }
-  },
-  methods: {
-    async completeItem(item) {
-      const getUser = await axios.get(`/v1/rewards/${item.id}`, {
-        params: {
-          point: item.point
-        }
-      });
-      const rewards = this.user.rewards.filter(reward => {
-        return reward.id !== item.id;
-      });
-      const updateUser = {
-        // ...this.user,
-        user: getUser.data.user,
-        rewards
-      };
-      this.$store.commit("setUser", updateUser);
-      this.snack = true;
-      this.snackColor = "black";
-      this.snackText = item.point + "コインを消費した";
-      this.completeDialog = false;
-    },
-    async deleteItem(item) {
-      await axios.delete(`/v1/rewards/${item.id}`); //.then(() => {
-      //this.$router.push("/login");
-      //}); //これで飛ばせる
-      const rewards = this.user.rewards.filter(reward => {
-        return reward.id !== item.id;
-      });
-      const updateUser = {
-        ...this.user,
-        rewards
-      };
-      this.$store.commit("setUser", updateUser);
-      this.snack = true;
-      this.snackColor = "black";
-      this.snackText = "削除しました";
-      this.deleteDialog = false;
-    },
-    async editItem(reward) {
-      this.dialog = true;
-      this.dialogText = reward;
-    },
-    async updateItem(id, title, point) {
-      await axios.patch(`/v1/rewards/${id}`, {
-        reward: {
-          title: title,
-          point: point
-        }
-      });
-      this.dialog = false;
-    },
-    async atEnd() {
-      let result = await axios.patch(`v1/rewards`, {
-        reward: this.rewards
-      });
-      const updateUser = {
-        ...this.user,
-        rewards: this.rewards
-      };
-      this.$store.commit("setUser", updateUser);
-    }
   }
 };
 </script>
@@ -190,84 +91,4 @@ export default {
 $main-color: #03a9f5 !important;
 $sub-color: rgb(11, 214, 236) !important;
 $accent-color: red;
-
-@mixin btn {
-  background-color: rgb(29, 29, 29) !important;
-  border: 2px solid $main-color;
-  color: $main-color !important;
-  display: inline-block;
-  margin: 0px 5% 15px;
-  width: 70%;
-  font-weight: bold;
-}
-
-.list-title {
-  color: rgb(6, 6, 201);
-}
-
-.v-icon {
-  display: flex;
-  justify-content: center;
-}
-
-.reward-list {
-  display: flex;
-  list-style: none;
-  border-left: solid 8px $sub-color !important;
-  border-bottom: solid 2px gray !important;
-  border-left: solid 8px yellow !important;
-  color: black;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #7f7f7f;
-  border-radius: 5px;
-  background-color: rgb(43, 128, 240);
-  cursor: grab;
-  .reward-list-icon {
-    margin-left: auto;
-  }
-  .reward-list-btn {
-    background-color: white !important;
-  }
-  .reward-title {
-    padding-top: 2px;
-    margin-left: 10px;
-    max-width: 45%;
-  }
-  .reward-point {
-    color: rgb(236, 11, 97);
-    font-weight: bold;
-    display: inline-block;
-    width: 25px;
-    border-radius: center;
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
-    border-bottom: solid 2px yellow;
-  }
-}
-
-.v-dialog {
-  width: 70%;
-  p {
-    margin-left: 5%;
-  }
-  .dialog-title {
-    width: 90%;
-    margin: 0 auto;
-  }
-  .dialog-point {
-    width: 40%;
-    margin-left: 5%;
-  }
-  .update-btn {
-    @include btn;
-  }
-}
-
-h2 {
-  color: $main-color;
-}
-p {
-  font-size: 20px;
-  font-weight: bold;
-}
 </style>
