@@ -19,65 +19,56 @@
           <v-hover v-slot:default="{ hover }">
             <v-icon
               v-if="!reward.status"
-              @click="openCompleteDialog(reward)"
+              @click="completeDialog = true"
               size="25px"
               color="red"
               v-text="hover ? 'mdi-heart-multiple' : 'mdi-heart-outline'"
             >
             </v-icon>
-            <v-icon v-else size="25px" color="blue">check </v-icon>
           </v-hover>
+
+          <v-dialog v-model="completeDialog">
+            <v-card>
+              <v-card-title
+                >『{{ reward.title }}』を達成しましたか？</v-card-title
+              >
+              <v-btn @click="completeItem(reward)">はい</v-btn>
+              <v-btn @click="completeDialog = false">いいえ</v-btn>
+            </v-card>
+          </v-dialog>
+
           <span class="reward-title">{{ reward.title }}</span>
           <div class="reward-list-icon">
-            <v-icon v-if="reward.status" big color="yellow">lock_open</v-icon>
-            <v-icon v-else big color="yellow">lock</v-icon>
-            <v-icon
-              v-if="!reward.status"
-              @click="
-                editItem(reward);
-                open(reward);
-              "
-              big
+            <v-icon v-if="reward.status" color="yellow">lock_open</v-icon>
+            <v-icon v-else color="yellow">lock</v-icon>
+            <v-icon @click="editItem(reward)" color="white" big
               >mdi-pencil</v-icon
             >
-            <v-icon midium @click="openDeleteDialog(reward)">delete</v-icon>
+            <v-icon @click="deleteDialog = true" color="white">delete</v-icon>
           </div>
+
+          <v-dialog v-model="deleteDialog">
+            <v-card>
+              <v-card-title>削除しますか？</v-card-title>
+              <v-btn @click="deleteItem(reward)">はい</v-btn>
+              <v-btn @click="deleteDialog = false">いいえ</v-btn>
+            </v-card>
+          </v-dialog>
         </li>
       </draggable>
     </v-card>
 
-    <v-dialog v-model="completeDialog">
-      <v-card>
-        <v-card-title
-          >『{{ selectedItem.title }}』を達成しますか？</v-card-title
-        >
-        <v-btn @click="completeItem(selectedItem)">はい</v-btn>
-        <v-btn @click="completeDialog = false">いいえ</v-btn>
-      </v-card>
-    </v-dialog>
-
-    <v-dialog v-model="deleteDialog">
-      <v-card>
-        <v-card-title
-          >『{{ selectedItem.title }}』を削除しますか？</v-card-title
-        >
-        <v-btn @click="deleteItem(selectedItem)">はい</v-btn>
-        <v-btn @click="deleteDialog = false">いいえ</v-btn>
-      </v-card>
-    </v-dialog>
-
     <v-dialog class="edit-dialog" v-model="dialog">
       <v-card>
         <v-card-title>
-          <h2 class="list-title">報酬編集</h2>
+          <h2 class="list-title">ToDo編集</h2>
         </v-card-title>
-        <p>内容</p>
+        <p>やること</p>
         <v-text-field
           class="dialog-title"
           v-model="dialogText.title"
           filled
         ></v-text-field>
-        <p class="errormsg">{{ errorMsg }}</p>
         <p>ポイント</p>
         <v-select
           class="dialog-point"
@@ -97,7 +88,7 @@
 
     <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
       {{ snackText }}
-      <v-btn text @click="snack = false">Close</v-btn>
+      <v-btn text @click="snack = false">閉じる</v-btn>
     </v-snackbar>
   </div>
 </template>
@@ -107,25 +98,22 @@ const maxNumber = 11;
 const numberRange = [...Array(maxNumber).keys()];
 
 import axios from "@/plugins/axios";
+
 export default {
   props: ["rewards"],
   data() {
     return {
       singleSelect: true,
       selected: [],
-      search: "",
-      editOn: true,
       items: numberRange,
+      editOn: true,
       snack: false,
       snackColor: "",
       snackText: "",
       dialogText: "",
       dialog: false,
-      deleteDialog: false,
       completeDialog: false,
-      selectedItem: "",
-      dialogReward: {},
-      errorMsg: ""
+      deleteDialog: false
     };
   },
   computed: {
@@ -134,84 +122,58 @@ export default {
     }
   },
   methods: {
-    async deleteItem(item) {
-      const getUser = await axios.delete(`/v1/rewards/${item.id}`);
+    async completeItem(item) {
+      const getUser = await axios.get(`/v1/rewards/${item.id}`, {
+        params: {
+          point: item.point
+        }
+      });
       const rewards = this.user.rewards.filter(reward => {
         return reward.id !== item.id;
       });
       const updateUser = {
-        ...this.user,
+        // ...this.user,
         user: getUser.data.user,
         rewards
       };
       this.$store.commit("setUser", updateUser);
       this.snack = true;
-      this.snackColor = "warning";
-      this.snackText = "削除しました。";
-      this.deleteDialog = false;
+      this.snackColor = "black";
+      this.snackText = item.point + "コインを消費した";
+      this.completeDialog = false;
     },
-    async completeItem(item) {
-      try {
-        const getUser = await axios.get(`/v1/rewards/${item.id}`, {
-          params: {
-            point: item.point
-          }
-        });
-        const todos = getUser.data.todos;
-        const rewards = this.user.rewards;
-        const updateUser = {
-          user: getUser.data.user,
-          rewards,
-          todos,
-          untilPercentage: getUser.data.untilPercentage,
-          untilLevel: getUser.data.untilLevel
-        };
-        this.$store.commit("setUser", updateUser);
-        item.status = true;
-        this.user.rewards.status = true;
-        this.snack = true;
-        this.snackColor = "success";
-        this.snackText = "ごほうびを解放した！";
-        this.completeDialog = false;
-        this.$store.commit("clearErrors");
-      } catch (error) {
-        const { data } = error.response;
-        this.$store.commit("setError", data.error_msg);
-        this.completeDialog = false;
-      }
+    async deleteItem(item) {
+      await axios.delete(`/v1/rewards/${item.id}`); //.then(() => {
+      //this.$router.push("/login");
+      //}); //これで飛ばせる
+      const rewards = this.user.rewards.filter(reward => {
+        return reward.id !== item.id;
+      });
+      const updateUser = {
+        ...this.user,
+        rewards
+      };
+      this.$store.commit("setUser", updateUser);
+      this.snack = true;
+      this.snackColor = "black";
+      this.snackText = "削除しました";
+      this.deleteDialog = false;
     },
     async editItem(reward) {
       this.dialog = true;
-      this.dialogReward = reward;
-      this.dialogText = {
-        id: reward.id,
-        title: reward.title,
-        point: reward.point
-      };
+      this.dialogText = reward;
     },
     async updateItem(id, title, point) {
-      if (!title) {
-        this.errorMsg = "タイトルが空欄です。";
-        return;
-      } else if (title.length >= 20) {
-        this.errorMsg = "タイトルは1文字以上20文字以下にしてください。";
-        return;
-      }
       await axios.patch(`/v1/rewards/${id}`, {
         reward: {
           title: title,
           point: point
         }
       });
-      this.snack = true;
-      this.snackColor = "info";
-      this.snackText = "保存しました。";
-      this.dialogReward.title = title;
-      this.dialogReward.point = point;
       this.dialog = false;
     },
     async atEnd() {
-      await axios.patch(`v1/rewards`, {
+      let result = await axios.patch(`v1/rewards`, {
         reward: this.rewards
       });
       const updateUser = {
@@ -219,32 +181,8 @@ export default {
         rewards: this.rewards
       };
       this.$store.commit("setUser", updateUser);
-    },
-    save() {
-      this.snack = true;
-      this.snackColor = "info";
-      this.snackText = "保存しました。";
-    },
-    cancel() {
-      this.snack = true;
-      this.snackColor = "error";
-      this.snackText = "Canceled";
-    },
-    open(name) {
-      this.snack = true;
-      this.snackColor = "info";
-      this.snackText = "『" + name.title + "』" + "を編集します。";
-    },
-    openCompleteDialog(reward) {
-      this.completeDialog = true;
-      this.selectedItem = reward;
-    },
-    openDeleteDialog(reward) {
-      this.deleteDialog = true;
-      this.selectedItem = reward;
     }
-  },
-  watch: {}
+  }
 };
 </script>
 
@@ -253,12 +191,6 @@ $main-color: #03a9f5 !important;
 $sub-color: rgb(11, 214, 236) !important;
 $accent-color: red;
 
-@mixin sp {
-  @media (max-width: ($sp)) {
-    @content;
-  }
-}
-$sp: 480px;
 @mixin btn {
   background-color: rgb(29, 29, 29) !important;
   border: 2px solid $main-color;
@@ -268,68 +200,53 @@ $sp: 480px;
   width: 70%;
   font-weight: bold;
 }
+
+.list-title {
+  color: rgb(6, 6, 201);
+}
+
 .v-icon {
   display: flex;
   justify-content: center;
 }
-.edit-window {
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 30, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .reward-list {
   display: flex;
   list-style: none;
-  border-left: solid 8px yellow !important;
+  border-left: solid 8px $sub-color !important;
   border-bottom: solid 2px gray !important;
-  color: rgb(19, 32, 16);
+  border-left: solid 8px yellow !important;
+  color: black;
   margin: 10px;
   padding: 10px;
   border: 1px solid #7f7f7f;
-  border-radius: 6px;
+  border-radius: 5px;
   background-color: rgb(43, 128, 240);
   cursor: grab;
   .reward-list-icon {
     margin-left: auto;
-    @include sp {
-    }
   }
   .reward-list-btn {
-    background-color: rgb(206, 204, 87) !important;
+    background-color: white !important;
   }
   .reward-title {
     padding-top: 2px;
     margin-left: 10px;
-    max-width: 80%;
-    @include sp {
-      max-width: 46%;
-    }
+    max-width: 45%;
   }
   .reward-point {
-    color: blue;
+    color: rgb(236, 11, 97);
     font-weight: bold;
     display: inline-block;
     width: 25px;
-    border-radius: 50%;
-    text-align: center;
-    background: rgb(250, 253, 71);
-    color: $sub-color;
-    box-shadow: inset 0 0 4px black;
+    border-radius: center;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
     border-bottom: solid 2px yellow;
   }
 }
+
 .v-dialog {
   width: 70%;
-  h2 {
-    color: $sub-color;
-  }
   p {
     margin-left: 5%;
   }
@@ -345,7 +262,12 @@ $sp: 480px;
     @include btn;
   }
 }
-.errormsg {
-  color: red;
+
+h2 {
+  color: $main-color;
+}
+p {
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>
