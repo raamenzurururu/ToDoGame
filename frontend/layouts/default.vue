@@ -127,12 +127,12 @@ export default {
           },
           {
             icon: "mdi-star",
-            title: "mypage",
+            title: "やること",
             to: "/user"
           },
           {
             icon: "mdi-lock",
-            title: "Reward",
+            title: "ほうしゅう",
             to: "/reward"
           }
         ];

@@ -134,6 +134,9 @@ $sp: 480px;
       font-size: 30px;
       color: $main-color;
       vertical-align: middle;
+      p {
+        font-weight: bold;
+      }
     }
   }
 }
