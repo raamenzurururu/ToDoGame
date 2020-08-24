@@ -55,9 +55,27 @@
       </v-toolbar-title>
 
       <v-toolbar-items class="page-link" v-if="currentUser">
-        <v-btn class="header-btn ml-1" @click="logOutWindow = true">
+        <v-btn to="/user" class="header-btn ml-1">
           <v-hover v-slot:default="{ hover }">
-            <v-icon size="25px" color="blue" v-text="hover ? 'mdi-key-remove' : 'mdi-key-star'">
+            <v-icon size="25px" color="blue" v-text="hover ? 'mdi-book-open-page-variant' : 'mdi-book-open-variant'">
+            </v-icon>
+          </v-hover>
+        </v-btn>
+      </v-toolbar-items>
+
+      <v-toolbar-items class="page-link" v-if="currentUser">
+        <v-btn to="/reward" nuxt class="header-btn ml-2">
+          <v-hover v-slot:default="{ hover }">
+            <v-icon size="25px" color="red" v-text="hover ? 'mdi-gift' : 'mdi-gift-outline'">
+            </v-icon>
+          </v-hover>
+        </v-btn>
+      </v-toolbar-items>
+
+      <v-toolbar-items class="page-link" v-if="currentUser">
+        <v-btn to="/" nuxt class="header-btn ml-2">
+          <v-hover v-slot:default="{ hover }">
+            <v-icon size="25px" color="yellow" v-text="hover ? 'mdi-help-circle' : 'mdi-help-circle-outline'">
             </v-icon>
           </v-hover>
         </v-btn>
@@ -261,6 +279,5 @@ $sp: 480px;
     font-size: 20px;
     letter-spacing: 5px;
   }
-
 }
 </style>
