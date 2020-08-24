@@ -2,7 +2,18 @@
   <v-form>
     <v-row class="add-reward">
       <v-col class="pr-0" cols="3" xs="6" sm="2" md="2" lg="2">
-        <v-select label="TP" v-model="point" :items="items" outlined></v-select>
+        <!-- <v-btn label="コイン" v-model="point" :items="items" outlined></v-btn> -->
+        <!-- ランダムで数字が選ばれるようにしたい -->
+        <span>値段を決める</span>
+        <v-hover v-slot:default="{ hover }">
+          <v-icon
+            @click="randomPoint()"
+            size="50px"
+            color="white"
+            v-text="hover ? 'mdi-cube-send' : 'mdi-dice-3-outline'"
+          >
+          </v-icon>
+        </v-hover>
       </v-col>
       <v-col class="pr-0" cols="9" xs="8" sm="8" md="8" lg="8">
         <v-text-field
@@ -24,14 +35,15 @@
 </template>
 
 <script>
-const maxNumber = 11;
-const numberRange = [...Array(maxNumber).keys()];
+const minNumber = 1;
+const maxNumber = 20;
+const randomPoint = Math.floor(Math.random() * 21);
 
 export default {
   props: ["reward"],
   data() {
     return {
-      items: numberRange,
+      items: randomPoint,
       title: "",
       point: ""
     };
@@ -46,6 +58,9 @@ export default {
       this.$emit("submit", reward);
       this.title = "";
       this.point = "";
+    },
+    randomPoint() {
+      console.log(randomPoint);
     }
   }
 };

@@ -6,7 +6,7 @@
         <div class="parent">
           <img class="child" src="../assets/mon_285.gif" />
           <p class="child">コインを使って報酬をもらおう</p>
-          <!-- <AddReward @submit="addReward" /> -->
+          <AddReward @submit="addReward" />
         </div>
       </v-col>
     </v-row>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-// import AddReward from "@/components/AddReward";
+import AddReward from "@/components/AddReward";
 import RewardList from "@/components/RewardList";
 import Status from "@/components/Status";
 import axios from "@/plugins/axios";
@@ -60,25 +60,25 @@ export default {
       return this.$store.state.currentUser;
     }
   },
-  // methods: {
-  //   async addReward(reward) {
-  //     try {
-  //       const { data } = await axios.post("/v1/rewards", {
-  //         reward
-  //       });
-  //       const userReward = this.currentUser.reward ? this.currentUser.rewards : [];
-  //       this.$store.commit("setUser", {
-  //         ...this.currentUser,
-  //         rewards: [...userReward, data]
-  //       });
-  //       this.$store.commit("clearErrors");
-  //     } catch (error) {
-  //       console.log("UserPage: 110", error);
-  //       const { data } = error.response;
-  //       this.$store.commit("setError", data.error_msg);
-  //     }
-  //   }
-  // }
+  methods: {
+    async addReward(reward) {
+      try {
+        const { data } = await axios.post("/v1/rewards", {
+          reward
+        });
+        const userReward = this.currentUser.reward ? this.currentUser.rewards : [];
+        this.$store.commit("setUser", {
+          ...this.currentUser,
+          rewards: [...userReward, data]
+        });
+        this.$store.commit("clearErrors");
+      } catch (error) {
+        console.log("UserPage: 110", error);
+        const { data } = error.response;
+        this.$store.commit("setError", data.error_msg);
+      }
+    }
+  }
 };
 </script>
 
@@ -128,6 +128,8 @@ $sp: 480px;
   .parent {
     text-align: center;
     .child {
+      // opacity: 1;
+      // transition: opacity 1s;
       display: inline-block;
       font-family: dot;
       letter-spacing: 10px;
@@ -138,6 +140,9 @@ $sp: 480px;
         font-weight: bold;
       }
     }
+    // .child.hide {
+    //   opacity: 0;
+    // }
   }
 }
 </style>

@@ -26,9 +26,7 @@
           <v-dialog v-model="completeDialog">
             <v-card>
               <v-card-title
-                >『{{ selectedItem.title }}』を{{
-                  reward.point
-                }}コインで購入しますか？</v-card-title
+                >『{{ selectedItem.title }}』をコインで購入しますか？</v-card-title
               >
               <v-btn @click="completeItem(selectedItem)">はい</v-btn>
               <v-btn @click="completeDialog = false">いいえ</v-btn>
@@ -42,6 +40,11 @@
         </li>
       </draggable>
     </v-card>
+
+    <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+      {{ snackText }}
+      <v-btn text @click="snack = false">閉じる</v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -50,6 +53,9 @@ import axios from "@/plugins/axios";
 export default {
   data() {
     return {
+      snack: false,
+      snackColor: "",
+      snackText: "",
       completeDialog: false,
       selectedItem: "",
       rewards: [
@@ -63,6 +69,27 @@ export default {
     };
   },
   methods: {
+    async completeItem(item) {
+      const getUser = await axios.get(`/v1/rewards/${item.id}`, {
+        params: {
+          point: item.point
+        }
+      });
+      const rewards = this.user.rewards.filter(reward => {
+        return reward.id !== item.id;
+      });
+      const updateUser = {
+        // ...this.user,
+        user: getUser.data.user,
+        rewards
+      };
+      this.$store.commit("setUser", updateUser);
+      item.status = true;
+      this.snack = true;
+      this.snackColor = "black";
+      this.snackText = item.point + "コインを使った";
+      this.completeDialog = false;
+    },
     openCompleteDialog(reward) {
       this.completeDialog = true;
       this.selectedItem = reward;
