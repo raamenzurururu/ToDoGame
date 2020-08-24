@@ -13,9 +13,6 @@
         element="ul"
       >
         <li class="reward-list" v-for="reward in rewards" :key="reward.sort">
-          <v-icon size="30px" color="red"
-            >mdi-numeric-{{ reward.point }}-circle-outline</v-icon
-          >
           <v-hover v-slot:default="{ hover }">
             <v-icon
               @click="completeDialog = true"
@@ -39,6 +36,9 @@
           </v-dialog>
 
           <span class="reward-title">{{ reward.title }}</span>
+          <span class="reward-point">{{ reward.point }}コイン</span>
+          <v-icon v-if="reward.status" big color="yellow">check</v-icon>
+          <v-icon v-else big color="yellow">monetization_on</v-icon>
         </li>
       </draggable>
     </v-card>
@@ -52,8 +52,12 @@ export default {
     return {
       completeDialog: false,
       rewards: [
-        { title: "りんご", point: 1 },
-        { title: "コーヒーを飲む", point: 2 }
+        { title: "コーヒーを飲む", point: 1 },
+        { title: "歌を聞く", point: 2 },
+        { title: "お菓子を食べる", point: 3 },
+        { title: "15分寝る", point: 5 },
+        { title: "アニメを見る", point: 10 },
+        { title: "遊びに行く", point: 30 },
       ]
     };
   }
@@ -88,6 +92,10 @@ export default {
     letter-spacing: 8px;
     font-weight: bold;
     font-size: 18px;
+  }
+  .reward-point {
+    padding-top: 3px;
+    font-weight: bold;
   }
 }
 

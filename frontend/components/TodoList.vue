@@ -18,7 +18,7 @@
           >
           <v-hover v-slot:default="{ hover }">
             <v-icon
-              @click="completeDialog = true"
+              @click="openCompleteDialog(todo)"
               size="25px"
               color="yellow"
               v-text="hover ? 'mdi-crown' : 'mdi-crown-outline'"
@@ -29,9 +29,9 @@
           <v-dialog v-model="completeDialog">
             <v-card>
               <v-card-title
-                >『{{ todo.title }}』を達成しましたか？</v-card-title
+                >『{{ selectedItem.title }}』を達成しましたか？</v-card-title
               >
-              <v-btn @click="completeItem(todo)">はい</v-btn>
+              <v-btn @click="completeItem(selectedItem)">はい</v-btn>
               <v-btn @click="completeDialog = false">いいえ</v-btn>
             </v-card>
           </v-dialog>
@@ -110,7 +110,8 @@ export default {
       dialogText: "",
       dialog: false,
       completeDialog: false,
-      deleteDialog: false
+      deleteDialog: false,
+      selectedItem: "",
     };
   },
   computed: {
@@ -178,6 +179,10 @@ export default {
         todos: this.todos
       };
       this.$store.commit("setUser", updateUser);
+    },
+    openCompleteDialog(todo) {
+      this.completeDialog = true;
+      this.selectedItem = todo;
     }
   }
 };
