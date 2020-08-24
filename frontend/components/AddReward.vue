@@ -7,13 +7,18 @@
         <span>値段を決める</span>
         <v-hover v-slot:default="{ hover }">
           <v-icon
-            @click="randomPoint()"
+            @click="getRandomNumber()"
+            onclick="disabled = true"
             size="50px"
             color="white"
             v-text="hover ? 'mdi-cube-send' : 'mdi-dice-3-outline'"
           >
           </v-icon>
         </v-hover>
+        <p class="point">
+          {{ point }}
+        </p>
+        
       </v-col>
       <v-col class="pr-0" cols="9" xs="8" sm="8" md="8" lg="8">
         <v-text-field
@@ -35,17 +40,16 @@
 </template>
 
 <script>
-const minNumber = 1;
-const maxNumber = 20;
-const randomPoint = Math.floor(Math.random() * 21);
+// const minNumber = 1;
+// const maxNumber = 20;
+// const randomPoint = Math.floor(Math.random() * 21);
 
 export default {
   props: ["reward"],
   data() {
     return {
-      items: randomPoint,
       title: "",
-      point: ""
+      point: "",
     };
   },
   methods: {
@@ -59,8 +63,9 @@ export default {
       this.title = "";
       this.point = "";
     },
-    randomPoint() {
-      console.log(randomPoint);
+    getRandomNumber() {
+      const randnum = Math.floor( Math.random() * 21 );
+      this.point = randnum;
     }
   }
 };
@@ -78,6 +83,9 @@ $sub-color: rgb(11, 214, 236) !important;
   font-weight: bold;
   margin: 15px;
   width: 93%;
+}
+.point {
+  color: red;
 }
 
 .add-reward {
