@@ -15,7 +15,7 @@
         <li class="reward-list" v-for="reward in rewards" :key="reward.sort">
           <v-hover v-slot:default="{ hover }">
             <v-icon
-              @click="completeDialog = true"
+              @click="openCompleteDialog(reward)"
               size="25px"
               color="red"
               v-text="hover ? 'mdi-heart-multiple' : 'mdi-heart-outline'"
@@ -26,11 +26,11 @@
           <v-dialog v-model="completeDialog">
             <v-card>
               <v-card-title
-                >『{{ reward.title }}』を{{
+                >『{{ selectedItem.title }}』を{{
                   reward.point
                 }}コインで購入しますか？</v-card-title
               >
-              <v-btn @click="completeItem(reward)">はい</v-btn>
+              <v-btn @click="completeItem(selectedItem)">はい</v-btn>
               <v-btn @click="completeDialog = false">いいえ</v-btn>
             </v-card>
           </v-dialog>
@@ -51,6 +51,7 @@ export default {
   data() {
     return {
       completeDialog: false,
+      selectedItem: "",
       rewards: [
         { title: "コーヒーを飲む", point: 1 },
         { title: "歌を聞く", point: 2 },
@@ -60,6 +61,12 @@ export default {
         { title: "遊びに行く", point: 30 },
       ]
     };
+  },
+  methods: {
+    openCompleteDialog(reward) {
+      this.completeDialog = true;
+      this.selectedItem = reward;
+    }
   }
 };
 </script>
