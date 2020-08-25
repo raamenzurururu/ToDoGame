@@ -6,6 +6,7 @@
         <div class="parent">
           <img class="child" src="../assets/mon_285.gif" />
           <p class="child">コインを使って報酬をもらおう</p>
+          <img class="child" src="../assets/mon_274.gif" @load="show=true" :class="{hide: !show}" />
           <AddReward @submit="addReward" />
         </div>
       </v-col>
@@ -128,8 +129,8 @@ $sp: 480px;
   .parent {
     text-align: center;
     .child {
-      // opacity: 1;
-      // transition: opacity 1s;
+      opacity: 1;
+      transition: opacity 1s;
       display: inline-block;
       font-family: dot;
       letter-spacing: 10px;
@@ -140,9 +141,9 @@ $sp: 480px;
         font-weight: bold;
       }
     }
-    // .child.hide {
-    //   opacity: 0;
-    // }
+    .child.hide {
+      opacity: 0;
+    }
   }
 }
 </style>

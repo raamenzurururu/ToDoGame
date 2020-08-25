@@ -3,7 +3,6 @@
     <v-row class="add-reward">
       <v-col class="pr-0" cols="3" xs="6" sm="2" md="2" lg="2">
         <!-- <v-btn label="コイン" v-model="point" :items="items" outlined></v-btn> -->
-        <!-- ランダムで数字が選ばれるようにしたい -->
         <span>値段を決める</span>
         <v-hover v-slot:default="{ hover }">
           <v-icon
@@ -40,10 +39,6 @@
 </template>
 
 <script>
-// const minNumber = 1;
-// const maxNumber = 20;
-// const randomPoint = Math.floor(Math.random() * 21);
-
 export default {
   props: ["reward"],
   data() {
@@ -56,8 +51,8 @@ export default {
     handleSubmit() {
       const reward = {
         title: this.title,
+        point: this.point,
         user_id: this.$store.state.currentUser.user.id,
-        point: this.point
       };
       this.$emit("submit", reward);
       this.title = "";
@@ -96,11 +91,5 @@ $sub-color: rgb(11, 214, 236) !important;
       color: rgba(8, 113, 233, 0.884);
     }
   }
-}
-
-.col-md-4 > .bt {
-  color: white;
-  padding: 10px 40px !important;
-  border: 2px solid white;
 }
 </style>
