@@ -74,6 +74,11 @@ export default {
       dialog: false,
     };
   },
+  computed: {
+    user() {
+      return this.$store.state.currentUser;
+    }
+  },
   methods: {
     async completeItem(item) {
       const getUser = await axios.get(`/v1/rewards/${item.id}`, {
@@ -97,12 +102,13 @@ export default {
       this.completeDialog = false;
     },
     async deleteItem(item) {
-      await axios.delete(`/v1/rewards/${item.id}`); 
+      const getUser = await axios.delete(`/v1/rewards/${item.id}`); 
       const rewards = this.user.rewards.filter(reward => {
         return reward.id !== item.id;
       });
       const updateUser = {
         ...this.user,
+        user: getUser.data.user,
         rewards
       };
       this.$store.commit("setUser", updateUser);
