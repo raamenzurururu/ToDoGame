@@ -50,7 +50,14 @@
         </div> -->
       </v-col>
 
-      <v-col v-if="user" class="extra-explain" cols="12" sm="12" md="12" lg="12">
+      <v-col
+        v-if="user"
+        class="extra-explain"
+        cols="12"
+        sm="12"
+        md="12"
+        lg="12"
+      >
         <img class="girl" src="../assets/mon_214.gif" />
         <v-icon
           id="call"
@@ -68,7 +75,7 @@
               'ゆうしゃさま。 さいごまで　よんで　くださいますのね？',
               'ああ！わたしのことばを　きいてくださるかたが　いらっしゃるなんて！',
               'じゅうじかをおして　わたしのことばを',
-              'きいてください、、、。',
+              'きいてください、、、。'
             ]"
             erase-style="clear"
             :type-delay="140"
@@ -161,6 +168,10 @@
       </v-col>
     </v-row>
 
+    <div class="wrapper" style="font-family: dot;">
+      <a href="#" class="button">成長したい!</a>
+    </div>
+
     <div v-if="user"></div>
     <v-row v-else class="introduction md-0 justify-center">
       <v-col
@@ -239,6 +250,7 @@
         新規登録
       </v-btn>
     </div>
+
     <!-- <v-btn color="primary" dark @click.stop="dialog = true">
       open dialog
     </v-btn> -->
@@ -520,8 +532,8 @@ $sp: 480px;
     text-align: center;
     flex-direction: column;
     .girl {
-    height: 60%;
-    margin-top: 40px;
+      height: 60%;
+      margin-top: 40px;
     }
   }
 
@@ -662,13 +674,6 @@ $sp: 480px;
     text-align: center;
     margin-top: 30px;
   }
-  .mdi-chess-queen {
-    color: $main-color !important;
-  }
-
-  .mdi-chess-knight {
-    color: $main-color !important;
-  }
 
   .login-button {
     &:hover {
@@ -703,7 +708,6 @@ $sp: 480px;
   }
 }
 
-
 .dialog-btn {
   background-color: black;
   border: 2px solid $main-color;
@@ -712,7 +716,7 @@ $sp: 480px;
   margin: 15px;
   width: 45%;
   font-weight: bold;
-  
+
   &:hover {
     border: 2px solid $main-color;
     color: $sub-color;
@@ -737,6 +741,63 @@ $sp: 480px;
     }
   }
 }
+
+$color: #2194e0;
+
+@keyframes sheen {
+  0% {
+    transform: skewY(-45deg) translateX(0);
+  }
+  100% {
+    transform: skewY(-45deg) translateX(12.5em);
+  }
+}
+
+// 成長したいボタン
+
+.wrapper {
+  display: flex;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+}
+.button {
+  padding: 0.75em 2em;
+  text-align: center;
+  text-decoration: none;
+  color: $color;
+  border: 2px solid $color;
+  font-size: 24px;
+  display: inline-block;
+  border-radius: 0.3em;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  &:before {
+    content: "";
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
+    width: 3em;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -4.5em;
+    transform: skewX(-45deg) translateX(0);
+    transition: none;
+  }
+  &:hover {
+    background-color: $color;
+    letter-spacing: 10px;
+    color: #fff;
+    border-bottom: 4px solid darken($color, 10%);
+    &:before {
+      transform: skewX(-45deg) translateX(13.5em);
+      transition: all 0.5s ease-in-out;
+    }
+  }
+}
+
+// ここまで
 
 .vue-typer {
   font-size: 20px;
@@ -846,8 +907,8 @@ $sp: 480px;
     border: 2px solid $main-color;
     color: $sub-color;
     &:hover {
-      border: 2px solid rgba(142, 42, 51, 0.904) !important;
-      color: $accent-color !important;
+      border: 2px solid #06d6a0 !important;
+      color: greenyellow !important;
     }
   }
 }
