@@ -49,7 +49,10 @@
     <v-app-bar class="tool-bar" :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title class="pl-0">
-        <router-link to="/user" class="toolbar-title"
+        <router-link v-if="currentUser" to="/user" class="toolbar-title"
+          ><img class="sword" src="../assets/icon002.png" />ToDo<span class="title-first">Game</span></router-link
+        >
+        <router-link v-else to="/login" class="toolbar-title"
           ><img class="sword" src="../assets/icon002.png" />ToDo<span class="title-first">Game</span></router-link
         >
       </v-toolbar-title>
