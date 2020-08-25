@@ -229,21 +229,16 @@
         </v-carousel>
       </v-col>
     </v-row> -->
-
-    <v-hover v-slot:default="{ hover }">
+    <div class="bottom">
       <div v-if="user"></div>
       <v-btn v-else class="bottom-btn" @click.stop="dialog = true">
-        <v-icon v-text="hover ? 'mdi-chess-queen' : ''"></v-icon>
         ログイン
       </v-btn>
-    </v-hover>
-    <v-hover v-slot:default="{ hover }">
       <div v-if="user"></div>
       <v-btn v-else class="bottom-btn" @click="moveToTop">
-        <v-icon v-text="hover ? 'mdi-chess-knight' : ''"></v-icon>
         新規登録
       </v-btn>
-    </v-hover>
+    </div>
     <!-- <v-btn color="primary" dark @click.stop="dialog = true">
       open dialog
     </v-btn> -->
@@ -842,6 +837,18 @@ $sp: 480px;
     text-align: center;
     background-color: rgb(11, 214, 236);
     border: 3px solid skyblue;
+  }
+}
+
+.bottom {
+  text-align: center;
+  .bottom-btn {
+    border: 2px solid $main-color;
+    color: $sub-color;
+    &:hover {
+      border: 2px solid rgba(142, 42, 51, 0.904) !important;
+      color: $accent-color !important;
+    }
   }
 }
 </style>
