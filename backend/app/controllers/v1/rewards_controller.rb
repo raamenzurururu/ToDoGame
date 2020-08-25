@@ -31,7 +31,6 @@ class V1::RewardsController < ApplicationController
 
   def complete
     reward = Reward.find(params[:id])
-    byebug
     user = User.find(reward.user_id)
     if user.point <= reward.point
       render json: {error_msg: ["TP(タスクポイント)が足りません"]}, status: :unprocessable_entity

@@ -34,7 +34,7 @@
           </v-dialog>
 
           <span class="reward-title">{{ reward.title }}</span>
-          <span class="reward-point">{{ reward.point }}コイン</span>
+          <span class="reward-list-icon">{{ reward.point }}コイン</span>
           <v-icon v-if="reward.status" big color="yellow">check</v-icon>
           <v-icon v-else big color="yellow">monetization_on</v-icon>
           <v-icon @click="openDeleteDialog(reward)">delete</v-icon>
@@ -145,6 +145,11 @@ export default {
   src: url("../assets/fonts/k8x12S.ttf") format("truetype");
 }
 
+.v-icon {
+  display: flex;
+  justify-content: center;
+}
+
 .reward-list {
   display: flex;
   list-style: none;
@@ -158,6 +163,8 @@ export default {
   cursor: grab;
   .reward-list-icon {
     margin-left: auto;
+    padding-top: 3px;
+    font-weight: bold;
   }
   .reward-title {
     margin-left: 10px;
@@ -167,10 +174,6 @@ export default {
     letter-spacing: 8px;
     font-weight: bold;
     font-size: 18px;
-  }
-  .reward-point {
-    padding-top: 3px;
-    font-weight: bold;
   }
 }
 
