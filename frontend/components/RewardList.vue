@@ -51,6 +51,7 @@
 <script>
 import axios from "@/plugins/axios";
 export default {
+  props: ["rewards"],
   data() {
     return {
       snack: false,
@@ -58,14 +59,6 @@ export default {
       snackText: "",
       completeDialog: false,
       selectedItem: "",
-      rewards: [
-        { title: "コーヒーを飲む", point: 1 },
-        { title: "歌を聞く", point: 2 },
-        { title: "お菓子を食べる", point: 3 },
-        { title: "15分寝る", point: 5 },
-        { title: "アニメを見る", point: 10 },
-        { title: "遊びに行く", point: 30 },
-      ]
     };
   },
   methods: {
@@ -89,6 +82,16 @@ export default {
       this.snackColor = "black";
       this.snackText = item.point + "コインを使った";
       this.completeDialog = false;
+    },
+    async atEnd() {
+      let result = await axios.patch(`v1/rewards`, {
+        reward: this.rewards
+      });
+      const updateUser = {
+        ...this.user,
+        rewards: this.rewards
+      };
+      this.$store.commit("setUser", updateUser);
     },
     openCompleteDialog(reward) {
       this.completeDialog = true;

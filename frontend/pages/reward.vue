@@ -14,7 +14,7 @@
     <v-row justify="center">
       <v-col cols="12" xs="12" sm="12" md="12" lg="8">
         <div>
-          <RewardList />
+          <RewardList :rewards="currentUser.rewards"/>
         </div>
       </v-col>
     </v-row>
@@ -52,7 +52,7 @@ export default {
     );
   },
   components: {
-    // AddReward,
+    AddReward,
     RewardList,
     Status
   },
