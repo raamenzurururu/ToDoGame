@@ -5,6 +5,8 @@ class V1::UsersController < ApplicationController
         todos = user.todos.order(sort: "ASC")
         rewards = user.rewards.order(sort: "ASC")
         render json: {user: user, todos: todos, rewards: rewards}
+        todo = {"title" => "","point" => ""}
+        reward = {"title" => "","point" => ""}
       end
     end
 

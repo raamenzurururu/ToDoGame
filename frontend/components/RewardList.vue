@@ -37,6 +37,15 @@
           <span class="reward-point">{{ reward.point }}コイン</span>
           <v-icon v-if="reward.status" big color="yellow">check</v-icon>
           <v-icon v-else big color="yellow">monetization_on</v-icon>
+          <v-icon @click="openDeleteDialog(reward)">delete</v-icon>
+
+          <v-dialog v-model="deleteDialog">
+            <v-card>
+              <v-card-title>『{{selectedItem.title}}』を削除しますか？</v-card-title>
+              <v-btn @click="deleteItem(selectedItem)">はい</v-btn>
+              <v-btn @click="deleteDialog = false">いいえ</v-btn>
+            </v-card>
+          </v-dialog>
         </li>
       </draggable>
     </v-card>
@@ -54,11 +63,15 @@ export default {
   props: ["rewards"],
   data() {
     return {
+      singleSelect: true,
+      selected: [],
       snack: false,
       snackColor: "",
       snackText: "",
       completeDialog: false,
       selectedItem: "",
+      deleteDialog: false,
+      dialog: false,
     };
   },
   methods: {
@@ -83,6 +96,21 @@ export default {
       this.snackText = item.point + "コインを使った";
       this.completeDialog = false;
     },
+    async deleteItem(item) {
+      await axios.delete(`/v1/rewards/${item.id}`); 
+      const rewards = this.user.rewards.filter(reward => {
+        return reward.id !== item.id;
+      });
+      const updateUser = {
+        ...this.user,
+        rewards
+      };
+      this.$store.commit("setUser", updateUser);
+      this.snack = true;
+      this.snackColor = "black";
+      this.snackText = "削除しました";
+      this.deleteDialog = false;
+    },
     async atEnd() {
       let result = await axios.patch(`v1/rewards`, {
         reward: this.rewards
@@ -95,6 +123,10 @@ export default {
     },
     openCompleteDialog(reward) {
       this.completeDialog = true;
+      this.selectedItem = reward;
+    },
+    openDeleteDialog(reward) {
+      this.deleteDialog = true
       this.selectedItem = reward;
     }
   }
