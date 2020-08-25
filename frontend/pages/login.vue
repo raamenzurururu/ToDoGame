@@ -174,7 +174,7 @@
       >
         <img src="../assets/mon_235.gif" />
         <h3 class="login-subtitle-1">
-          冒険のように楽しめる<img class="item1" src="../assets/icon003.png" />
+          冒険のように楽しめる
         </h3>
         <h3 class="login-explain-1">
           いつだって僕ら
@@ -192,7 +192,7 @@
       >
         <img src="../assets/mon_260.gif" />
         <h3 class="login-subtitle-2">
-          レベル上げを楽しもう<img class="item2" src="../assets/icon025.png" />
+          レベル上げを楽しもう
         </h3>
         <h3 class="login-explain-2">
           きっと誰だって
@@ -210,7 +210,7 @@
       >
         <img src="../assets/mon_270.gif" />
         <h3 class="login-subtitle-3 text-center">
-          それが成長へのコツ<img class="item3" src="../assets/icon024.png" />
+          それが成長へのコツ
         </h3>
         <h3 class="login-explain-3">
           楽しみたいはず。
@@ -771,11 +771,6 @@ $sp: 480px;
   text-align: center;
   justify-content: center;
   position: relative;
-  .item1 {
-    position: absolute;
-    padding-left: 210px;
-    padding-top: 3px;
-  }
 }
 
 .login-explain-1 {
@@ -794,11 +789,6 @@ $sp: 480px;
   text-align: center;
   justify-content: center;
   position: relative;
-  .item2 {
-    position: absolute;
-    padding-left: 210px;
-    padding-top: 3px;
-  }
 }
 
 .login-explain-2 {
@@ -817,11 +807,6 @@ $sp: 480px;
   text-align: center;
   justify-content: center;
   position: relative;
-  .item3 {
-    position: absolute;
-    padding-left: 190px;
-    padding-top: 3px;
-  }
 }
 .login-explain-3 {
   font-family: dot;
