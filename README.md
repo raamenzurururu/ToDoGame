@@ -12,6 +12,7 @@
   <a href="https://rubyonrails.org/"><img src="https://user-images.githubusercontent.com/59280290/80292396-7a4b8a00-8791-11ea-8d8a-effea8a1f485.png" height="45px;" /></a>
 
 ## サイト概要
+<h1>ゲーミフィケーションを取り入れたタスク管理SPA</h1>
 
 ### サイトテーマ
   
