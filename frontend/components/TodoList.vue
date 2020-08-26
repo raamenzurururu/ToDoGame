@@ -130,9 +130,9 @@ export default {
       const todos = this.user.todos.filter(todo => {
         return todo.id !== item.id;
       });
-      this.user.level = getUser.data.user.level;
       this.user.point = getUser.data.user.point;
       this.user.experience_point = getUser.data.user.experience_point;
+      this.user.status = getUser.data.user.status;
       const updateUser = {
         // ...this.user,
         user: getUser.data.user,

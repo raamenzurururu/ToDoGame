@@ -42,13 +42,12 @@ class V1::TodosController < ApplicationController
     user.experience_point = totalExp
     user.update(point: totalPoint,experience_point: totalExp)
 
-    levelSetting = LevelSetting.find_by(level: user.level + 1)
-
-    if levelSetting.thresold <= user.experience_point
-      user.level = user.level + 1
-      byebug
-      user.update(level: user.level)
-      totalExp = 0
+    if user.experience_point < 6
+      user.status = '冒険者'
+      user.update(status: user.status)
+    else 
+      user.status = '英雄'
+      user.update(status: user.status)
     end
     
     if todo.destroy
