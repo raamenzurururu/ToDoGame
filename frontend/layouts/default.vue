@@ -31,7 +31,7 @@
 
         <v-list-item v-if="currentUser" @click="logOutWindow = true">
           <v-list-item-action>
-            <v-icon>mdi-key</v-icon>
+            <v-icon>mdi-brightness-3</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>ログアウト</v-list-item-title>
@@ -84,17 +84,6 @@
         </v-btn>
       </v-toolbar-items>
 
-      <!-- <Vdialog></Vdialog> -->
-
-      <!-- <v-toolbar-items class="page-link" v-if="user">
-        <v-btn class="header-btn ml-1" @click="logOutWindow = true">
-          <v-hover v-slot:default="{ hover }">
-            <v-icon size="20px" color="orange" v-text="hover ? 'mdi-coffee-to-go' : 'mdi-coffee'">
-            </v-icon>
-          </v-hover>
-        </v-btn>
-      </v-toolbar-items> -->
-
       <v-spacer />
     </v-app-bar>
     <v-content>
@@ -142,19 +131,19 @@ export default {
       if (this.currentUser) {
         return [
           {
-            icon: "mdi-crown",
-            title: "へるぷ",
-            to: "/"
-          },
-          {
-            icon: "mdi-star",
+            icon: "mdi-book-open-page-variant",
             title: "やること",
             to: "/user"
           },
           {
-            icon: "mdi-lock",
+            icon: "mdi-gift",
             title: "ほうしゅう",
             to: "/reward"
+          },
+          {
+            icon: "mdi-help-circle",
+            title: "へるぷ",
+            to: "/"
           }
         ];
       } else {

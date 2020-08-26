@@ -1,10 +1,8 @@
 <template>
   <v-container class="login-page">
-    <h1 v-if="countHiddenPage >= 5">あなたのために祈ってます。</h1>
     <h1 class="login-title">ToDo<span class="login-title-first">Game</span></h1>
     <v-row>
-      <div v-if="user"></div>
-      <v-col v-else cols="12" sm="12" md="6" lg="6">
+      <v-col cols="12" sm="12" md="6" lg="6">
         <!-- 根拠のある言葉にしていく -->
         <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
         <vue-typer
@@ -39,56 +37,10 @@
             ><span class="default">冒険が</span></a
           >
         </div>
-        <!-- <div v-if="user"></div>
-        <div class="guest" v-else>
-          <v-hover v-slot:default="{ hover }">
-            <v-btn class="login-button" @click="guestLogin">
-              <v-icon v-text="hover ? 'mdi-feather' : ''"></v-icon
-              >ゲストログイン
-            </v-btn>
-          </v-hover>
-        </div> -->
-      </v-col>
-
-      <v-col
-        v-if="user"
-        class="extra-explain"
-        cols="12"
-        sm="12"
-        md="12"
-        lg="12"
-      >
-        <img class="girl" src="../assets/mon_214.gif" />
-        <v-icon
-          id="call"
-          :color="color"
-          @click="countCall()"
-          class="mb-5 call"
-          :size="size"
-          >mdi-christianity-outline</v-icon
-        >
-        <h1 v-if="countHiddenPage >= 10">どうか、すすんでください。</h1>
-        <div class="instead-of-form">
-          <vue-typer
-            style="font-family: dot;"
-            :text="[
-              'ゆうしゃさま。 さいごまで　よんで　くださいますのね？',
-              'ああ！わたしのことばを　きいてくださるかたが　いらっしゃるなんて！',
-              'じゅうじかをおして　わたしのことばを',
-              'きいてください、、、。'
-            ]"
-            erase-style="clear"
-            :type-delay="140"
-            :erase-delay="270"
-            :repeat="Infinity"
-            caret-animation="expand"
-          ></vue-typer>
-        </div>
       </v-col>
 
       <v-col
         class="login-button-wrapper"
-        v-else
         cols="12"
         sm="12"
         md="6"
@@ -144,22 +96,7 @@
       </v-col>
     </v-row>
 
-    <!-- <vue-typer
-      style="font-family: dot;"
-      :text="[
-        'ここからハジマル。　ながいたび。',
-        'きみはもっと。もっと。カシコクナル',
-        'さあ、、、イマすぐに、、、はじめよう。',
-        'いくんだ。ユウシャよ、、、'
-      ]"
-      erase-style="clear"
-      :type-delay="230"
-      :erase-delay="300"
-      :repeat="Infinity"
-      caret-animation="expand"
-    ></vue-typer> -->
-    <div v-if="user"></div>
-    <v-row v-else class="introduction" style="font-family: dot;">
+    <v-row class="introduction" style="font-family: dot;">
       <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
         <h3 class="login-explain">人間は成長してこそ楽しさを感じる</h3>
         <h3 class="login-explain">さらなる高みを目指して</h3>
@@ -172,8 +109,7 @@
       <a href="#" class="button">成長したい!</a>
     </div>
 
-    <div v-if="user"></div>
-    <v-row v-else class="introduction md-0 justify-center">
+    <v-row class="introduction md-0 justify-center">
       <v-col
         class="sub-introduction-1"
         mx-2
@@ -229,24 +165,11 @@
       </v-col>
     </v-row>
 
-    <!-- <v-row>
-      <v-col cols="12" sm="12" md="12" lg="10">
-        <v-carousel height="100%">
-          <v-carousel-item
-            v-for="(item, i) in items"
-            :key="i"
-            :src="item.src"
-          ></v-carousel-item>
-        </v-carousel>
-      </v-col>
-    </v-row> -->
     <div class="bottom">
-      <div v-if="user"></div>
-      <v-btn v-else class="bottom-btn" @click.stop="dialog = true">
+      <v-btn class="bottom-btn" @click.stop="dialog = true">
         ログイン
       </v-btn>
-      <div v-if="user"></div>
-      <v-btn v-else class="bottom-btn" @click="moveToTop">
+      <v-btn class="bottom-btn" @click="moveToTop">
         新規登録
       </v-btn>
     </div>
@@ -330,9 +253,6 @@ export default {
       show1: false,
       show2: false,
       dialog: false,
-      countHiddenPage: 0,
-      color: "",
-      size: 65,
       showContent: false,
       error: ""
     };
@@ -480,11 +400,6 @@ export default {
       };
       setTimeout(check, 1000, "checked");
     },
-    countCall() {
-      this.countHiddenPage++;
-      this.size += 10;
-      this.color = "blue";
-    }
   }
 };
 </script>
@@ -528,15 +443,6 @@ $sp: 480px;
 }
 
 .login-page {
-  .extra-explain {
-    text-align: center;
-    flex-direction: column;
-    .girl {
-      height: 60%;
-      margin-top: 40px;
-    }
-  }
-
   .mon {
     width: 20%;
 
@@ -682,7 +588,7 @@ $sp: 480px;
     }
   }
   .checked {
-    color: $accent-color;
+    color: $accent-color !important;
   }
   .login-button-wrapper {
     text-align: center;
