@@ -15,7 +15,7 @@
         </p>
 
         <div class="user-point">
-          <img class="coin-img" src="../assets/icon021.png" />
+          <v-icon big color="yellow">monetization_on</v-icon>
           <p class="user-task-point">{{ currentUser.user.point }}コイン</p>
         </div>
       </v-col>
@@ -70,18 +70,19 @@ $sub-color: rgb(11, 214, 236) !important;
   background-color: $main-color;
 }
 
-.coin-img {
-  width: 10%;
-  height: 10%;
-  display: inline-block;
-}
-
 .user-point {
   display: flex;
+  .v-icon {
+  width: 10%;
+  height: 10%;
+  padding-top: 5px;
+  display: inline-block;
+  }
   .user-task-point {
+    display: inline-block;
     font-size: x-large;
     color: blue;
-    padding-left: 5%;
+    padding-left: 3%;
   }
 }
 
