@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_15_021350) do
+ActiveRecord::Schema.define(version: 2020_08_26_064701) do
 
   create_table "level_settings", force: :cascade do |t|
     t.integer "level"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_021350) do
     t.integer "point", default: 0
     t.integer "level", default: 1
     t.integer "experience_point", default: 0
+    t.string "status", default: "初心者"
   end
 
 end

@@ -21,10 +21,10 @@
       </v-col>
 
       <v-col cols="12" xs="5" sm="6" md="5" lg="5">
-        <p class="user-level">レベル:{{ currentUser.user.level }}</p>
-        <p v-if="currentUser.user.level == 10">
+        <p class="user-level">ステータス:{{ currentUser.user.status }}</p>
+        <!-- <p v-if="currentUser.user.level == 10">
           あなたは最大レベルになりました
-        </p>
+        </p> -->
       </v-col>
     </v-row>
   </v-container>
