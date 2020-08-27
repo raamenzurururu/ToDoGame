@@ -21,10 +21,6 @@
           :repeat="Infinity"
           caret-animation="expand"
         ></vue-typer>
-        <!-- <h2 class="login-explain">
-          <span>ゲーム感覚</span>で日々のやることをこなす<br />
-          ToDoアプリです。
-        </h2> -->
         <div class="monster">
           <img class="mon" src="../assets/mon_178.gif" />
           <img class="mon" src="../assets/mon_176.gif" />
@@ -50,7 +46,6 @@
           <h1 id="login-signup" class="login-form-title text-center">
             新規登録<span>は</span>こちら
           </h1>
-          <!-- 文字を傾けたい -->
           <v-text-field
             v-model="name"
             :counter="10"
