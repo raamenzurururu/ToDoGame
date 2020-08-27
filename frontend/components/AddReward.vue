@@ -3,13 +3,13 @@
     <v-row class="add-reward">
       <v-col class="pr-0" cols="3" xs="6" sm="2" md="2" lg="2">
         <!-- <v-btn label="コイン" v-model="point" :items="items" outlined></v-btn> -->
-        <span>値段を決める</span>
+        <span>なげる</span>
         <v-hover v-slot:default="{ hover }">
           <v-icon
             @click="getRandomNumber()"
             onclick="disabled = true"
             size="50px"
-            color="white"
+            color="red"
             v-text="hover ? 'mdi-cube-send' : 'mdi-dice-3-outline'"
           >
           </v-icon>
@@ -70,6 +70,11 @@ export default {
 $main-color: #03a9f5 !important;
 $sub-color: rgb(11, 214, 236) !important;
 
+@font-face {
+  font-family: dot;
+  src: url("../assets/fonts/k8x12S.ttf") format("truetype");
+}
+
 @mixin btn {
   background-color: white;
   border: 2px solid white;
@@ -81,6 +86,11 @@ $sub-color: rgb(11, 214, 236) !important;
 }
 .point {
   color: red;
+}
+
+span {
+  font-family: dot;
+  letter-spacing: 5px;
 }
 
 .add-reward {
