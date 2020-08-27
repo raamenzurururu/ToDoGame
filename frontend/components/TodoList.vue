@@ -141,7 +141,7 @@ export default {
       this.$store.commit("setUser", updateUser);
       this.snack = true;
       this.snackColor = "black";
-      this.snackText = item.point + "コインを手に入れた";
+      this.snackText = item.point + "コインと経験値を手に入れた";
       this.completeDialog = false;
     },
     async deleteItem(item) {

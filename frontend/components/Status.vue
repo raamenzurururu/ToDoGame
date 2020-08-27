@@ -5,13 +5,6 @@
         <p>
           名前：{{ currentUser.user.name
           }}
-          <!-- <v-icon
-            class="mb-3"
-            color="yellow"
-            size="30"
-            v-if="(currentUser.user.level = 10)"
-            >mdi-crown</v-icon
-          > -->
         </p>
 
         <div class="user-point">
@@ -20,11 +13,8 @@
         </div>
       </v-col>
 
-      <v-col cols="12" xs="5" sm="6" md="5" lg="5">
+      <v-col cols="12" xs="6" sm="6" md="6" lg="6">
         <p class="user-level">ステータス:{{ currentUser.user.status }}</p>
-        <!-- <p v-if="currentUser.user.level == 10">
-          あなたは最大レベルになりました
-        </p> -->
       </v-col>
     </v-row>
   </v-container>

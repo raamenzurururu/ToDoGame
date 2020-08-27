@@ -45,8 +45,29 @@ class V1::TodosController < ApplicationController
     if user.experience_point < 6
       user.status = '冒険者'
       user.update(status: user.status)
+    elsif 6 <= user.experience_point && user.experience_point < 20
+      user.status = '見習い剣士'
+      user.update(status: user.status)
+    elsif 20 <= user.experience_point && user.experience_point < 30
+      user.status = '剣士'
+      user.update(status: user.status)
+    elsif 30 <= user.experience_point && user.experience_point < 50
+      user.status = '上級剣士'
+      user.update(status: user.status)
+    elsif 50 <= user.experience_point && user.experience_point < 60
+      user.status = '狂剣士'
+      user.update(status: user.status)
+    elsif 60 <= user.experience_point && user.experience_point < 70
+      user.status = '剣豪'
+      user.update(status: user.status)
+    elsif 70 <= user.experience_point && user.experience_point < 80
+      user.status = '剣聖'
+      user.update(status: user.status)
+    elsif 80 <= user.experience_point && user.experience_point < 95
+      user.status = '剣神'
+      user.update(status: user.status)
     else 
-      user.status = '英雄'
+      user.status = '伝説の英雄'
       user.update(status: user.status)
     end
     
