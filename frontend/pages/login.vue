@@ -174,9 +174,6 @@
       </v-btn>
     </div>
 
-    <!-- <v-btn color="primary" dark @click.stop="dialog = true">
-      open dialog
-    </v-btn> -->
     <v-dialog content-class="dialog" v-model="dialog" max-width="60%">
       <v-card>
         <v-card-title class="headline"><h3>ログイン</h3></v-card-title>
