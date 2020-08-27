@@ -2,10 +2,7 @@
   <v-container class="user-page" v-if="currentUser">
     <v-row class="user-status">
       <v-col cols="12" xs="5" sm="6" md="5" lg="5">
-        <p>
-          名前：{{ currentUser.user.name
-          }}
-        </p>
+        <p>名前：{{ currentUser.user.name }}</p>
 
         <div class="user-point">
           <v-icon big color="yellow">monetization_on</v-icon>
@@ -15,6 +12,15 @@
 
       <v-col cols="12" xs="6" sm="6" md="6" lg="6">
         <p class="user-level">ステータス:{{ currentUser.user.status }}</p>
+        <p>残りの体力</p>
+        <v-rating
+          v-model="rating"
+          color="red darken-3"
+          background-color="grey darken-1"
+          :empty-icon="emptyIcon"
+          :full-icon="fullIcon"
+          hover
+        ></v-rating>
       </v-col>
     </v-row>
   </v-container>
@@ -27,7 +33,10 @@ export default {
       show1: false,
       show2: false,
       error: "",
-      showContent: false
+      showContent: false,
+      rating: 0,
+      emptyIcon: 'mdi-heart-outline',
+      fullIcon: 'mdi-heart',
     };
   },
   fetch({ store, redirect }) {
@@ -63,10 +72,10 @@ $sub-color: rgb(11, 214, 236) !important;
 .user-point {
   display: flex;
   .v-icon {
-  width: 10%;
-  height: 10%;
-  padding-top: 5px;
-  display: inline-block;
+    width: 10%;
+    height: 10%;
+    padding-top: 5px;
+    display: inline-block;
   }
   .user-task-point {
     display: inline-block;
