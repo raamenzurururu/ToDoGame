@@ -2,7 +2,6 @@
   <v-form>
     <v-row class="add-reward">
       <v-col class="pr-0" cols="3" xs="6" sm="2" md="2" lg="2">
-        <!-- <v-btn label="コイン" v-model="point" :items="items" outlined></v-btn> -->
         <span>なげる</span>
         <v-hover v-slot:default="{ hover }">
           <v-icon

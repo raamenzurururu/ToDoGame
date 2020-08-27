@@ -100,7 +100,6 @@
 <script>
 import Loading from "@/components/Loading";
 import Success from "@/components/Success";
-// import Vdialog from "@/components/Vuetify/Vdialog";
 import firebase from "@/plugins/firebase";
 import axios from "@/plugins/axios";
 
