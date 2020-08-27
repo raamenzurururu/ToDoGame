@@ -34,13 +34,13 @@
             <v-icon>mdi-brightness-3</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>ログアウト</v-list-item-title>
+            <v-list-item-title>ろぐあうと</v-list-item-title>
           </v-list-item-content>
           <v-dialog v-model="logOutWindow">
             <v-card>
               <v-card-title class="headline grey lighten-2" color="red">ログアウトしますか？</v-card-title>
-              <v-btn color="orange" @click="logOut">はい</v-btn>
-              <v-btn color="orange" @click="logOutWindow = false">いいえ</v-btn>
+              <v-btn color="blue" @click="logOut">はい</v-btn>
+              <v-btn color="blue" @click="logOutWindow = false">いいえ</v-btn>
             </v-card>
           </v-dialog>
         </v-list-item>
