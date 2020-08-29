@@ -120,7 +120,6 @@ export default {
   components: {
     Loading,
     Success,
-    // Vdialog,
   },
   computed: {
     currentUser() {
