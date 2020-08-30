@@ -145,9 +145,7 @@ export default {
       this.completeDialog = false;
     },
     async deleteItem(item) {
-      await axios.delete(`/v1/todos/${item.id}`); //.then(() => {
-      //this.$router.push("/login");
-      //}); //これで飛ばせる
+      await axios.delete(`/v1/todos/${item.id}`); 
       const todos = this.user.todos.filter(todo => {
         return todo.id !== item.id;
       });
