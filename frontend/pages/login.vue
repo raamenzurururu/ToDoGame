@@ -28,6 +28,7 @@
           <img class="mon" src="../assets/mon_283.gif" />
         </div>
         <div class="guest">
+          <!-- ゲストログインできるようにする -->
           <a class="btn cubic"
             ><span class="hovering">ここからはじまる</span
             ><span class="default">冒険が</span></a
