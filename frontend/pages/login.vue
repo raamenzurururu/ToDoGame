@@ -30,8 +30,8 @@
         <div class="guest">
           <!-- ゲストログインできるようにする -->
           <a class="btn cubic"
-            ><span class="hovering">ここからはじまる</span
-            ><span class="default">冒険が</span></a
+            ><v-btn @click="guestLogin" class="hovering">ログインする</v-btn
+            ><v-btn class="default">ゲストで</v-btn></a
           >
         </div>
       </v-col>
@@ -439,7 +439,7 @@ $sp: 480px;
     cursor: pointer;
 
     &.cubic {
-      & span {
+      & .v-btn {
         position: absolute;
         top: 0;
         left: 0;
