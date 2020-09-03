@@ -28,7 +28,6 @@
           <img class="mon" src="../assets/mon_283.gif" />
         </div>
         <div class="guest">
-          <!-- ゲストログインできるようにする -->
           <a class="btn cubic"
             ><v-btn @click="guestLogin" class="hovering">ログインする</v-btn
             ><v-btn class="default">ゲストで</v-btn></a

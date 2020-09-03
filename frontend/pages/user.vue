@@ -69,7 +69,6 @@ export default {
         const userTodo = this.currentUser.todos ? this.currentUser.todos : [];
         this.$store.commit("setUser", {
           ...this.currentUser,
-          // スプレッド構文
           todos: [...userTodo, data]
         });
         this.$store.commit("clearErrors");

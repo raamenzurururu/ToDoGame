@@ -30,6 +30,11 @@
           src="https://user-images.githubusercontent.com/59280290/80292396-7a4b8a00-8791-11ea-8d8a-effea8a1f485.png"
           height="45px;"
       /></a>
+      <a href="https://aws.amazon.com/jp/?nc2=h_lg"
+        ><img
+          src="https://user-images.githubusercontent.com/59280290/80302130-2ec1cc00-87e3-11ea-813c-dcdb51a02af5.png"
+          height="45px;"
+      /></a>
     </p>
   </v-container>
 </template>
