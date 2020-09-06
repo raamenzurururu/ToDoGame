@@ -90,4 +90,3 @@ sw.*
 *.swp
 
 .env
-.DS_Store
