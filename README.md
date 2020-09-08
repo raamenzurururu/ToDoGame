@@ -10,6 +10,8 @@
 <p align="center">
 <a>　</a>
   <a href="https://rubyonrails.org/"><img src="https://user-images.githubusercontent.com/59280290/80292396-7a4b8a00-8791-11ea-8d8a-effea8a1f485.png" height="45px;" /></a>
+  <a>　</a>
+  <a href="https://www.mysql.com/jp/"><img src="https://user-images.githubusercontent.com/59280290/80302176-6cbef000-87e3-11ea-9643-1f4b446dfaa8.png" height="45px;" /></a>
 
 ## サイト概要
 <h1>ゲーミフィケーションを取り入れたタスク管理SPA</h1>
