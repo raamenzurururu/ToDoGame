@@ -134,7 +134,6 @@ export default {
       this.user.experience_point = getUser.data.user.experience_point;
       this.user.status = getUser.data.user.status;
       const updateUser = {
-        // ...this.user,
         user: getUser.data.user,
         todos
       };
