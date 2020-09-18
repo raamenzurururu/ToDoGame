@@ -34,7 +34,7 @@
             <v-icon>mdi-brightness-3</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>ろぐあうと</v-list-item-title>
+            <v-list-item-title>ログアウト</v-list-item-title>
           </v-list-item-content>
           <v-dialog v-model="logOutWindow">
             <v-card>
@@ -135,12 +135,12 @@ export default {
           },
           {
             icon: "mdi-gift",
-            title: "ほうしゅう",
+            title: "報酬",
             to: "/reward"
           },
           {
             icon: "mdi-help-circle",
-            title: "へるぷ",
+            title: "ヘルプ",
             to: "/"
           }
         ];
@@ -148,7 +148,7 @@ export default {
         return [
           {
             icon: "mdi-cat",
-            title: "ろぐいん",
+            title: "ログイン",
             to: "/login",
           },
           {
