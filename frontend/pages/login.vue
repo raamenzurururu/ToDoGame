@@ -3,7 +3,6 @@
     <h1 class="login-title">ToDo<span class="login-title-first">Game</span></h1>
     <v-row>
       <v-col cols="12" sm="12" md="6" lg="6">
-        <!-- 根拠のある言葉にしていく -->
         <h1 class="login-subtitle text-center">ToDoGameとは？</h1>
         <vue-typer
           class="login-explain"
