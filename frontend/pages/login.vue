@@ -92,7 +92,7 @@
 
     <v-row class="introduction" style="font-family: dot;">
       <v-col class="sub-introduction main" cols="12" sm="12" md="12" lg="12">
-        <h3 class="login-explain">ランダムな報酬が脳を活性化する</h3>
+        <h3 class="login-explain">報酬が脳を活性化する</h3>
         <h3 class="login-explain">さらなる報酬を目指して</h3>
         <h3 class="login-explain">やるべきことをゲーム化して終わらせよう！</h3>
         <h3 class="login-explain">頑張ったあとに報酬を、、、。</h3>
