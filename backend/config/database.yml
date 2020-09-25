@@ -8,8 +8,6 @@ default: &default
   adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: root
-  password: password
 
 development:
   <<: *default
@@ -24,4 +22,9 @@ test:
 
 production:
   <<: *default
-  database: db/production.mysql2
+  database: ToDoGame_production
+  adapter: mysql2
+  encoding: utf8mb4
+  chsrset: utf8mb4
+  username: root
+  password:
