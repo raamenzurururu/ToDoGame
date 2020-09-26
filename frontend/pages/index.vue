@@ -11,7 +11,7 @@
         :size="size"
         >mdi-christianity-outline</v-icon
       >
-      <h1 v-if="countHiddenPage >= 10">どうか、すすんでください。</h1>
+      <h1 v-if="countHiddenPage >= 10">あなたならやりとげられます</h1>
       <div class="instead-of-form">
         <vue-typer
           style="font-family: dot;"
