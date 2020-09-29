@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style  lang="scss" scoped>
-$theme-color: #25b290;
+$theme-color: #1654be;
 .loader-container {
   position: fixed;
   top: 0;
