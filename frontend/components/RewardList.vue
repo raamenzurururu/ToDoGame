@@ -90,7 +90,6 @@ export default {
         return reward.id !== item.id;
       });
       const updateUser = {
-        // ...this.user,
         user: getUser.data.user,
         rewards
       };
