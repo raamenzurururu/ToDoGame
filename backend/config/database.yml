@@ -11,18 +11,23 @@ default: &default
 
 development:
   <<: *default
+  username: 
   database: db/development.mysql2
+  socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.mysql2
+  username: root
+  password: <%= Rails.application.credentials.db[:password] %>
+  database: docker_development
 
 production:
   <<: *default
-  database: <%= Rails.application.credentials.db[:database] %>
-  username: <%= Rails.application.credentials.db[:username] %>
-  password: <%= Rails.application.credentials.db[:password] %>
-  socket: <%= Rails.application.credentials.db[:socket] %>
+  database: docker_production
+  username: docker
+  password: <%= ENV['DOCKER_DATABASE_PASSWORD'] %>
+  socket: /tmp/mysql.sock
+  
