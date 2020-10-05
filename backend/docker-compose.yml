@@ -4,9 +4,9 @@ services:
     image: mysql:latest
     environment:
       MYSQL_DATABASE: docker_development
-      MYSQL_ROOT_PASSWORD: <%= Rails.application.credentials.db[:password] %>
-      MYSQL_USER: <%= Rails.application.credentials.db[:username] %>
-      MYSQL_PASSWORD: <%= Rails.application.credentials.db[:password] %>
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "13306:3306" # ホストからゲストへポートフォワード
   web:
