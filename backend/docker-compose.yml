@@ -1,14 +1,14 @@
-version: '2'
+#docker-composeのバージョン
+version: '3'
 services:
   db:
-    image: mysql:5.6
-    environment:
-      MYSQL_DATABASE: docker_development
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    image: postgres
     ports:
-      - "13306:3306" 
+      - '5432:5432' # ホストからゲストへポートフォワード
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=password
   web:
     build:
       context: .
@@ -17,8 +17,11 @@ services:
     tty: true
     stdin_open: true
     depends_on:
-      - db 
+      - db # DB側のコンテナが出来上がってからwebを実行する
     ports:
-      - "3000:3000"
+      - "3000:3000" # ホストからゲストへポートフォワード
     volumes:
-      - .:/workdir 
+      - .:/myproject # ソースコード変更したらDocker側も即反映されるように
+volumes:
+  postgresql-data:
+    driver: local
