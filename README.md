@@ -17,7 +17,7 @@
   <a href="https://rubyonrails.org/"><img src="https://user-images.githubusercontent.com/59280290/80292396-7a4b8a00-8791-11ea-8d8a-effea8a1f485.png" height="45px;" /></a>
   <a>　</a>
   <a href="https://www.postgresql.org/"><img src="https://user-images.githubusercontent.com/60289223/95645629-10832a80-0afc-11eb-9592-57e3fe1ffdc9.png" height="45px;" /></a>
-  <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645584-8d61d480-0afb-11eb-8d3c-cba4b94fc1ec.png" height="65px;" /></a>
+  <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645584-8d61d480-0afb-11eb-8d3c-cba4b94fc1ec.png" height="45px;" height="80px" /></a>
 
 ## サイト概要
 <h1>ゲーミフィケーションを取り入れたタスク管理SPA</h1>
