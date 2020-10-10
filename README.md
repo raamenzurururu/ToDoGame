@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://jp.vuejs.org/index.html"><img src="https://user-images.githubusercontent.com/39142850/71645835-a98d4580-2d21-11ea-9693-348d12101bb4.png" width="80px;" /></a>
   <a>　</a>
-  <a href="https://ja.nuxtjs.org/guide/"><img src="https://user-images.githubusercontent.com/59280290/80292478-f645d200-8791-11ea-9a0b-57ec5a7ec487.png" height="80px" /></a>
+  <a href="https://ja.nuxtjs.org/guide/"><img src="https://user-images.githubusercontent.com/59280290/80292478-f645d200-8791-11ea-9a0b-57ec5a7ec487.png" height="80px;" /></a>
 <a>　</a>
     <a href="https://firebase.google.com/"><img src="https://user-images.githubusercontent.com/59280290/80302028-90356b00-87e2-11ea-854c-c234307f3299.png" height="80px;" /></a></p>
 <h3 align="center">Backend</h3>
@@ -17,7 +17,7 @@
   <a href="https://rubyonrails.org/"><img src="https://user-images.githubusercontent.com/59280290/80292396-7a4b8a00-8791-11ea-8d8a-effea8a1f485.png" height="45px;" /></a>
   <a>　</a>
   <a href="https://www.postgresql.org/"><img src="https://user-images.githubusercontent.com/60289223/95645629-10832a80-0afc-11eb-9592-57e3fe1ffdc9.png" height="45px;" /></a>
-  <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645584-8d61d480-0afb-11eb-8d3c-cba4b94fc1ec.png" height="45px;" height="80px" /></a>
+  <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645584-8d61d480-0afb-11eb-8d3c-cba4b94fc1ec.png" height="45px;" width="80px;" /></a>
 
 ## サイト概要
 <h1>ゲーミフィケーションを取り入れたタスク管理SPA</h1>
