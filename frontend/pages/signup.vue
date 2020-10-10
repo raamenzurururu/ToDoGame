@@ -36,7 +36,7 @@
           height="45px;"
       /></a>
       <a href="https://www.postgresql.org/"><img src="https://user-images.githubusercontent.com/60289223/95645629-10832a80-0afc-11eb-9592-57e3fe1ffdc9.png" height="45px;" /></a>
-      <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645584-8d61d480-0afb-11eb-8d3c-cba4b94fc1ec.png" height="65px;" /></a>
+      <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645928-7ffa1980-0afe-11eb-8207-618424900c10.png" height="45px;" /></a>
     </p>
   </v-container>
 </template>
