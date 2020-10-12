@@ -12,17 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2020_08_26_064701) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "level_settings", force: :cascade do |t|
+  create_table "level_settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "level"
     t.integer "thresold"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "rewards", force: :cascade do |t|
+  create_table "rewards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
     t.integer "point"
     t.integer "user_id"
@@ -32,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_064701) do
     t.integer "sort", default: 0
   end
 
-  create_table "todos", force: :cascade do |t|
+  create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -41,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_064701) do
     t.integer "sort", default: 0
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "uid"
