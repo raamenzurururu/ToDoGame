@@ -35,7 +35,7 @@
           src="https://user-images.githubusercontent.com/59280290/80302130-2ec1cc00-87e3-11ea-813c-dcdb51a02af5.png"
           height="45px;"
       /></a>
-      <a href="https://www.postgresql.org/"><img src="https://user-images.githubusercontent.com/60289223/95645629-10832a80-0afc-11eb-9592-57e3fe1ffdc9.png" height="45px;" /></a>
+      <a href="https://www.mysql.com/jp/"><img src="https://user-images.githubusercontent.com/59280290/80302176-6cbef000-87e3-11ea-9643-1f4b446dfaa8.png" height="45px;" /></a>
       <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645928-7ffa1980-0afe-11eb-8207-618424900c10.png" height="45px;" /></a>
     </p>
   </v-container>
