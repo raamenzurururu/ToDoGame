@@ -42,7 +42,7 @@
 </template>
 <style lang="scss">
 .extra-page {
-  border: 5px solid #03a9f5;
+  border: 5px solid #0d4edb;
   background-color: white;
   h1,
   h2,
