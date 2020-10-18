@@ -17,6 +17,7 @@
   <a href="https://rubyonrails.org/"><img src="https://user-images.githubusercontent.com/59280290/80292396-7a4b8a00-8791-11ea-8d8a-effea8a1f485.png" height="45px;" /></a>
   <a>　</a>
   <a href="https://www.mysql.com/jp/"><img src="https://user-images.githubusercontent.com/59280290/80302176-6cbef000-87e3-11ea-9643-1f4b446dfaa8.png" height="45px;" /></a>
+  <br>
   <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645928-7ffa1980-0afe-11eb-8207-618424900c10.png" height="45px;" /></a>
   <a href="https://circleci.com/"><img src="https://user-images.githubusercontent.com/60289223/96357363-d9cd9580-1135-11eb-9ab0-2a63d20e6428.png" height="45px;" /></a>
 
