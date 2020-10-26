@@ -32,9 +32,9 @@
 ##  🐈 Usage
 
 ##  🐾 Author
-✔️ 
-✔️ 
-✔️ 
+✔️ <a href="https://github.com/raamenzurururu">Github</a>
+✔️ <a href="https://twitter.com/raamenzurururu">Twitter</a>
+✔️ <a href="https://qiita.com/raamenzurururu">Qiita</a>
 
 
 
