@@ -37,6 +37,7 @@
       /></a>
       <a href="https://www.mysql.com/jp/"><img src="https://user-images.githubusercontent.com/59280290/80302176-6cbef000-87e3-11ea-9643-1f4b446dfaa8.png" height="45px;" /></a>
       <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645928-7ffa1980-0afe-11eb-8207-618424900c10.png" height="45px;" /></a>
+      <a href="https://circleci.com/"><img src="https://user-images.githubusercontent.com/60289223/96357472-4301d880-1137-11eb-9839-7ede9f291b7f.png" height="45px;" /></a>
     </p>
   </v-container>
 </template>
