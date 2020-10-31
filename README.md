@@ -9,6 +9,7 @@
     <a href="https://firebase.google.com/"><img src="https://user-images.githubusercontent.com/59280290/80302028-90356b00-87e2-11ea-854c-c234307f3299.png" height="80px;" /></a></p>
 <h3 align="center">Backend</h3>
 <p align="center">
+<a href="https://www.heroku.com/"><img src="https://user-images.githubusercontent.com/60289223/97792052-7f940080-1c1c-11eb-95df-7b8b7d098b8b.png" height="45px;" /></a>
 <a>　</a>
   <a href="https://rubyonrails.org/"><img src="https://user-images.githubusercontent.com/59280290/80292396-7a4b8a00-8791-11ea-8d8a-effea8a1f485.png" height="45px;" /></a>
   <a>　</a>
