@@ -10,14 +10,9 @@
 <h3 align="center">Backend</h3>
 <p align="center">
 <a>　</a>
-  <a href="https://aws.amazon.com/jp/?nc2=h_lg"
-        ><img
-          src="https://user-images.githubusercontent.com/59280290/80302130-2ec1cc00-87e3-11ea-813c-dcdb51a02af5.png"
-          height="45px;"
-      /></a>
   <a href="https://rubyonrails.org/"><img src="https://user-images.githubusercontent.com/59280290/80292396-7a4b8a00-8791-11ea-8d8a-effea8a1f485.png" height="45px;" /></a>
   <a>　</a>
-  <a href="https://www.mysql.com/jp/"><img src="https://user-images.githubusercontent.com/59280290/80302176-6cbef000-87e3-11ea-9643-1f4b446dfaa8.png" height="45px;" /></a>
+  <a href="https://www.postgresql.org/"><img src="https://user-images.githubusercontent.com/60289223/97791964-7fdfcc00-1c1b-11eb-86e0-251b4a60e835.jpeg" height="45px;" /></a>
   <br>
   <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645928-7ffa1980-0afe-11eb-8207-618424900c10.png" height="45px;" /></a>
   <a href="https://circleci.com/"><img src="https://user-images.githubusercontent.com/60289223/96357472-4301d880-1137-11eb-9839-7ede9f291b7f.png" height="45px;" /></a>
@@ -29,10 +24,9 @@
 <p>ゲームをこなすような感覚で日々の『やること📝』をこなすアプリ<p>
 
 ##  🍀 App URL
+https://todogame-93f90.firebaseapp.com/
 
-##  🐈 Usage
-
-##  🐾 Author
+##  🐈  Author 🐾
 ✔️ <a href="https://github.com/raamenzurururu">Github</a>
 ✔️ <a href="https://twitter.com/raamenzurururu">Twitter</a>
 ✔️ <a href="https://qiita.com/raamenzurururu">Qiita</a>
