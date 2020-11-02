@@ -24,6 +24,7 @@
     </p>
     <h3 align="center">Backend</h3>
     <p align="center">
+      <a href="https://www.heroku.com/"><img src="https://user-images.githubusercontent.com/60289223/97792052-7f940080-1c1c-11eb-95df-7b8b7d098b8b.png" height="45px;" /></a>
       <a> </a>
       <a href="https://rubyonrails.org/"
         ><img
