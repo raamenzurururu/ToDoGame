@@ -27,6 +27,14 @@
 ##  🍀 App URL
 https://todogame-93f90.firebaseapp.com/
 
+##  💻 Version
+Ruby: 2.7.1
+Rails 6.0.3.4
+Bundler version 2.1.4
+Node: 12.18.0
+npm: 6.14.4
+PostgreSQL: 12.4
+
 ##  🐈  Author 🐾
 ✔️ <a href="https://github.com/raamenzurururu">Github</a>
 ✔️ <a href="https://twitter.com/raamenzurururu">Twitter</a>
