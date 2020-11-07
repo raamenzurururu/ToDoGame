@@ -29,10 +29,15 @@ https://todogame-93f90.firebaseapp.com/
 
 ##  💻 Version
 Ruby: 2.7.1
+<br>
 Rails 6.0.3.4
+<br>
 Bundler version 2.1.4
+<br>
 Node: 12.18.0
+<br>
 npm: 6.14.4
+<br>
 PostgreSQL: 12.4
 
 ##  🐈  Author 🐾
