@@ -15,7 +15,6 @@
   <a>　</a>
   <a href="https://www.postgresql.org/"><img src="https://user-images.githubusercontent.com/60289223/97791964-7fdfcc00-1c1b-11eb-86e0-251b4a60e835.jpeg" height="45px;" /></a>
   <br>
-  <a href="https://www.docker.com/"><img src="https://user-images.githubusercontent.com/60289223/95645928-7ffa1980-0afe-11eb-8207-618424900c10.png" height="45px;" /></a>
 
 ## サイト概要
 <h1>ゲーミフィケーションを取り入れたタスク管理SPA</h1>
