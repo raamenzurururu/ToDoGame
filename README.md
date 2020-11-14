@@ -39,7 +39,7 @@ npm: 6.14.4
 PostgreSQL: 12.4
 
 ##  🐈  Author 🐾
-✔️ <a href="https://github.com/raamenzurururu">Github</a>
+✔️ <a href="https://github.com/Kazuki-0528">Github</a>
 ✔️ <a href="https://twitter.com/raamenzurururu">Twitter</a>
 ✔️ <a href="https://qiita.com/raamenzurururu">Qiita</a>
 
