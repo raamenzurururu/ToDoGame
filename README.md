@@ -40,8 +40,7 @@ PostgreSQL: 12.4
 
 ##  🐈  Author 🐾
 ✔️ <a href="https://github.com/Kazuki-0528">Github</a>
-✔️ <a href="https://twitter.com/raamenzurururu">Twitter</a>
-✔️ <a href="https://qiita.com/raamenzurururu">Qiita</a>
+✔️ <a href="https://twitter.com/engineer_kazuki">Twitter</a>
 
 
 
